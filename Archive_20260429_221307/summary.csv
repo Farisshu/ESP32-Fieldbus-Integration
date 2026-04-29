@@ -1,0 +1,2 @@
+,channel,frequency_avg_hz,frequency_std_hz,duty_cycle_percent,total_edges,period_avg_us,period_std_us,signal_type,high_count,low_count
+logic.2,logic.2,1000.06,0.06,50.0,125,999.943,0.062,PWM/Clock,500028,499972
