@@ -1,4 +1,14 @@
 {
-	"folders": [],
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "firmware/test_can_spi_test"
+		},
+		{
+			"path": "firmware/test_uart_basic"
+		}
+	],
 	"settings": {}
 }
