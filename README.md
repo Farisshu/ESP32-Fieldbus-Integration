@@ -94,5 +94,5 @@ Built for embedded engineers who value **traceability, automation, and professio
 MIT License. Free for educational, R&D, and commercial use.
 
 ---
-*Developed for industrial automation workflows & internship preparation (HORIBA / Automotive R&D)*
+*Developed for industrial automation workflows & internship preparation (Automotive R&D)*
 ```
