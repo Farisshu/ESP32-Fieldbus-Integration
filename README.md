@@ -1,109 +1,98 @@
 # ESP32 Logic Analyzer Automation 🛠️📊
 
-> Workflow lengkap: ESP32 → Logic Analyzer (FX2LP/PulseView) → Python Auto-Analysis → Professional Report
+> All-in-One Logic Analyzer Workflow: Capture → Auto-Detect → Professional Report Generation  
+> Standardized for R&D, Industrial Protocols (SPI, UART, I2C, CAN), and Internship Documentation.
 
 ![Python](https://img.shields.io/badge/Python-3.8+-blue?logo=python)
 ![PlatformIO](https://img.shields.io/badge/PlatformIO-ESP32-orange?logo=platformio)
-![PulseView](https://img.shields.io/badge/PulseView-Sigrok-green?logo=linux)
 ![License](https://img.shields.io/badge/License-MIT-yellow.svg)
 
-## 🎯 Tujuan
-Repo ini berisi toolkit untuk:
-- ✅ Debug sinyal digital ESP32 (UART, PWM, SPI, I2C, CAN)
-- ✅ Capture waveform dengan Logic Analyzer murah (FX2LP clone 24MHz 8CH)
-- ✅ Auto-generate report dengan Python (grafik, statistik, dokumentasi)
-- ✅ Dokumentasi profesional untuk proyek embedded/R&D
+## 🎯 Project Goal
+Automate logic analyzer data processing to eliminate manual screenshot/reporting. 
+Transform raw CSV exports into **structured, auditable test reports** with protocol decoding, timing validation, and auto-generated conclusions.
 
 ## 🚀 Quick Start
 
-### 1. Persyaratan Hardware
-- ESP32 Dev Board (ESP32-WROOM / ESP32-S3)
-- Logic Analyzer FX2LP (24MHz 8CH clone)
-- Kabel jumper female-to-female
-
-### 2. Persyaratan Software
-- [VS Code](https://code.visualstudio.com/) + [PlatformIO](https://platformio.org/)
-- [PulseView](https://sigrok.org/wiki/Downloads) (sigrok + fx2lafw driver)
-- Python 3.8+ dengan library: `pandas`, `matplotlib`, `numpy`
-
-### 3. Instalasi
+### 1. Setup Environment
 ```bash
-# Clone repo
 git clone https://github.com/Farisshu/esp32-logic-analyzer-automation.git
 cd esp32-logic-analyzer-automation
-
-# Buat & aktifkan virtual environment (disarankan)
 python -m venv .venv
 # Windows:
 .venv\Scripts\activate
 # Linux/Mac:
 source .venv/bin/activate
-
-# Install dependency Python
 pip install -r requirements.txt
 ```
 
-### 4. Jalankan Analisis
+### 2. Run Analysis
 ```bash
-# Setelah export CSV dari PulseView
-python software/analyze_la_archive.py software/examples/sample_capture.csv
+# Basic (auto-detect protocols)
+python software/analyze_la_pro.py capture.csv
 
-# Atau dengan file CSV custom:
-python software/analyze_la_archive.py path/to/your_capture.csv
+# With metadata (recommended for reports)
+python software/analyze_la_pro.py capture.csv \
+  --operator "Your Name" \
+  --dut "ESP32 + MCP2515" \
+  --purpose "CAN Bus SPI Verification" \
+  --sample-rate 8
 ```
 
-Hasil akan tersimpan otomatis di folder `Archive_YYYYMMDD_HHMMSS/` 📁
+### 3. Output Structure
+```
+Archive_YYYYMMDD_HHMMSS/
+├── professional_report.txt   # Full metadata, results, validation & conclusions
+├── waveform_annotated.png    # Annotated plot with edge markers & timing labels
+├── metadata.json             # Machine-readable results for CI/CD or databases
+└── la_analysis.log           # Execution trace & debugging info
+```
 
-## 📁 Struktur Proyek
+## 📁 Project Structure
 ```
 esp32-logic-analyzer-automation/
-├── firmware/              ← Kode ESP32 (PlatformIO) untuk berbagai test case
-│   └── test_uart_basic/   ← Contoh: UART TX sederhana
-├── software/              ← Tool Python untuk analisis & report
-│   ├── analyze_la_archive.py  ← Script utama (auto-report generator)
-│   └── examples/          ← Contoh data CSV untuk testing
-├── docs/                  ← Dokumentasi: wiring diagram, screenshot PulseView
-├── archives/              ← [IGNORED] Hasil generate script (jangan di-commit)
-├── .gitignore             ← Konfigurasi ignore file/folder
-├── requirements.txt       ← Dependency Python
-└── README.md              ← Dokumentasi ini
+├── firmware/                 # ESP32 test codes (PlatformIO)
+│   ── test_mcp2515_spi/     # MCP2515 initialization & TX test
+├── software/
+│   ├── analyze_la_pro.py     # Main auto-report generator
+│   ├── generate_samples.py   # Synthetic CSV generator for testing
+│   └── examples/             # Sample captures & test data
+├── docs/                     # Wiring diagrams, pulseview settings
+├── archives/                 # [IGNORED] Generated reports
+├── requirements.txt
+└── README.md
 ```
 
-## 🔧 Fitur Script Python (`analyze_la_archive.py`)
-- ✅ **Auto-detect signal type**: PWM, UART, Clock, Pulse, Digital Signal
-- ✅ **Statistik presisi**: Frekuensi (mean ± std), Duty Cycle, Period, Jitter
-- ✅ **Visualisasi otomatis**: Generate waveform plot (PNG) untuk semua channel aktif
-- ✅ **Multi-format export**: 
-  - `analysis_report.txt` → Laporan teks profesional
-  - `summary.csv` → Ringkasan untuk Excel/Google Sheets
-  - `metadata.json` → Metadata terstruktur untuk dokumentasi
-- ✅ **Auto-organize**: Folder archive dengan timestamp, siap untuk versioning
+## 🔧 How It Works
+1. **Capture**: Export CSV from PulseView / Saleae / Generic LA
+2. **Auto-Detect**: Script identifies UART, SPI, or I2C patterns from waveform timing
+3. **Decode**: Extracts protocol frames, register accesses, or byte streams
+4. **Validate**: Checks against spec thresholds (jitter, frequency, CRC, timing margins)
+5. **Report**: Generates standardized TXT/PNG/JSON output ready for documentation
 
-## 📸 Contoh Output
+## 📊 Example Report Snippet
 ```
-LOGIC.2
-  Signal Type      : PWM/Clock
-  Frequency        : 1000.00 Hz ± 0.05 Hz
-  Duty Cycle       : 50.00%
-  Period (avg)     : 1000.000 µs ± 0.050 µs
+🔍 PROTOCOL ANALYSIS RESULTS
+  SPI
+  Channel(s)       : ch0-ch1
+  Status           : ACTIVE
+  Total Transactions: 1
+
+  ✅ CONCLUSIONS & RECOMMENDATIONS
+  ✅ PASS: All protocols decoded successfully without errors.
+  ✅ Signal integrity appears stable.
 ```
-*Output: Grafik waveform + analisis otomatis + laporan teks siap dokumentasi*
 
-## 🧪 Contoh Firmware yang Tersedia
-| Folder | Deskripsi | Protocol |
-|--------|-----------|----------|
-| `firmware/test_uart_basic/` | UART TX 9600 baud, kirim timestamp | UART |
-| *(akan ditambah)* | PWM timing validation | PWM |
-| *(akan ditambah)* | SPI communication test | SPI |
-| *(akan ditambah)* | I2C sensor read test | I2C |
+##  Contribution & Internship Readiness
+This toolkit is designed to be **modular and extensible**:
+- Add new protocol decoders in `software/decoders/`
+- Integrate with CI/CD for automated test validation
+- Export reports directly to lab management systems
 
-## 🤝 Kontribusi
-Pull request welcome! Untuk bug report atau feature request, silakan buka [Issue](https://github.com/Farisshu/esp32-logic-analyzer-automation/issues).
+Built for embedded engineers who value **traceability, automation, and professional documentation**.
 
-## 📄 Lisensi
-Distributed under the MIT License. See `LICENSE` for more information.
+## 📄 License
+MIT License. Free for educational, R&D, and commercial use.
 
 ---
-*Developed for embedded system debugging & professional documentation workflow.*  
-*Target: R&D, industrial automation, and pre-production validation.*
+*Developed for industrial automation workflows & internship preparation (HORIBA / Automotive R&D)*
 ```

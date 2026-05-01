@@ -1,21 +1,23 @@
-# Hasil archive & file besar (jangan di-commit)
-archives/
-Archive_*/
-*.csv
-*.png
-*.jpg
-*.json
-*.txt
+# Virtual environments
+.venv/
+venv/
 
-# IDE & OS
-.vscode/
-.idea/
-.DS_Store
-Thumbs.db
-
-# PlatformIO / Python
-.pio/
-.piolibdeps/
+# Python artifacts
 __pycache__/
 *.pyc
-venv/
+*.pyo
+
+# Generated files
+Archive_*/
+*.log
+*.png
+*.json
+*.txt
+!README.md
+
+# IDE
+.vscode/
+.idea/
+
+# PlatformIO
+.pio/
