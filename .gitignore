@@ -1,23 +1,48 @@
-# Virtual environments
-.venv/
+```gitignore
+# Build artifacts and compiled files
+*.o
+*.obj
+*.out
+*.bin
+*.hex
+*.elf
+
+# Dependencies and packages
+node_modules/
 venv/
-
-# Python artifacts
+.venv/
 __pycache__/
-*.pyc
-*.pyo
+.pipenv/
+poetry.lock
 
-# Generated files
-Archive_*/
+# Logs and temporary files
 *.log
-*.png
-*.json
-*.txt
-!README.md
+*.tmp
+*.temp
+*.bak
 
-# IDE
+# Environment files
+.env
+.env.local
+*.env.*
+
+# Editors and IDEs
 .vscode/
 .idea/
+*.swp
+*.swo
 
-# PlatformIO
-.pio/
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Coverage reports
+coverage/
+htmlcov/
+.coverage
+
+# Build directories
+build/
+dist/
+target/
+```
