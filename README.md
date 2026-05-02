@@ -61,6 +61,17 @@ esp32-logic-analyzer-automation/
 ├── requirements.txt
 └── README.md
 ```
+## 🧪 Testing & Development Workflow
+
+This repository follows a **modular R&D workflow** aligned with industrial automation standards:
+
+| Stage | Folder | Purpose | Status |
+|-------|--------|---------|--------|
+| **Unit Test** | `firmware/tests/` | Verify individual modules (SPI, UART, TFT init) | ✅ MCP2515 SPI+Loopback Verified |
+| **Integration** | `firmware/integration/` | Multi-node communication (CAN bus, RS485 Modbus) |  Next |
+| **Project** | `firmware/projects/` | Final integrated applications | ⏳ Planned |
+
+### 📂 Project Structure
 
 ## 🔧 How It Works
 1. **Capture**: Export CSV from PulseView / Saleae / Generic LA
