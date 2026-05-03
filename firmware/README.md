@@ -14,12 +14,15 @@ firmware/
 
 ## Projects Overview
 
-| Project | Description | Status |
-|---------|-------------|--------|
-| `tests/` | Unit testing framework and test cases | ✅ Ready |
-| `integration/can_two_nodes/` | Two-node CAN bus communication | 🔄 In Progress |
-| `test_uart_basic/` | Basic UART with SPI initialization | ✅ Complete |
-| `test_can_spi_test/` | MCP2515 CAN controller SPI diagnostic | ✅ Complete |
+| Project | Description | Status | Key Features |
+|---------|-------------|--------|--------------|
+| `test_uart_basic` | Basic UART with SPI initialization | ✅ Complete | UART TX/RX, SPI init, LED status |
+| `test_can_spi_test` | MCP2515 CAN controller SPI diagnostic | ✅ Complete | Pin toggle test, wiring verification |
+| `tests/mcp2515_can` | Comprehensive MCP2515 loopback test | ✅ Complete | Loopback mode, register verification |
+| `tests/st7735s_tft` | ST7735S TFT display test | ✅ Complete | Color test, text rendering |
+| `tests/tft_mcp2515_combined` | Shared SPI bus test (TFT + MCP2515) | ✅ Complete | CS arbitration, no bus conflict |
+| `integration/can_two_nodes` | Two-node CAN bus communication | ✅ Complete | 500 kbps, TX/RX roles, error monitoring |
+| `integration/can_bus_with_tft` | CAN monitor with TFT & FreeRTOS | ✅ Complete | Multi-task, SPI sharing, LittleFS logging |
 
 ## Getting Started
 
@@ -28,6 +31,7 @@ firmware/
 - [PlatformIO Core](https://platformio.org/install/cli) or [PlatformIO IDE](https://platformio.org/platformio-ide)
 - ESP32 development board
 - USB cable
+- Serial monitor (115200 baud)
 
 ### Build & Upload
 
@@ -51,13 +55,17 @@ pio device monitor
 
 # Clean build files
 pio run --target clean
+
+# Run tests (if available)
+pio test
 ```
 
 ## Testing Workflow
 
-1. **Unit Tests**: Verify individual modules in `tests/`
-2. **Integration Tests**: Test multi-component systems in `integration/`
-3. **Projects**: Deploy complete applications
+1. **Hardware Verification**: Start with `test_can_spi_test/` for basic pin testing
+2. **Unit Tests**: Verify individual modules in `tests/`
+3. **Integration Tests**: Test multi-component systems in `integration/`
+4. **Final Application**: Deploy complete applications
 
 ## Adding New Projects
 
@@ -65,17 +73,54 @@ pio run --target clean
 2. Initialize PlatformIO: `pio init --board esp32dev --directory firmware/my_new_project`
 3. Add your source code to `src/`
 4. Configure `platformio.ini` as needed
+5. Update this README with project details
 
 ## Pin Configuration Reference
 
-| Module | Pin | Function |
-|--------|-----|----------|
-| MCP2515 | GPIO 5 | CS (Chip Select) |
-| MCP2515 | GPIO 18 | SCK (SPI Clock) |
-| MCP2515 | GPIO 23 | MOSI (SPI Data Out) |
-| MCP2515 | GPIO 19 | MISO (SPI Data In) |
-| Built-in LED | GPIO 2 | Status Indicator |
+### SPI Shared Bus (MCP2515 + ST7735S)
+
+| Module | Pin | Function | Notes |
+|--------|-----|----------|-------|
+| MCP2515 | GPIO 5 | CS (Chip Select) | Active LOW |
+| MCP2515 | GPIO 18 | SCK (SPI Clock) | Shared with TFT |
+| MCP2515 | GPIO 23 | MOSI (SPI Data Out) | Shared with TFT |
+| MCP2515 | GPIO 19 | MISO (SPI Data In) | MCP2515 only |
+| ST7735S | GPIO 17 | CS (Chip Select) | Active LOW |
+| ST7735S | GPIO 16 | DC (Data/Command) | Control pin |
+| ST7735S | GPIO 4 | RST (Reset) | Active LOW |
+| Built-in LED | GPIO 2 | Status Indicator | For debug |
+
+### CAN Bus Wiring
+
+```
+Node TX (MCP2515)          Node RX (MCP2515)
+     CANH ───────────────────── CANH
+     CANL ───────────────────── CANL
+              ┌─────────┐
+              │ 120Ω    │  (Termination at BOTH ends)
+              └─────────┘
+```
+
+## Troubleshooting
+
+| Issue | Possible Cause | Solution |
+|-------|---------------|----------|
+| Build fails | Missing PlatformIO | Run `pip install platformio` |
+| Upload fails | Wrong COM port | Check `pio device list` |
+| MCP2515 not responding | SPI wiring issue | Verify CS, SCK, MOSI, MISO connections |
+| TFT shows white screen | Wrong init sequence | Try different `initR()` parameter |
+| CAN errors (EFLG > 0) | Bus noise/termination | Add 120Ω resistor, check wiring |
+
+## Best Practices
+
+1. **Always test SPI devices individually** before sharing the bus
+2. **Use common ground** between all modules
+3. **Add termination resistors** (120Ω) for CAN bus
+4. **Keep SPI cables short** (<15cm) to reduce noise
+5. **Use `SPI.beginTransaction()`** for shared bus arbitration
+6. **Monitor EFLG register** for CAN bus health
 
 ---
 
 *For detailed documentation, see the main [README.md](../README.md)*
+*Last updated: 2026-05-03*
