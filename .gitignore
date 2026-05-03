@@ -1,11 +1,37 @@
 ```
-# Archive directories
-Archive_*/
+# Compiled Python files
+__pycache__/
+*.pyc
 
-# Temporary files
-*.tmp
-*.temp
+# Documentation
+docs/
 
-# Logs
+# Dependencies and build artifacts
+venv/
+.venv/
+node_modules/
+dist/
+build/
+.mypy_cache/
+.pytest_cache/
+target/
+.gradle/
+
+# Logs and temporary files
 *.log
+*.tmp
+*.swp
+
+# Environment files
+.env
+.env.local
+*.env.*
+
+# Editors
+.vscode/
+.idea/
+
+# System files
+.DS_Store
+Thumbs.db
 ```
