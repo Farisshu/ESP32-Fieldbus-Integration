@@ -1,0 +1,75 @@
+{
+  "timestamp": "2026-05-02T18:09:47.204089",
+  "version": "1.0.1",
+  "config": {
+    "operator": "M. Faris A. G.",
+    "dut_name": "ESP32-A (TX) \u2194 ESP32-B (RX)",
+    "test_purpose": "CAN Bus Integration Test",
+    "sample_rate_mhz": 8.0,
+    "voltage_threshold_v": 1.65
+  },
+  "detected_protocols": [
+    {
+      "type": "UART",
+      "channel": "ch0",
+      "baud_rate": 533333,
+      "confidence": "low"
+    },
+    {
+      "type": "UART",
+      "channel": "ch1",
+      "baud_rate": 500000,
+      "confidence": "low"
+    },
+    {
+      "type": "UART",
+      "channel": "ch2",
+      "baud_rate": 125000,
+      "confidence": "low"
+    },
+    {
+      "type": "UART",
+      "channel": "ch3",
+      "baud_rate": 85106,
+      "confidence": "low"
+    },
+    {
+      "type": "SPI",
+      "sck_channel": "ch1",
+      "cs_channel": "ch0",
+      "frequency_hz": 357355.0780074182,
+      "channels": [
+        "ch0",
+        "ch1",
+        "ch2",
+        "ch3"
+      ]
+    },
+    {
+      "type": "I2C",
+      "scl_channel": "ch1",
+      "sda_channel": "ch2",
+      "frequency_hz": 357355.0780074182
+    }
+  ],
+  "results": {
+    "SPI": {
+      "protocol_type": "SPI",
+      "channel": "ch0-ch1",
+      "status": "ACTIVE",
+      "metrics": {
+        "total_transactions": 0
+      },
+      "error_count": 0
+    },
+    "I2C": {
+      "protocol_type": "I2C",
+      "channel": "ch1-ch2",
+      "status": "ACTIVE",
+      "metrics": {
+        "total_frames": 0
+      },
+      "error_count": 0
+    }
+  }
+}

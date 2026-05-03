@@ -6,7 +6,9 @@
 ![Python](https://img.shields.io/badge/Python-3.8+-blue?logo=python)
 ![PlatformIO](https://img.shields.io/badge/PlatformIO-ESP32-orange?logo=platformio)
 ![License](https://img.shields.io/badge/License-MIT-yellow.svg)
-
+![Build](https://github.com/Farisshu/esp32-logic-analyzer-automation/actions/workflows/pio-build.yml/badge.svg)
+![License](https://img.shields.io/badge/License-MIT-yellow.svg)
+![ESP32](https://img.shields.io/badge/Platform-ESP32-blue)
 ## 🎯 Project Goal
 
 Automate logic analyzer data processing to eliminate manual screenshot/reporting. Transform raw CSV exports into **structured, auditable test reports** with protocol decoding, timing validation, and auto-generated conclusions.
@@ -131,3 +133,10 @@ MIT License. Free for educational, R&D, and commercial use.
 ---
 
 *Developed for industrial automation workflows & internship preparation (Automotive R&D)*
+
+### 📐 Wiring & Test SOP
+See [docs/test_procedures.md](docs/test_procedures.md) for hardware setup & validation steps.
+
+### 📊 Screenshots
+![CAN Monitor UI](docs/screenshots/tft_can_monitor.png)
+
