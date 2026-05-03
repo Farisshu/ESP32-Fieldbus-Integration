@@ -167,61 +167,85 @@ class ProtocolDetector:
         
         return detected
 
-    @staticmethod
-    def _detect_uart(df: pd.DataFrame, channel: str, sample_rate_mhz: float) -> Optional[Dict]:
-        """Detect UART by finding regular bit timing."""
-        signal = df[channel].values
+@staticmethod
+def _detect_uart(df: pd.DataFrame, channel: str, sample_rate_mhz: float) -> Optional[Dict]:
+    """Detect UART by finding regular bit timing - STRICT MODE."""
+    signal = df[channel].values
+    edges = np.where(np.diff(signal) != 0)[0]
+    
+    # ✅ FILTER 1: Minimal 100 edges untuk UART (lebih ketat)
+    if len(edges) < 100:
+        return None
+    
+    # Calculate bit widths
+    bit_widths = np.diff(edges) / (sample_rate_mhz * 1e6)
+    
+    # ✅ FILTER 2: Buang outlier (noise) dengan IQR method
+    if len(bit_widths) > 10:
+        q1 = np.percentile(bit_widths, 25)
+        q3 = np.percentile(bit_widths, 75)
+        iqr = q3 - q1
+        clean_widths = bit_widths[(bit_widths >= q1 - 1.5*iqr) & (bit_widths <= q3 + 1.5*iqr)]
+        if len(clean_widths) < 20:
+            return None
+        median_width = np.median(clean_widths)
+    else:
+        return None
+        
+    if median_width < 1e-6 or median_width > 1e-3:
+        return None
+    
+    # Estimate baud rate
+    estimated_baud = int(1.0 / median_width)
+    
+    # Check if close to standard baud rates (2% tolerance)
+    for std_baud in UART_BAUD_RATES:
+        if abs(estimated_baud - std_baud) / std_baud < 0.02:
+            return {'channel': channel, 'baud_rate': std_baud, 'confidence': 'high'}
+    
+    return None  # ✅ Return None jika tidak yakin (mencegah false positive)
+
+   @staticmethod
+def _detect_spi(df: pd.DataFrame, channels: List[str], sample_rate_mhz: float) -> Optional[Dict]:
+    """Detect SPI by finding clock + CS pattern + 4-channel requirement."""
+    
+    # ✅ FILTER 1: Minimal 4 channel aktif untuk SPI
+    active_channels = [ch for ch in channels if df[ch].nunique() > 1]
+    if len(active_channels) < 4:
+        return None  # Bukan SPI jika channel < 4
+    
+    # Look for channel with regular clock pattern (50% duty cycle approx)
+    for ch in active_channels:
+        signal = df[ch].values
         edges = np.where(np.diff(signal) != 0)[0]
         
-        if len(edges) < 10:  # Need enough edges
-            return None
+        if len(edges) < 50:  # ✅ FILTER 2: Minimal 50 edge transisi (lebih ketat)
+            continue
         
-        # Calculate bit widths
-        bit_widths = np.diff(edges) / (sample_rate_mhz * 1e6)  # in seconds
+        periods = np.diff(edges) / (sample_rate_mhz * 1e6)
+        avg_period = np.mean(periods)
+        freq = 1.0 / avg_period if avg_period > 0 else 0
         
-        # Find median bit width (should be ~1/baud)
-        median_width = np.median(bit_widths)
-        if median_width < 1e-6 or median_width > 1e-3:  # 1µs to 1ms
-            return None
-        
-        # Estimate baud rate
-        estimated_baud = int(1.0 / median_width)
-        
-        # Check if close to standard baud rates
-        for std_baud in UART_BAUD_RATES:
-            if abs(estimated_baud - std_baud) / std_baud < 0.05:  # 5% tolerance
-                return {'channel': channel, 'baud_rate': std_baud, 'confidence': 'high'}
-        
-        return {'channel': channel, 'baud_rate': estimated_baud, 'confidence': 'low'}
-
-    @staticmethod
-    def _detect_spi(df: pd.DataFrame, channels: List[str], sample_rate_mhz: float) -> Optional[Dict]:
-        """Detect SPI by finding clock + CS pattern."""
-        # Look for channel with regular clock pattern (50% duty cycle approx)
-        for ch in channels:
-            signal = df[ch].values
-            edges = np.where(np.diff(signal) != 0)[0]
-            
-            if len(edges) < 20:
-                continue
-            
-            periods = np.diff(edges) / (sample_rate_mhz * 1e6)
-            avg_period = np.mean(periods)
-            freq = 1.0 / avg_period if avg_period > 0 else 0
-            
-            # Check for clock-like pattern (regular transitions)
-            if 100e3 < freq < 20e6:  # 100kHz to 20MHz
-                # Find CS channel (long low periods)
-                cs_channel = ProtocolDetector._find_cs_channel(df, channels, ch)
-                if cs_channel:
+        # Check for clock-like pattern (regular transitions)
+        if 100e3 < freq < 10e6:  # ✅ FILTER 3: Range lebih realistis untuk SPI embedded
+            # Find CS channel (active low, longer periods than clock)
+            cs_channel = ProtocolDetector._find_cs_channel(df, active_channels, ch)
+            if cs_channel:
+                # ✅ FILTER 4: Pastikan CS benar-benar berbeda pola dengan SCK
+                cs_signal = df[cs_channel].values
+                cs_low_ratio = np.mean(cs_signal == 0)
+                if 0.05 < cs_low_ratio < 0.5:  # CS aktif low 5%-50% dari waktu
                     return {
+                        'protocol': 'SPI',
                         'sck_channel': ch,
                         'cs_channel': cs_channel,
+                        'mosi_channel': active_channels[2] if len(active_channels) > 2 else None,
+                        'miso_channel': active_channels[3] if len(active_channels) > 3 else None,
                         'frequency_hz': freq,
-                        'channels': channels[:4]  # Assume first 4 are SPI
+                        'channels': active_channels[:4]
                     }
-        
-        return None
+    
+    return None
 
     @staticmethod
     def _find_cs_channel(df: pd.DataFrame, channels: List[str], sck_channel: str) -> Optional[str]:

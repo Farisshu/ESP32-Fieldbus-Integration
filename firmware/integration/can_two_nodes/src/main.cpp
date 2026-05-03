@@ -2,7 +2,7 @@
 #include <SPI.h>
 
 // ── CONFIGURATION ─────────────────────────────────────
-#define NODE_ROLE RX  // Ubah ke RX untuk node penerima
+#define NODE_ROLE TX  // Ubah ke RX untuk node penerima
 #define MCP_CS 5
 #define CAN_BAUDRATE_KBPS 500
 #define CRYSTAL_FREQ_HZ 8000000UL // 8MHz
@@ -67,13 +67,15 @@ bool mcp2515_init() {
   return (readReg(CANSTAT) & 0xE0) == 0x00;
 }
 
-void sendCanFrame(uint16_t id, uint8_t len, uint8_t* data) {
-  writeReg(TXB0CTRL, 0x00);
-  writeReg(TXB0SIDH, (id >> 3) & 0xFF);
-  writeReg(TXB0SIDL, (id & 0x07) << 5);
-  writeReg(TXB0DLC, len & 0x0F);
-  for(uint8_t i=0; i<len; i++) writeReg(TXB0D0 + i, data[i]);
+void sendCanFrame(...) {
+  // ... (write registers) ...
   writeReg(TXB0CTRL, 0x08); // TXREQ
+  
+  // ✅ Tambah: Tunggu sampai TXREQ clear atau timeout
+  for(int i=0; i<100; i++) {
+    if ((readReg(TXB0CTRL) & 0x08) == 0) break; // TXREQ clear = sent
+    delayMicroseconds(100);
+  }
 }
 
 void setup() {

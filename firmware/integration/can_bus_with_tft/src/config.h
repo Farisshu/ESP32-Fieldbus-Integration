@@ -22,5 +22,5 @@
 
 // ─── SYSTEM CONSTANTS ────────────────────────────
 #define CAN_BAUDRATE_KBPS 500
-#define SPI_FREQ_HZ       1000000
+#define SPI_FREQ_HZ 250000 
 #define UI_UPDATE_INTERVAL_MS 200

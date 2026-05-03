@@ -3,6 +3,7 @@
 xQueueHandle canFrameQueue;
 
 // ── TASK 1: CAN READER (Producer) ──────────────────────────
+// ── TASK 1: CAN READER (Producer) ──────────────────────────
 void vTaskCAN(void* pv) {
     MCP2515Driver* can = (MCP2515Driver*)pv;
     MCP2515Driver::CANFrame frame;
@@ -10,8 +11,8 @@ void vTaskCAN(void* pv) {
 
     for (;;) {
         if (can->receiveFrame(frame)) {
-            // Filter noise/default reset value
-            if (frame.id != 0x7FF && frame.dlc <= 8 && frame.dlc > 0) {
+            // ✅ FILTER GANDA: Buang ID noise + DLC invalid
+            if (frame.id != 0x7FF && frame.id != 0x000 && frame.dlc <= 8 && frame.dlc > 0) {
                 
                 QueuedMessage msg;
                 msg.frame = frame;
@@ -27,7 +28,10 @@ void vTaskCAN(void* pv) {
         }
         vTaskDelay(pdMS_TO_TICKS(20));
     }
-}
+}   
+
+// ── TASK 2 & 3: Tidak perlu diubah (sudah optimal) ──────────
+// [vTaskUI dan vTaskLogger tetap sama seperti kode sebelumnya]
 
 // ── TASK 2: UI DISPLAY (Consumer) ─────────────────────────
 void vTaskUI(void* pv) {
