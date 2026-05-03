@@ -1,0 +1,13 @@
+{
+  "timestamp": "2026-05-03T14:37:15.467267",
+  "version": "1.0.1",
+  "config": {
+    "operator": "Test User",
+    "dut_name": "ESP32 Test",
+    "test_purpose": "UART Verification",
+    "sample_rate_mhz": 8.0,
+    "voltage_threshold_v": 1.65
+  },
+  "detected_protocols": [],
+  "results": {}
+}
