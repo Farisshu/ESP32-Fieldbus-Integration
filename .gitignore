@@ -1,48 +1,11 @@
-```gitignore
-# Build artifacts and compiled files
-*.o
-*.obj
-*.out
-*.bin
-*.hex
-*.elf
+```
+# Archive directories
+Archive_*/
 
-# Dependencies and packages
-node_modules/
-venv/
-.venv/
-__pycache__/
-.pipenv/
-poetry.lock
-
-# Logs and temporary files
-*.log
+# Temporary files
 *.tmp
 *.temp
-*.bak
 
-# Environment files
-.env
-.env.local
-*.env.*
-
-# Editors and IDEs
-.vscode/
-.idea/
-*.swp
-*.swo
-
-# OS generated files
-.DS_Store
-Thumbs.db
-
-# Coverage reports
-coverage/
-htmlcov/
-.coverage
-
-# Build directories
-build/
-dist/
-target/
+# Logs
+*.log
 ```
