@@ -119,8 +119,11 @@ Node TX (MCP2515)          Node RX (MCP2515)
 4. **Keep SPI cables short** (<15cm) to reduce noise
 5. **Use `SPI.beginTransaction()`** for shared bus arbitration
 6. **Monitor EFLG register** for CAN bus health
+7. **Use configuration constants** from `config.h` instead of magic numbers
+8. **Implement queue drain limiters** to prevent task starvation
+9. **Add SPI stabilization delay** (2µs) after CS LOW for MCP2515 clone modules
 
 ---
 
 *For detailed documentation, see the main [README.md](../README.md)*
-*Last updated: 2026-05-03*
+*Last updated: 2026-05-03 (All Issues Resolved)*

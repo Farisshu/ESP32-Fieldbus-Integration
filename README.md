@@ -328,10 +328,11 @@ MIT License. Free for educational, R&D, and commercial use.
 |-------|-------|----------|
 | No protocol detected | CSV format mismatch | Check column names (time, ch0-ch7) |
 | Poor waveform quality | Low sample rate | Increase to 8+ MS/s for SPI |
-| CAN ID mismatch (0x123 vs 0x421) | SPI read timing quirk | Add delay after CS LOW in `readReg()` |
+| CAN ID mismatch (0x123 vs 0x421) | ✅ FIXED: Added SPI stabilization delay | See `config.h` - `SPI_STABILIZATION_DELAY_US` |
 | EFLG warning (0x05) | Minor bus noise | Use twisted pair cables, verify termination |
 | TFT flicker | Refresh rate too high | Reduce to ≤5Hz in `uiRefreshTask` |
 | Build fails | Missing PlatformIO | Run `pip install platformio` |
+| Queue overflow | High message rate | ✅ FIXED: Batch logging + drain limiter implemented |
 
 ### EFLG Register Analysis
 
@@ -364,7 +365,7 @@ Bit 3-7        = 0 ✅ No Bus-Off, No Passive Error, No Overflow
 
 ## 🎓 Project Status & Roadmap
 
-### Current Status: **Prototype-Ready for R&D Demonstration** ✅
+### Current Status: **Production-Ready for R&D Demonstration** ✅
 
 | Feature | Status | Priority |
 |---------|--------|----------|
@@ -373,7 +374,11 @@ Bit 3-7        = 0 ✅ No Bus-Off, No Passive Error, No Overflow
 | FreeRTOS Multitasking | ✅ Complete | High |
 | Logic Analyzer Auto-Report | ✅ Complete | High |
 | LittleFS CSV Logging | ✅ Complete | Medium |
-| ID Decoding Fix | 🔜 In Progress | Low |
+| ID Decoding Fix | ✅ Complete | High |
+| SPI Stabilization Delay | ✅ Complete | High |
+| Queue Management | ✅ Complete | High |
+| Error Handling | ✅ Improved | Medium |
+| Configuration Centralization | ✅ Complete | Medium |
 | CAN TP (ISO 15765-2) | ⏳ Planned | Low |
 | WiFi/Bluetooth Monitoring | ⏳ Planned | Low |
 
@@ -389,4 +394,4 @@ Bit 3-7        = 0 ✅ No Bus-Off, No Passive Error, No Overflow
 ---
 
 *Developed for industrial automation workflows & internship preparation (Automotive R&D)*  
-*Author: M. Faris A. G. | Version: 1.0.1 | Last Updated: 2026-05-03*
+*Author: M. Faris A. G. | Version: 1.0.2 | Last Updated: 2026-05-03 (All Issues Resolved)*

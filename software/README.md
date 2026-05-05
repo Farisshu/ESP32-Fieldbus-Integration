@@ -155,7 +155,10 @@ with open('metadata.json') as f:
 | No protocol detected | Check CSV format and column names |
 | Poor waveform quality | Increase sample rate in capture |
 | Missing dependencies | Run `pip install -r requirements.txt` |
+| UART detection too strict | ✅ FIXED: Lowered threshold to 50 edges (v1.0.2) |
+| SPI requires 4 channels | ✅ FIXED: Now supports 3-wire SPI (CS, SCK, MOSI) |
 
 ---
 
 *For more information, see the main [README.md](../README.md)*
+*Last updated: 2026-05-03 (All Issues Resolved)*
