@@ -20,16 +20,13 @@ void setup() {
 
     SPI.begin(18, 19, 23, -1);
     
-// ❌ Lama (Ukuran struct CANFrame):
-// canFrameQueue = xQueueCreate(10, sizeof(MCP2515Driver::CANFrame));
-
-// ✅ Baru (Ukuran struct QueuedMessage yang lebih besar):
-// ✅ WAJIB SEPERTI INI:
+// Create queue for CAN frame messages
+// QueuedMessage contains: CANFrame + sequenceNumber + timestamp + isValid flag
 canFrameQueue = xQueueCreate(10, sizeof(QueuedMessage));
-    
-    if (!display.begin() || !can.begin() || !logger.begin()) {
-        Serial.println("❌ Init Failed"); while(1);
-    }
+if (canFrameQueue == NULL) {
+    Serial.println("❌ Failed to create CAN queue");
+    while(1);
+}
     
     display.drawStaticLayout();
     Serial.println("✅ System Ready. Tasks Started.");

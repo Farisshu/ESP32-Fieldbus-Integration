@@ -174,7 +174,7 @@ class ProtocolDetector:
         edges = np.where(np.diff(signal) != 0)[0]
         
         # ✅ FILTER 1: Minimal 100 edges untuk UART (lebih ketat)
-        if len(edges) < 100:
+        if len(edges) < 50:
             return None
         
         # Calculate bit widths
@@ -211,7 +211,7 @@ class ProtocolDetector:
         
         # ✅ FILTER 1: Minimal 4 channel aktif untuk SPI
         active_channels = [ch for ch in channels if df[ch].nunique() > 1]
-        if len(active_channels) < 4:
+        if len(active_channels) < 3:
             return None  # Bukan SPI jika channel < 4
         
         # Look for channel with regular clock pattern (50% duty cycle approx)

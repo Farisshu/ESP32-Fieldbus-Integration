@@ -4,15 +4,16 @@ TFT_UI::TFT_UI(uint8_t csPin, uint8_t dcPin, uint8_t rstPin)
     : _tft(csPin, dcPin, rstPin) {}
 
 bool TFT_UI::begin() {
-    // initR() returns void di library ini, jadi langsung panggil
-    _tft.initR(INITR_144GREENTAB);
-    
-    _tft.setRotation(1);
-    _tft.setTextWrap(false);
-    _tft.fillScreen(ST77XX_BLACK);
-    
-    // Asumsikan berhasil jika tidak crash/halt
-    return true; 
+    try {
+        _tft.initR(INITR_144GREENTAB);
+        // Add basic verification
+        uint16_t testColor = _tft.color565(255, 0, 0);
+        if (testColor == 0) return false;  // Basic sanity check
+    } catch (...) {
+        Serial.println("TFT init exception");
+        return false;
+    }
+    return true;
 }
 
 void TFT_UI::drawStaticLayout() {

@@ -24,3 +24,24 @@
 #define CAN_BAUDRATE_KBPS 500
 #define SPI_FREQ_HZ 250000 
 #define UI_UPDATE_INTERVAL_MS 200
+
+// ─── TIMING & INTERVAL CONSTANTS ──────────────────────────
+#define CAN_POLL_INTERVAL_MS          20
+#define QUEUE_SEND_TIMEOUT_MS         20
+#define QUEUE_RECV_TIMEOUT_MS         10
+
+#define UI_MAX_DRAIN_PER_CYCLE        20
+#define BUS_IDLE_TIMEOUT_MS           2000
+#define UI_REFRESH_INTERVAL_MS        100
+
+#define LOGGER_MAX_BATCH_PER_CYCLE    10
+#define LOGGER_CYCLE_INTERVAL_MS      100
+
+#define SPI_STABILIZATION_DELAY_US    2
+#define MCP_RESET_DELAY_MS            50
+#define MCP_MODE_SWITCH_DELAY_MS      10
+
+// ─── VALIDATION CONSTANTS ─────────────────────────────────
+#define CAN_ID_INVALID_MIN            0x000
+#define CAN_ID_INVALID_MAX            0x7FF
+#define CAN_DLC_MAX                   8

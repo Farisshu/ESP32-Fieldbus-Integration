@@ -3,7 +3,6 @@
 xQueueHandle canFrameQueue;
 
 // ── TASK 1: CAN READER (Producer) ──────────────────────────
-// ── TASK 1: CAN READER (Producer) ──────────────────────────
 void vTaskCAN(void* pv) {
     MCP2515Driver* can = (MCP2515Driver*)pv;
     MCP2515Driver::CANFrame frame;
@@ -11,8 +10,11 @@ void vTaskCAN(void* pv) {
 
     for (;;) {
         if (can->receiveFrame(frame)) {
-            // ✅ FILTER GANDA: Buang ID noise + DLC invalid
-            if (frame.id != 0x7FF && frame.id != 0x000 && frame.dlc <= 8 && frame.dlc > 0) {
+            // ✅ FILTER: Buang ID noise + DLC invalid
+            if (frame.id != CAN_ID_INVALID_MAX && 
+                frame.id != CAN_ID_INVALID_MIN && 
+                frame.dlc <= CAN_DLC_MAX && 
+                frame.dlc > 0) {
                 
                 QueuedMessage msg;
                 msg.frame = frame;
@@ -20,37 +22,37 @@ void vTaskCAN(void* pv) {
                 msg.timestamp = millis();
                 msg.isValid = true;
                 
-                if (xQueueSend(canFrameQueue, &msg, pdMS_TO_TICKS(20)) == pdPASS) {
+                if (xQueueSend(canFrameQueue, &msg, pdMS_TO_TICKS(QUEUE_SEND_TIMEOUT_MS)) == pdPASS) {
                     Serial.printf("[RX] ID:0x%03X DLC:%d | Count: %lu\n", 
                                   frame.id, frame.dlc, msg.sequenceNumber);
                 }
             }
         }
-        vTaskDelay(pdMS_TO_TICKS(20));
+        vTaskDelay(pdMS_TO_TICKS(CAN_POLL_INTERVAL_MS));
     }
-}   
-
-// ── TASK 2 & 3: Tidak perlu diubah (sudah optimal) ──────────
-// [vTaskUI dan vTaskLogger tetap sama seperti kode sebelumnya]
+}
 
 // ── TASK 2: UI DISPLAY (Consumer) ─────────────────────────
 void vTaskUI(void* pv) {
     TFT_UI* ui = (TFT_UI*)pv;
     QueuedMessage msg;
-    QueuedMessage latestMsg = {0}; // ✅ Zero-init aman
+    QueuedMessage latestMsg = {0};
     uint32_t lastActivityTime = millis();
     bool hasNewData = false;
 
     for (;;) {
         hasNewData = false;
         
-        // ✅ DRAIN QUEUE: Ambil semua frame antri, simpan yang TERAKHIR
-        while (xQueueReceive(canFrameQueue, &msg, 0) == pdPASS) {
+        // ✅ DRAIN QUEUE dengan limiter (prevent starvation)
+        int drained = 0;
+        while (drained < UI_MAX_DRAIN_PER_CYCLE && 
+               xQueueReceive(canFrameQueue, &msg, 0) == pdPASS) {
             if (msg.isValid) {
                 latestMsg = msg;
                 hasNewData = true;
                 lastActivityTime = millis();
             }
+            drained++;
         }
         
         if (hasNewData) {
@@ -62,13 +64,13 @@ void vTaskUI(void* pv) {
                 false
             );
         } else {
-            // Timeout check: jika >2 detik tidak ada data, tampilkan BUS IDLE
-            if (millis() - lastActivityTime > 2000) {
+            // Timeout: jika >BUS_IDLE_TIMEOUT_MS tidak ada data
+            if (millis() - lastActivityTime > BUS_IDLE_TIMEOUT_MS) {
                 ui->updateFrame(0, 0, nullptr, latestMsg.sequenceNumber, true);
             }
         }
         
-        vTaskDelay(pdMS_TO_TICKS(100)); // Max 10Hz UI refresh
+        vTaskDelay(pdMS_TO_TICKS(UI_REFRESH_INTERVAL_MS));
     }
 }
 
@@ -78,9 +80,15 @@ void vTaskLogger(void* pv) {
     QueuedMessage msg;
     
     for (;;) {
-        if (xQueueReceive(canFrameQueue, &msg, pdMS_TO_TICKS(200)) == pdPASS && msg.isValid) {
-            logger->logFrame(msg.frame, msg.timestamp);
+        // ✅ Batch logging: ambil semua message tersedia dalam satu cycle
+        int logged = 0;
+        while (logged < LOGGER_MAX_BATCH_PER_CYCLE && 
+               xQueueReceive(canFrameQueue, &msg, pdMS_TO_TICKS(QUEUE_RECV_TIMEOUT_MS)) == pdPASS) {
+            if (msg.isValid) {
+                logger->logFrame(msg.frame, msg.timestamp);
+                logged++;
+            }
         }
-        vTaskDelay(pdMS_TO_TICKS(500));
+        vTaskDelay(pdMS_TO_TICKS(LOGGER_CYCLE_INTERVAL_MS));
     }
 }
