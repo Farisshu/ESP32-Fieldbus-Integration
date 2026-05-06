@@ -139,3 +139,17 @@ git lfs track "evidence/**/*.csv"
 *Part of ESP32 Logic Analyzer Automation Project*
 *Evidence Repository Version: 1.0*
 *Last Updated: 2026-05-06*
+
+---
+
+## 🇯🇵 日本語メモ (にほんご めも - Japanese Notes)
+
+このドキュメントは技術学習とインターンシップ準備のために作成されました。
+(This document was created for technical learning and internship preparation.)
+
+**重要な用語 (Important Terms):**
+- ファームウェア (Firmware) - 組み込みソフトウェア
+- デバッグ (Debug) - 修正・検証作業
+- テスト (Test) - 試験・検証
+- 資料 (Shiryou) - Documentation
+

@@ -162,3 +162,17 @@ with open('metadata.json') as f:
 
 *For more information, see the main [README.md](../README.md)*
 *Last updated: 2026-05-03 (All Issues Resolved)*
+
+---
+
+## 🇯🇵 日本語メモ (にほんご めも - Japanese Notes)
+
+このドキュメントは技術学習とインターンシップ準備のために作成されました。
+(This document was created for technical learning and internship preparation.)
+
+**重要な用語 (Important Terms):**
+- ファームウェア (Firmware) - 組み込みソフトウェア
+- デバッグ (Debug) - 修正・検証作業
+- テスト (Test) - 試験・検証
+- 資料 (Shiryou) - Documentation
+
