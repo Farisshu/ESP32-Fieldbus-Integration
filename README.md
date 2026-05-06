@@ -3,6 +3,8 @@
 > **Professional Embedded System Prototype**: Capture → Auto-Detect → Professional Report Generation  
 > **Industrial-Grade CAN 2.0A Communication** with TFT Visualization, FreeRTOS Multitasking, and Automated Testing  
 > Standardized for R&D, Industrial Protocols (SPI, UART, I2C, CAN), and Internship Documentation.
+> 
+> **学習目標 (がくしゅうもくてき - Learning Goals)**: 組込システム (こみこみシステム - Embedded Systems), 車載ネットワーク (しゃさいネットワーク - Automotive Networks), ものづくり (Monozukuri - Manufacturing Excellence)
 
 ![Python](https://img.shields.io/badge/Python-3.8+-blue?logo=python)
 ![PlatformIO](https://img.shields.io/badge/PlatformIO-ESP32-orange?logo=platformio)
@@ -18,11 +20,11 @@
 Automate logic analyzer data processing to eliminate manual screenshot/reporting. Transform raw CSV exports into **structured, auditable test reports** with protocol decoding, timing validation, and auto-generated conclusions.
 
 **Key Engineering Highlights:**
-- ✅ **Modular Architecture**: Driver/UI/App separation (R&D standard)
-- ✅ **FreeRTOS Integration**: Multi-task architecture with queue-based synchronization
-- ✅ **SPI Bus Sharing**: MCP2515 + ST7735S on same bus with CS arbitration
-- ✅ **Defensive Programming**: ID filtering, DLC validation, error monitoring
-- ✅ **Professional Reporting**: Auto-generated test reports via `analyze_la_pro.py`
+- ✅ **Modular Architecture**: Driver/UI/App separation (R&D standard) - 分離 (ぶんり - Separation)
+- ✅ **FreeRTOS Integration**: Multi-task architecture with queue-based synchronization - 同期 (どうき - Synchronization)
+- ✅ **SPI Bus Sharing**: MCP2515 + ST7735S on same bus with CS arbitration - 調停 (ちょうてい - Arbitration)
+- ✅ **Defensive Programming**: ID filtering, DLC validation, error monitoring - 防御 (ぼうぎょ - Defense)
+- ✅ **Professional Reporting**: Auto-generated test reports via `analyze_la_pro.py` - 報告書 (ほうこくしょ - Report)
 
 ---
 
@@ -71,52 +73,52 @@ Archive_YYYYMMDD_HHMMSS/
 
 ```text
 esp32-logic-analyzer-automation/
-├── firmware/                 # ESP32 test codes (PlatformIO)
-│   ├── tests/               # Unit tests for individual modules
+├── firmware/                 # ESP32 test codes (PlatformIO) - ファームウェア
+│   ├── tests/               # Unit tests for individual modules - 単体テスト (たんたいテスト)
 │   │   ├── mcp2515_can/     # MCP2515 CAN controller tests
 │   │   ├── st7735s_tft/     # ST7735S TFT display tests
 │   │   └── tft_mcp2515_combined/ # Combined SPI device tests
-│   ├── integration/         # Multi-node communication tests
+│   ├── integration/         # Multi-node communication tests - 統合テスト (とうごうテスト)
 │   │   ├── can_two_nodes/   # Two-node CAN bus communication
 │   │   └── can_bus_with_tft/ # CAN monitor with TFT visualization
 │   ├── test_uart_basic/     # UART communication test
 │   └── test_can_spi_test/   # CAN/MCP2515 SPI test
-├── software/
+├── software/                 # Python analysis tools - ソフトウェア
 │   ├── analyze_la_pro.py     # Main auto-report generator
 │   ├── analyze_la_archive.py # Archive analysis utility
 │   ├── generate_samples.py   # Synthetic CSV generator for testing
-│   └── examples/             # Sample captures & test data
-├── include/                  # Project header files
-├── lib/                      # Private libraries
-├── docs/                     # Wiring diagrams, PulseView settings, SOP
-├── archives/                 # [IGNORED] Generated reports
+│   └── examples/             # Sample captures & test data - サンプルデータ
+├── include/                  # Project header files - ヘッダーファイル
+├── lib/                      # Private libraries - ライブラリ
+├── docs/                     # Wiring diagrams, PulseView settings, SOP - 資料 (しりょう)
+├── archives/                 # [IGNORED] Generated reports - アーカイブ
 ├── requirements.txt          # Python dependencies
 ├── LICENSE                   # MIT License
-└── README.md                 # This file
+└── README.md                 # This file - このファイル
 ```
 
 ---
 
 ## 🔧 How It Works
 
-### Software Workflow (Logic Analyzer)
+### Software Workflow (Logic Analyzer) - ソフトウェアワークフロー
 
-1. **Capture**: Export CSV from PulseView / Saleae / Generic LA
-2. **Auto-Detect**: Script identifies UART, SPI, or I2C patterns from waveform timing
-3. **Decode**: Extracts protocol frames, register accesses, or byte streams
-4. **Validate**: Checks against spec thresholds (jitter, frequency, CRC, timing margins)
-5. **Report**: Generates standardized TXT/PNG/JSON output ready for documentation
+1. **Capture**: Export CSV from PulseView / Saleae / Generic LA - キャプチャ (きゃぷちゃ)
+2. **Auto-Detect**: Script identifies UART, SPI, or I2C patterns from waveform timing - 自動検出 (じどうけんしゅつ)
+3. **Decode**: Extracts protocol frames, register accesses, or byte streams - デコード (でこーど)
+4. **Validate**: Checks against spec thresholds (jitter, frequency, CRC, timing margins) - 検証 (けんしょう)
+5. **Report**: Generates standardized TXT/PNG/JSON output ready for documentation - 報告書生成 (ほうこくしょせいせい)
 
-### Firmware Workflow (CAN Bus Monitor)
+### Firmware Workflow (CAN Bus Monitor) - ファームウェアワークフロー
 
-1. **Initialize**: MCP2515 CAN controller + ST7735S TFT on shared SPI bus
-2. **FreeRTOS Tasks**:
-   - `canPollTask`: Monitor CAN bus for incoming messages (10ms interval)
-   - `uiRefreshTask`: Update TFT display (200ms interval, 5Hz refresh)
-   - `loggerTask`: Log data to LittleFS CSV (non-blocking)
-3. **Message Handling**: Filter by ID, validate DLC, extract payload
-4. **Error Monitoring**: Track EFLG register for bus health diagnostics
-5. **Visualization**: Display ID, Data (4 bytes), Count, Status on TFT
+1. **Initialize**: MCP2515 CAN controller + ST7735S TFT on shared SPI bus - 初期化 (しょきか)
+2. **FreeRTOS Tasks** - タスク:
+   - `canPollTask`: Monitor CAN bus for incoming messages (10ms interval) - 監視 (かんし)
+   - `uiRefreshTask`: Update TFT display (200ms interval, 5Hz refresh) - 更新 (こうしん)
+   - `loggerTask`: Log data to LittleFS CSV (non-blocking) - ログ記録 (ろぐきろく)
+3. **Message Handling**: Filter by ID, validate DLC, extract payload - メッセージ処理 (めっせーじしょり)
+4. **Error Monitoring**: Track EFLG register for bus health diagnostics - エラー監視 (えらーかんし)
+5. **Visualization**: Display ID, Data (4 bytes), Count, Status on TFT - 可視化 (かしか)
 
 ---
 
@@ -166,95 +168,95 @@ Generated by: analyze_la_pro.py v1.0.1
 
 This repository follows a **modular R&D workflow** aligned with industrial automation standards:
 
-| Stage | Folder | Purpose | Status |
-|-------|--------|---------|--------|
-| **Unit Test** | `firmware/tests/` | Verify individual modules (SPI, UART, TFT init) | ✅ MCP2515, ST7735S Verified |
-| **Integration** | `firmware/integration/` | Multi-node communication (CAN bus, RS485 Modbus) | ✅ CAN Two Nodes Complete |
-| **Project** | `firmware/projects/` | Final integrated applications | ⏳ Planned |
+| Stage | Folder | Purpose | Status | 日本語 (にほんご) |
+|-------|--------|---------|--------|------------------|
+| **Unit Test** | `firmware/tests/` | Verify individual modules (SPI, UART, TFT init) | ✅ MCP2515, ST7735S Verified | 単体テスト (たんたいテスト) |
+| **Integration** | `firmware/integration/` | Multi-node communication (CAN bus, RS485 Modbus) | ✅ CAN Two Nodes Complete | 統合テスト (とうごうテスト) |
+| **Project** | `firmware/projects/` | Final integrated applications | ⏳ Planned | プロジェクト |
 
 ---
 
 ## 📦 Firmware Projects
 
-| Project | Description | Status | Key Features |
-|---------|-------------|--------|--------------|
-| `test_uart_basic` | Basic UART communication test with SPI initialization | ✅ Complete | UART TX/RX, SPI init |
-| `test_can_spi_test` | MCP2515 CAN controller SPI interface diagnostic | ✅ Complete | Register access, loopback |
-| `integration/can_two_nodes` | Two-node CAN bus communication system | ✅ Complete | 500 kbps, TX/RX roles |
-| `integration/can_bus_with_tft` | CAN monitor with TFT visualization & FreeRTOS | ✅ Complete | Multi-task, SPI sharing, LittleFS logging |
+| Project | Description | Status | Key Features | 特徴 (とくちょう) |
+|---------|-------------|--------|--------------|------------------|
+| `test_uart_basic` | Basic UART communication test with SPI initialization | ✅ Complete | UART TX/RX, SPI init | UART 通信 (つうしん) |
+| `test_can_spi_test` | MCP2515 CAN controller SPI interface diagnostic | ✅ Complete | Register access, loopback | ループバック |
+| `integration/can_two_nodes` | Two-node CAN bus communication system | ✅ Complete | 500 kbps, TX/RX roles | 二重化 (にじゅうか) |
+| `integration/can_bus_with_tft` | CAN monitor with TFT visualization & FreeRTOS | ✅ Complete | Multi-task, SPI sharing, LittleFS logging | マルチタスク |
 
 ---
 
 ## 🔌 Hardware Setup
 
-### Required Components
+### Required Components - 必要部品 (ひつようぶひん)
 
-| Component | Quantity | Purpose |
-|-----------|----------|---------|
-| ESP32 Dev Board | 2 | Main microcontroller (TX & RX nodes) |
-| MCP2515 CAN Module | 2 | CAN 2.0A controller |
-| TJA1050 CAN Transceiver | 2 | CAN bus physical layer |
-| ST7735S TFT (128x128) | 1 | Display module (optional) |
-| 120Ω Resistor | 2 | CAN bus termination |
-| Jumper Wires | - | Connections |
+| Component | Quantity | Purpose | 目的 (もくてき) |
+|-----------|----------|---------|----------------|
+| ESP32 Dev Board | 2 | Main microcontroller (TX & RX nodes) | メインマイコン |
+| MCP2515 CAN Module | 2 | CAN 2.0A controller | コントローラー |
+| TJA1050 CAN Transceiver | 2 | CAN bus physical layer | 物理層 (ぶつりそう) |
+| ST7735S TFT (128x128) | 1 | Display module (optional) | 表示モジュール (ひょうじ) |
+| 120Ω Resistor | 2 | CAN bus termination | 終端抵抗 (しゅうたんていこう) |
+| Jumper Wires | - | Connections | 配線 (はいせん) |
 
-### Wiring Diagram (SPI Shared Bus)
+### Wiring Diagram (SPI Shared Bus) - 配線図 (はいせんず)
 
-| ESP32 | MCP2515 | ST7735S | Note |
-|-------|---------|---------|------|
-| GPIO 18 (SCK) | SCK | SCL | Shared Clock |
-| GPIO 23 (MOSI) | SI | SDA | Shared Data |
-| GPIO 19 (MISO) | SO | - | MCP2515 only |
-| GPIO 5 | CS | - | MCP2515 Chip Select |
-| GPIO 17 | - | CS | TFT Chip Select |
-| GPIO 16 | - | DC | TFT Data/Command |
-| GPIO 4 | - | RST | TFT Reset |
-| GND | GND | GND | **Common Ground Required** |
-| 3.3V | VCC | VCC | Power supply |
+| ESP32 | MCP2515 | ST7735S | Note | 備考 (びこう) |
+|-------|---------|---------|------|-------------|
+| GPIO 18 (SCK) | SCK | SCL | Shared Clock | クロック共有 |
+| GPIO 23 (MOSI) | SI | SDA | Shared Data | データ共有 |
+| GPIO 19 (MISO) | SO | - | MCP2515 only | MCP2515 のみ |
+| GPIO 5 | CS | - | MCP2515 Chip Select | チップセレクト |
+| GPIO 17 | - | CS | TFT Chip Select | TFT チップセレクト |
+| GPIO 16 | - | DC | TFT Data/Command | データ/コマンド |
+| GPIO 4 | - | RST | TFT Reset | リセット |
+| GND | GND | GND | **Common Ground Required** | **共通グラウンド必須** |
+| 3.3V | VCC | VCC | Power supply | 電源供給 (でんげんきょうきゅう) |
 
-### CAN Bus Wiring
+### CAN Bus Wiring - CAN バス配線 (きゃん ばす はいせん)
 
 ```text
 Node TX (MCP2515)          Node RX (MCP2515)
      CANH ───────────────────── CANH
      CANL ───────────────────── CANL
               ┌─────────┐
-              │ 120Ω    │  (Termination at BOTH ends)
+              │ 120Ω    │  (Termination at BOTH ends) - 両端終端 (りょうたんしゅうたん)
               └─────────┘
 ```
 
 ---
 
-## 🛠️ Build & Upload
+## 🛠️ Build & Upload - ビルドとアップロード (びるど と あっぷろーど)
 
-### Firmware (PlatformIO)
+### Firmware (PlatformIO) - ファームウェア
 
 ```bash
-# Navigate to project directory
+# Navigate to project directory - プロジェクトディレクトリへ移動 (ぷろじぇくとでぃれくとりへいどう)
 cd firmware/integration/can_bus_with_tft
 
-# Clean build files
+# Clean build files - ビルドファイルをクリーン (びるどふぁいるをくりーん)
 pio run --target clean
 
-# Build project
+# Build project - プロジェクトをビルド (ぷろじぇくとをびるど)
 pio run
 
-# Upload to device
+# Upload to device - デバイスにアップロード (でばいすにあっぷろーど)
 pio run --target upload
 
-# Open serial monitor
+# Open serial monitor - シリアルモニターを開く (しりあるもにたーをひらく)
 pio device monitor --baud 115200
 ```
 
-### Software (Python Analysis)
+### Software (Python Analysis) - ソフトウェア (ぱいそんぶんせき)
 
 ```bash
-# Activate virtual environment
+# Activate virtual environment - 仮想環境をアクティブ (かそうかんきょうをあくてぃぶ)
 source .venv/bin/activate  # Linux/Mac
 # or
 .venv\Scripts\activate     # Windows
 
-# Run analysis
+# Run analysis - 分析を実行 (ぶんせきをじっこう)
 python software/analyze_la_pro.py software/examples/sample_uart_9600.csv \
   --operator "Your Name" \
   --dut "ESP32 Test Board" \
@@ -263,11 +265,11 @@ python software/analyze_la_pro.py software/examples/sample_uart_9600.csv \
 
 ---
 
-## 📈 Test Results & Validation
+## 📈 Test Results & Validation - テスト結果と検証 (てすとけっか と けんしょう)
 
-### CAN Bus Communication Test
+### CAN Bus Communication Test - CAN バス通信テスト (きゃん ばす つうしんてすと)
 
-| Metric | Expected | Actual | Status |
+| Metric | Expected | Actual | Status | 項目 (こうもく) |
 |--------|----------|--------|--------|
 | SPI Bus Sharing | No conflicts | ✅ Stable | PASS |
 | CAN Frame Transmission | TXREQ clear | ✅ 0x00 | PASS |
@@ -278,7 +280,7 @@ python software/analyze_la_pro.py software/examples/sample_uart_9600.csv \
 
 *Note: EFLG 0x05 indicates minor transmit warning (normal for prototyping with jumper wires). See [Troubleshooting](#-troubleshooting) for details.
 
-### Logic Analyzer Detection
+### Logic Analyzer Detection - ロジックアナライザー検出 (ろじっくあならいざーけんしゅつ)
 
 | Protocol | Auto-Detection | Decoding | Validation |
 |----------|---------------|----------|------------|
@@ -289,7 +291,7 @@ python software/analyze_la_pro.py software/examples/sample_uart_9600.csv \
 
 ---
 
-## 🤝 Contribution & Internship Readiness
+## 🤝 Contribution & Internship Readiness - 貢献とインターンシップ準備 (こうけん と いんたーんしっぷじゅんび)
 
 This toolkit is designed to be **modular and extensible**:
 
@@ -300,9 +302,9 @@ This toolkit is designed to be **modular and extensible**:
 
 Built for embedded engineers who value **traceability, automation, and professional documentation**.
 
-### Portfolio Skills Demonstrated
+### Portfolio Skills Demonstrated - ポートフォリオで示したスキル (ぽーとふぉりおでしめしたすきる)
 
-| Skill | Evidence | Industry Value |
+| Skill | Evidence | Industry Value | スキル (すきる) |
 |-------|----------|----------------|
 | Embedded C/C++ | Modular driver, register-level MCP2515 access | ⭐⭐⭐⭐⭐ |
 | RTOS (FreeRTOS) | 3-task architecture with queue sync | ⭐⭐⭐⭐⭐ |
@@ -319,11 +321,11 @@ MIT License. Free for educational, R&D, and commercial use.
 
 ---
 
-## 🔧 Troubleshooting
+## 🔧 Troubleshooting - トラブルシューティング (とらぶるしゅーてぃんぐ)
 
-### Common Issues
+### Common Issues - 一般的な問題 (いっぱんてきなもんだい)
 
-| Issue | Cause | Solution |
+| Issue | Cause | Solution | 問題 (もんだい) |
 |-------|-------|----------|
 | No protocol detected | CSV format mismatch | Check column names (time, ch0-ch7) |
 | Poor waveform quality | Low sample rate | Increase to 8+ MS/s for SPI |
@@ -353,7 +355,7 @@ Bit 3-7        = 0 ✅ No Bus-Off, No Passive Error, No Overflow
 
 ---
 
-## 📚 Additional Documentation
+## 📚 Additional Documentation - 追加資料 (ついかしりょう)
 
 - [Test Procedures & SOP](docs/test_procedures.md) - Hardware setup & validation steps
 - [Firmware README](firmware/README.md) - Detailed firmware project guide
@@ -362,9 +364,9 @@ Bit 3-7        = 0 ✅ No Bus-Off, No Passive Error, No Overflow
 
 ---
 
-## 🎓 Project Status & Roadmap
+## 🎓 Project Status & Roadmap - プロジェクト状況とロードマップ (ぷろじぇくとじょうきょう と ろーどまっぷ)
 
-### Current Status: **Production-Ready for R&D Demonstration** ✅
+### Current Status: **Production-Ready for R&D Demonstration** ✅ - 現状 (げんじょう): **研究開発デモ準備完了**
 
 ### 📊 Interactive Progress Dashboard
 
@@ -395,7 +397,7 @@ gantt
     CI/CD Pipeline                      :         cicd, after web, 10d
 ```
 
-### Feature Completion Overview
+### Feature Completion Overview - 機能完了概要 (きのうかんりょうがいよう)
 
 ```mermaid
 pie title Feature Completion Status
@@ -405,9 +407,9 @@ pie title Feature Completion Status
     "Planned" : 4
 ```
 
-### Detailed Status Table
+### Detailed Status Table - 詳細ステータステーブル (しょうさいすてーたすてーぶる)
 
-| Feature | Status | Priority | Completion Date |
+| Feature | Status | Priority | Completion Date | 機能 (きのう) |
 |---------|--------|----------|-----------------|
 | **Core Architecture** | | | |
 | SPI Bus Sharing (MCP2515 + TFT) | ✅ Complete | High | 2025-04-15 |
@@ -431,3 +433,56 @@ pie title Feature Completion Status
 
 *Developed for industrial automation workflows & internship preparation (Automotive R&D)*  
 *Author: M. Faris A. G. | Version: 1.0.2 | Last Updated: 2026-05-03 (All Issues Resolved)*
+---
+
+## 🇯🇵 日本語学習コーナー (にほんご がくしゅうこーなー - Japanese Learning Corner)
+
+このプロジェクトはインターンシップ準備のための学習リソースとしても活用できます。
+(This project can also be used as a learning resource for internship preparation.)
+
+### 重要な技術用語 (じゅうような ぎじゅつようご - Important Technical Terms)
+
+| 英語 (English) | 日本語 (Japanese) | 読み方 (Romaji) | 意味 (Meaning) |
+|---------------|------------------|-----------------|----------------|
+| Embedded System | 組込システム | こみこみシステム | Computer system dedicated to specific functions |
+| Microcontroller | マイコン | まいこん | Microcomputer/Integrated circuit for control |
+| Communication Protocol | 通信プロトコル | つうしんぷろとこる | Rules for data exchange |
+| Bus Termination | 終端抵抗 | しゅうたんていこう | Resistor at bus ends to prevent reflection |
+| Clock Signal | クロック信号 | くろっくしんごう | Timing signal for synchronization |
+| Chip Select | チップセレクト | ちっぷせれくと | Signal to select specific device |
+| Data Sheet | データシート | でーたしーと | Technical specification document |
+| Debugging | デバッグ | でばっぐ | Finding and fixing errors |
+| Testing | テスト | てすと | Verification process |
+| Documentation | 資料 | しりょう | Technical documents |
+
+### 職場で役立つフレーズ (しょくばで やくだつ ふれーず - Useful Workplace Phrases)
+
+| 日本語 | 読み方 | 英語訳 | Situation |
+|--------|--------|--------|-----------|
+| お疲れ様です | おつかれさまです | Good work / Hello | Greeting colleagues |
+| ご指導よろしくお願いします | ごしどうよろしくおねがいします | Please guide me | When starting internship |
+| 確認させてください | かくにんさせてください | Let me confirm | Double-checking instructions |
+| わかりました | わかりました | Understood | Acknowledging instructions |
+| 質問があります | しつもんがあります | I have a question | Asking for clarification |
+| 勉強になります | べんきょうになります | I'm learning a lot | Showing appreciation |
+| 報告します | ほうこくします | I will report | HORENSO principle |
+| 連絡します | れんらくします | I will contact | HORENSO principle |
+| 相談します | そうだんします | I will consult | HORENSO principle |
+
+### 文化キーワード (ぶんか きーわーど - Cultural Keywords)
+
+1. **ものづくり (Monozukuri)** - Manufacturing excellence, craftsmanship spirit
+2. **カイゼン (Kaizen)** - 改善 - Continuous improvement
+3. **報連相 (HORENSO)** - 報告・連絡・相談 - Report, Contact, Consult
+4. **現地現物 (Genchi Genbutsu)** - Go and see for yourself
+5. **根回し (Nemawashi)** - Laying groundwork before decisions
+
+### 学習のヒント (がくしゅうの ひんと - Learning Tips)
+
+- ✅ 毎日 10 個の単語を覚える (Obey 10 words daily)
+- ✅ 技術文書を音読する (Read technical documents aloud)
+- ✅ 実際のコードにコメントを追加 (Add comments to actual code)
+- ✅ 日本人のエンジニアと会話練習 (Practice conversation with Japanese engineers)
+
+---
+

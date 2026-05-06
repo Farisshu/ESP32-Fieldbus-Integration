@@ -54,3 +54,17 @@ void setup() {
 ---
 
 *For more information about header files, see the [GCC documentation](https://gcc.gnu.org/onlinedocs/cpp/Header-Files.html)*
+
+---
+
+## 🇯🇵 日本語メモ (にほんご めも - Japanese Notes)
+
+このドキュメントは技術学習とインターンシップ準備のために作成されました。
+(This document was created for technical learning and internship preparation.)
+
+**重要な用語 (Important Terms):**
+- ファームウェア (Firmware) - 組み込みソフトウェア
+- デバッグ (Debug) - 修正・検証作業
+- テスト (Test) - 試験・検証
+- 資料 (Shiryou) - Documentation
+
