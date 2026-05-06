@@ -1,13 +1,16 @@
-# Examples
-- src/main.py
-- README.md
-- config.json
+# Logs and temp files
+*.log
+*.tmp
+*.swp
 
-# Examples
-- old/unused.py
+# Environment
+.env
+.env.local
+*.env.*
 
-# Examples
-- utils.py
+# Editors
+.vscode/
+.idea/
 
-# Examples
-(empty)
+# Original rules preserved
+*.log
