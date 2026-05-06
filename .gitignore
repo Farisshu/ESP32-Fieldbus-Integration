@@ -1,60 +1,36 @@
 ```
 # PlatformIO build artifacts
-.platformio/
+.firmware/
 pioenvs/
 piolibdeps/
+.sconsign.dblite
+.sconf_temp/
 
 # Build directories
 build/
 dist/
-.sconsign.dblite
-.scons_temp/
-.libs/
+bin/
+lib/
 
-# Dependencies
-node_modules/
-venv/
-.venv/
-__pycache__/
-*.egg-info/
-
-# Logs and temp files
-*.log
-*.tmp
+# IDE files
+.vscode/
+.idea/
 *.swp
 *.swo
+
+# Logs
+*.log
 
 # Environment files
 .env
 .env.local
 *.env.*
 
-# Editors
-.vscode/
-.idea/
-
-# OS generated files
+# OS files
 .DS_Store
 Thumbs.db
 
-# Coverage reports
-coverage/
-htmlcov/
-.coverage
-
-# Python specific
-*.pyc
-*.pyo
-*.pyd
-.Python
-*.so
-
-# Compiled binary files
-*.exe
-*.dll
-*.so
-*.a
-*.o
-*.obj
-*.out
+# Temporary files
+*.tmp
+*.temp
 ```

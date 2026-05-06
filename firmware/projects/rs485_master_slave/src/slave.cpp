@@ -1,126 +1,103 @@
+/**
+ * @file slave.cpp
+ * @brief RS485 Slave Node for Point-to-Point Communication
+ * 
+ * This node acts as the SLAVE in a Master-Slave RS485 network.
+ * It listens for commands from the Master and responds with simulated sensor data.
+ * 
+ * Hardware Setup:
+ * - Connect Module A terminal to Master Module A terminal
+ * - Connect Module B terminal to Master Module B terminal
+ * - Connect GND of both ESP32s together (CRITICAL)
+ */
+
 #include <Arduino.h>
 
-// --- Konfigurasi Pin XY-017 RS485 ---
+// --- Pin Configuration ---
 #define RS485_TX_PIN      17    // GPIO 17 -> DI (Driver Input)
 #define RS485_RX_PIN      16    // GPIO 16 -> RO (Receiver Output)
 #define RS485_DE_RE_PIN   4     // GPIO 4  -> DE/RE (Direction Control)
 
-// --- Konfigurasi Serial ---
+// --- Communication Settings ---
 #define BAUD_RATE         9600
 #define RS485_SERIAL      Serial2
 
-// --- Slave ID ---
-#define SLAVE_ID          "01"
-
-// --- Fungsi Helper untuk Mode Transmit/Receive ---
+// --- Helper Functions ---
 void setRS485Mode(bool transmit) {
-  digitalWrite(RS485_DE_RE_PIN, transmit ? HIGH : LOW);
-  delayMicroseconds(100); // Delay singkat untuk stabilitas transisi
+    digitalWrite(RS485_DE_RE_PIN, transmit ? HIGH : LOW);
+    delayMicroseconds(100); // Allow time for driver/receiver switching
 }
 
-// --- Simulasi Sensor Data ---
-float getSimulatedTemperature() {
-  // Simulasi sensor suhu dengan variasi kecil
-  static float baseTemp = 25.0;
-  baseTemp += (random(-5, 6) / 10.0); // Variasi ±0.5°C
-  if (baseTemp < 20.0) baseTemp = 20.0;
-  if (baseTemp > 30.0) baseTemp = 30.0;
-  return baseTemp;
-}
-
-float getSimulatedHumidity() {
-  // Simulasi sensor kelembaban dengan variasi kecil
-  static float baseHum = 60.0;
-  baseHum += (random(-10, 11) / 10.0); // Variasi ±1.0%
-  if (baseHum < 40.0) baseHum = 40.0;
-  if (baseHum > 80.0) baseHum = 80.0;
-  return baseHum;
+// Simulate sensor data generation
+String generateSensorData() {
+    // Generate pseudo-random but realistic sensor values
+    static int counter = 0;
+    counter++;
+    
+    float temperature = 25.0 + (counter % 10) * 0.5;  // 25.0 - 29.5 °C
+    float humidity = 60.0 + (counter % 5) * 2.0;      // 60.0 - 68.0 %
+    
+    char buffer[64];
+    snprintf(buffer, sizeof(buffer), "TEMP:%.1f|HUM:%.1f", temperature, humidity);
+    return String(buffer);
 }
 
 void setup() {
-  // Inisialisasi random seed
-  randomSeed(analogRead(0));
-  
-  // Inisialisasi Serial Monitor (USB)
-  Serial.begin(115200);
-  while (!Serial) {
-    delay(10);
-  }
-  
-  Serial.println("\n========================================");
-  Serial.println("👤 RS485 SLAVE Node Started (ID: " + String(SLAVE_ID) + ")");
-  Serial.println("========================================");
-  Serial.println("Role: Menerima command dari MASTER dan mengirim response");
-  Serial.println("========================================\n");
+    // Initialize USB Serial for debugging
+    Serial.begin(115200);
+    while (!Serial) {
+        delay(10);
+    }
+    
+    Serial.println("========================================");
+    Serial.println("👤 RS485 SLAVE Node Started");
+    Serial.println("========================================");
 
-  // Inisialisasi UART2 untuk RS485
-  RS485_SERIAL.begin(BAUD_RATE, SERIAL_8N1, RS485_RX_PIN, RS485_TX_PIN);
-  
-  // Setup pin kontrol arah
-  pinMode(RS485_DE_RE_PIN, OUTPUT);
-  setRS485Mode(false); // Default mode Receive
-  
-  Serial.println("✅ RS485 Module Initialized. Listening for commands...");
+    // Initialize RS485 Serial
+    RS485_SERIAL.begin(BAUD_RATE, SERIAL_8N1, RS485_RX_PIN, RS485_TX_PIN);
+    
+    // Configure Direction Control Pin
+    pinMode(RS485_DE_RE_PIN, OUTPUT);
+    setRS485Mode(false); // Default to Receive Mode
+    
+    Serial.println("✅ Slave Ready - Listening for commands...");
+    Serial.println("========================================\n");
 }
 
 void loop() {
-  // Cek apakah ada data masuk dari Master
-  if (RS485_SERIAL.available()) {
-    String command = RS485_SERIAL.readStringUntil('\n');
-    command.trim();
-    
-    if (!command.isEmpty()) {
-      Serial.print("📥 [SLAVE RX] Received Command: ");
-      Serial.println(command);
-      
-      // Parse command dan buat response
-      String response = "";
-      
-      if (command.startsWith("CMD:READ_DATA")) {
-        // Generate simulated sensor data
-        float temp = getSimulatedTemperature();
-        float hum = getSimulatedHumidity();
-        uint32_t timestamp = millis();
+    // --- RECEIVE COMMAND PHASE ---
+    if (RS485_SERIAL.available()) {
+        String command = RS485_SERIAL.readStringUntil('\n');
+        command.trim();
         
-        // Format response: ACK|TEMP:xx.x|HUM:xx.x|TS:xxxxx|ID:xx
-        response = "ACK|TEMP:" + String(temp, 1) + "|HUM:" + String(hum, 1) + 
-                   "|TS:" + String(timestamp) + "|ID:" + String(SLAVE_ID);
-        
-        Serial.println("   ✅ Processing READ_DATA command...");
-      } 
-      else if (command.startsWith("CMD:PING")) {
-        response = "ACK|PONG|ID:" + String(SLAVE_ID) + "|STAT:OK";
-        Serial.println("   ✅ Processing PING command...");
-      }
-      else if (command.startsWith("CMD:GET_ID")) {
-        response = "ACK|SLAVE_ID:" + String(SLAVE_ID) + "|FW:1.0.0";
-        Serial.println("   ✅ Processing GET_ID command...");
-      }
-      else {
-        // Command tidak dikenali
-        response = "NACK|ERROR:UNKNOWN_CMD|RCVD:" + command.substring(0, 20);
-        Serial.println("   ⚠️ Unknown command received");
-      }
-      
-      // Kirim response kembali ke Master
-      if (!response.isEmpty()) {
-        Serial.print("📤 [SLAVE TX] Sending Response: ");
-        Serial.println(response);
-        
-        // Switch ke Transmit Mode
-        setRS485Mode(true);
-        
-        // Kirim response
-        RS485_SERIAL.println(response);
-        RS485_SERIAL.flush();
-        
-        // Kembali ke Receive Mode
-        setRS485Mode(false);
-        
-        Serial.println();
-      }
+        if (!command.isEmpty()) {
+            Serial.print("📥 Slave Received: ");
+            Serial.println(command);
+            
+            // Process command and generate response
+            String response;
+            
+            if (command.startsWith("CMD:READ_DATA")) {
+                String sensorData = generateSensorData();
+                response = "ACK|" + sensorData + "|STAT:OK";
+                Serial.println("📤 Slave Responding: " + response);
+            } 
+            else if (command.startsWith("CMD:PING")) {
+                response = "ACK|PONG|STAT:OK";
+                Serial.println("📤 Slave Responding: " + response);
+            }
+            else {
+                response = "NACK|ERR:UNKNOWN_CMD";
+                Serial.println("⚠️ Unknown Command - Sending NACK");
+            }
+            
+            // Send response back to Master
+            setRS485Mode(true); // Switch to Transmit Mode
+            RS485_SERIAL.println(response);
+            RS485_SERIAL.flush();
+            setRS485Mode(false); // Switch back to Receive Mode
+            
+            Serial.println();
+        }
     }
-  }
-  
-  delay(10); // Small delay untuk stabilitas
 }
