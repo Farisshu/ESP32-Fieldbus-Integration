@@ -63,3 +63,26 @@ void TFT_UI::updateFrame(uint16_t id, uint8_t dlc, uint8_t* data, uint32_t count
     _tft.setTextColor(error ? ST77XX_RED : ST77XX_GREEN);
     _tft.println(error ? "BUS ERROR!" : "ACTIVE OK");
 }
+
+void TFT_UI::updateBusHealth(uint8_t eflg, uint32_t errorCount) {
+    // Tampilkan di baris paling bawah layar (y=115)
+    _tft.fillRect(0, 115, 128, 13, ST77XX_BLACK);
+    _tft.setCursor(2, 115);
+    _tft.setTextSize(1);
+    
+    if (eflg == 0x00) {
+        _tft.setTextColor(ST77XX_GREEN);
+        _tft.print("BUS:OK");
+    } else if (eflg & 0xC0) { // RXEP or TXEP (Error Passive or Bus-Off)
+        _tft.setTextColor(ST77XX_RED);
+        _tft.print("BUS:ERR");
+    } else {
+        _tft.setTextColor(ST77XX_YELLOW);
+        _tft.print("BUS:WARN");
+    }
+    
+    // Tampilkan counter error kecil di kanan
+    _tft.setCursor(90, 115);
+    _tft.setTextColor(ST77XX_WHITE);
+    _tft.printf("E:%lu", errorCount);
+}

@@ -1,22 +1,13 @@
-```
-# Logs and temp files
-*.log
-*.tmp
-*.swp
+# Examples
+- src/main.py
+- README.md
+- config.json
 
-# Environment
-.env
-.env.local
-*.env.*
+# Examples
+- old/unused.py
 
-# Editors
-.vscode/
-.idea/
+# Examples
+- utils.py
 
-# System files
-.DS_Store
-Thumbs.db
-
-# Original rules preserved
-*.log
-```
+# Examples
+(empty)

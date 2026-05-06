@@ -2,6 +2,10 @@
 
 xQueueHandle canFrameQueue;
 
+// Global error tracking for Bus Health monitoring
+static uint32_t g_totalErrorCount = 0;
+static uint8_t g_lastEflg = 0;
+
 // ── TASK 1: CAN READER (Producer) ──────────────────────────
 void vTaskCAN(void* pv) {
     MCP2515Driver* can = (MCP2515Driver*)pv;
@@ -28,6 +32,15 @@ void vTaskCAN(void* pv) {
                 }
             }
         }
+        
+        // Monitor EFLG for bus health tracking
+        uint8_t eflg = can->getErrorFlags();
+        if (eflg != 0) {
+            g_totalErrorCount++;
+            g_lastEflg = eflg;
+            Serial.printf("[EFLG] 0x%02X (Total: %lu)\n", eflg, g_totalErrorCount);
+        }
+        
         vTaskDelay(pdMS_TO_TICKS(CAN_POLL_INTERVAL_MS));
     }
 }
@@ -39,6 +52,7 @@ void vTaskUI(void* pv) {
     QueuedMessage latestMsg = {0};
     uint32_t lastActivityTime = millis();
     bool hasNewData = false;
+    uint32_t lastHealthUpdate = 0;
 
     for (;;) {
         hasNewData = false;
@@ -68,6 +82,12 @@ void vTaskUI(void* pv) {
             if (millis() - lastActivityTime > BUS_IDLE_TIMEOUT_MS) {
                 ui->updateFrame(0, 0, nullptr, latestMsg.sequenceNumber, true);
             }
+        }
+        
+        // Update Bus Health every 500ms (independent of frame reception)
+        if (millis() - lastHealthUpdate >= 500) {
+            ui->updateBusHealth(g_lastEflg, g_totalErrorCount);
+            lastHealthUpdate = millis();
         }
         
         vTaskDelay(pdMS_TO_TICKS(UI_REFRESH_INTERVAL_MS));

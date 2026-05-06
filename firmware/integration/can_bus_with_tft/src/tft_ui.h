@@ -10,6 +10,7 @@ public:
     bool begin();
     void drawStaticLayout();
     void updateFrame(uint16_t id, uint8_t dlc, uint8_t* data, uint32_t count, bool error);
+    void updateBusHealth(uint8_t eflg, uint32_t errorCount);
     
 private:
     Adafruit_ST7735 _tft;
