@@ -270,13 +270,13 @@ python software/analyze_la_pro.py software/examples/sample_uart_9600.csv \
 ### CAN Bus Communication Test - CAN バス通信テスト
 
 | Metric | Expected | Actual | Status | 項目 |
-|--------|----------|--------|--------|
-| SPI Bus Sharing | No conflicts | ✅ Stable | PASS |
-| CAN Frame Transmission | TXREQ clear | ✅ 0x00 | PASS |
-| CAN Frame Reception | Payload intact | ✅ 100% | PASS |
-| Error Flag (EFLG) | < 0x80 | ✅ 0x05 (minor warning) | PASS* |
-| UI Refresh Rate | ≤ 5Hz | ✅ 5Hz | PASS |
-| FreeRTOS Task Sync | No deadlock | ✅ Stable | PASS |
+|--------|----------|--------|--------|--------|
+| SPI Bus Sharing | No conflicts | ✅ Stable | PASS | SPI バス共有 |
+| CAN Frame Transmission | TXREQ clear | ✅ 0x00 | PASS | CAN フレーム送信 |
+| CAN Frame Reception | Payload intact | ✅ 100% | PASS | CAN フレーム受信 |
+| Error Flag (EFLG) | < 0x80 | ✅ 0x05 (minor warning) | PASS* | エラーフラグ |
+| UI Refresh Rate | ≤ 5Hz | ✅ 5Hz | PASS | UI リフレッシュレート |
+| FreeRTOS Task Sync | No deadlock | ✅ Stable | PASS | FreeRTOS タスク同期 |
 
 *Note: EFLG 0x05 indicates minor transmit warning (normal for prototyping with jumper wires). See [Troubleshooting](#-troubleshooting) for details.
 
@@ -305,13 +305,13 @@ Built for embedded engineers who value **traceability, automation, and professio
 ### Portfolio Skills Demonstrated - ポートフォリオで示したスキル
 
 | Skill | Evidence | Industry Value | スキル |
-|-------|----------|----------------|
-| Embedded C/C++ | Modular driver, register-level MCP2515 access | ⭐⭐⭐⭐⭐ |
-| RTOS (FreeRTOS) | 3-task architecture with queue sync | ⭐⭐⭐⭐⭐ |
-| SPI/I2C/UART | Shared bus management, level shifting | ⭐⭐⭐⭐⭐ |
-| Debugging | Logic Analyzer integration, EFLG monitoring | ⭐⭐⭐⭐⭐ |
-| Documentation | Professional report generator, SOP, README | ⭐⭐⭐⭐⭐ |
-| Version Control | Clean commit history, modular structure | ⭐⭐⭐⭐⭐ |
+|-------|----------|----------------|--------|
+| Embedded C/C++ | Modular driver, register-level MCP2515 access | ⭐⭐⭐⭐⭐ | 組み込み C/C++ |
+| RTOS (FreeRTOS) | 3-task architecture with queue sync | ⭐⭐⭐⭐⭐ | RTOS（FreeRTOS） |
+| SPI/I2C/UART | Shared bus management, level shifting | ⭐⭐⭐⭐⭐ | SPI/I2C/UART |
+| Debugging | Logic Analyzer integration, EFLG monitoring | ⭐⭐⭐⭐⭐ | デバッグ |
+| Documentation | Professional report generator, SOP, README | ⭐⭐⭐⭐⭐ | ドキュメンテーション |
+| Version Control | Clean commit history, modular structure | ⭐⭐⭐⭐⭐ | バージョン管理 |
 
 ---
 
@@ -326,14 +326,14 @@ MIT License. Free for educational, R&D, and commercial use.
 ### Common Issues - 一般的な問題
 
 | Issue | Cause | Solution | 問題 |
-|-------|-------|----------|
-| No protocol detected | CSV format mismatch | Check column names (time, ch0-ch7) |
-| Poor waveform quality | Low sample rate | Increase to 8+ MS/s for SPI |
-| CAN ID mismatch (0x123 vs 0x421) | ✅ FIXED: Added SPI stabilization delay | See `config.h` - `SPI_STABILIZATION_DELAY_US` |
-| EFLG warning (0x05) | Minor bus noise | Use twisted pair cables, verify termination |
-| TFT flicker | Refresh rate too high | Reduce to ≤5Hz in `uiRefreshTask` |
-| Build fails | Missing PlatformIO | Run `pip install platformio` |
-| Queue overflow | High message rate | ✅ FIXED: Batch logging + drain limiter implemented |
+|-------|-------|----------|--------|
+| No protocol detected | CSV format mismatch | Check column names (time, ch0-ch7) | プロトコルが検出されない |
+| Poor waveform quality | Low sample rate | Increase to 8+ MS/s for SPI | 波形品質が悪い |
+| CAN ID mismatch (0x123 vs 0x421) | ✅ FIXED: Added SPI stabilization delay | See `config.h` - `SPI_STABILIZATION_DELAY_US` | CAN ID の不一致 |
+| EFLG warning (0x05) | Minor bus noise | Use twisted pair cables, verify termination | EFLG 警告 |
+| TFT flicker | Refresh rate too high | Reduce to ≤5Hz in `uiRefreshTask` | TFT のちらつき |
+| Build fails | Missing PlatformIO | Run `pip install platformio` | ビルド失敗 |
+| Queue overflow | High message rate | ✅ FIXED: Batch logging + drain limiter implemented | キューオーバーフロー |
 
 ### EFLG Register Analysis
 
@@ -410,24 +410,24 @@ pie title Feature Completion Status
 ### Detailed Status Table - 詳細ステータステーブル
 
 | Feature | Status | Priority | Completion Date | 機能 |
-|---------|--------|----------|-----------------|
-| **Core Architecture** | | | |
-| SPI Bus Sharing (MCP2515 + TFT) | ✅ Complete | High | 2025-04-15 |
-| CAN 2.0A Communication | ✅ Complete | High | 2025-04-25 |
-| FreeRTOS Multitasking (3 tasks) | ✅ Complete | High | 2025-04-28 |
-| Logic Analyzer Auto-Report | ✅ Complete | High | 2025-05-01 |
-| **Stability & Reliability** | | | |
-| LittleFS CSV Logging | ✅ Complete | Medium | 2025-04-30 |
-| ID Decoding Fix | ✅ Complete | High | 2025-05-01 |
-| SPI Stabilization Delay | ✅ Complete | High | 2025-05-02 |
-| Queue Management Optimization | ✅ Complete | High | 2025-05-03 |
-| Error Handling Enhancement | ✅ Complete | Medium | 2025-05-03 |
-| Configuration Centralization | ✅ Complete | Medium | 2025-05-03 |
-| **Future Enhancements** | | | |
-| CAN TP (ISO 15765-2) | ⏳ In Progress | Low | Planned Q2 2025 |
-| WiFi/Bluetooth Monitoring | 🔜 Planned | Low | After CAN TP |
-| Web-based Dashboard | 🔜 Planned | Low | After WiFi |
-| Automated CI/CD Pipeline | 🔜 Planned | Medium | Final Phase |
+|---------|--------|----------|-----------------|--------|
+| **Core Architecture** | | | | **コアアーキテクチャ** |
+| SPI Bus Sharing (MCP2515 + TFT) | ✅ Complete | High | 2025-04-15 | SPI バス共有（MCP2515 + TFT） |
+| CAN 2.0A Communication | ✅ Complete | High | 2025-04-25 | CAN 2.0A 通信 |
+| FreeRTOS Multitasking (3 tasks) | ✅ Complete | High | 2025-04-28 | FreeRTOS マルチタスク（3 タスク） |
+| Logic Analyzer Auto-Report | ✅ Complete | High | 2025-05-01 | ロジックアナライザー自動レポート |
+| **Stability & Reliability** | | | | **安定性と信頼性** |
+| LittleFS CSV Logging | ✅ Complete | Medium | 2025-04-30 | LittleFS CSV ログ記録 |
+| ID Decoding Fix | ✅ Complete | High | 2025-05-01 | ID デコード修正 |
+| SPI Stabilization Delay | ✅ Complete | High | 2025-05-02 | SPI 安定化遅延 |
+| Queue Management Optimization | ✅ Complete | High | 2025-05-03 | キュー管理最適化 |
+| Error Handling Enhancement | ✅ Complete | Medium | 2025-05-03 | エラー処理強化 |
+| Configuration Centralization | ✅ Complete | Medium | 2025-05-03 | 設定一元化 |
+| **Future Enhancements** | | | | **将来の機能強化** |
+| CAN TP (ISO 15765-2) | ⏳ In Progress | Low | Planned Q2 2025 | CAN TP（ISO 15765-2） |
+| WiFi/Bluetooth Monitoring | 🔜 Planned | Low | After CAN TP | WiFi/Bluetooth モニタリング |
+| Web-based Dashboard | 🔜 Planned | Low | After WiFi | Web ベースダッシュボード |
+| Automated CI/CD Pipeline | 🔜 Planned | Medium | Final Phase | 自動化 CI/CD パイプライン |
 
 ---
 
