@@ -1,1 +1,56 @@
-Nothing should be ignored based on the provided file changes. The only modified file is README.md, which is a source/config file and should not be ignored.
+```
+# Build artifacts and generated files
+firmware/integration/*/results/
+firmware/projects/*/results/
+firmware/tests/*/results/
+firmware/validation/*/results/
+
+# CSV files (test results/data)
+*.csv
+
+# Log files
+*.log
+
+# Temporary files
+*.tmp
+
+# Environment files
+.env
+.env.local
+*.env.*
+
+# Coverage reports
+coverage/
+htmlcov/
+.coverage
+
+# IDE specific
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS specific
+.DS_Store
+Thumbs.db
+
+# Compressed files
+*.zip
+*.gz
+*.tar
+*.tgz
+*.bz2
+*.xz
+*.7z
+*.rar
+*.zst
+*.lz4
+*.lzh
+*.cab
+*.arj
+*.rpm
+*.deb
+*.Z
+*.lz
+*.lzo
+```
