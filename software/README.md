@@ -160,19 +160,22 @@ with open('metadata.json') as f:
 
 ---
 
-*For more information, see the main [README.md](../README.md)*
+*For more information, see the main [README.md](../README.md)*  
 *Last updated: 2026-05-03 (All Issues Resolved)*
 
 ---
 
-## 🇯🇵 日本語メモ (にほんご めも - Japanese Notes)
+## 🇯🇵 日本語メモ (Japanese Notes)
 
-このドキュメントは技術学習とインターンシップ準備のために作成されました。
-(This document was created for technical learning and internship preparation.)
-
-**重要な用語 (Important Terms):**
-- ファームウェア (Firmware) - 組み込みソフトウェア
-- デバッグ (Debug) - 修正・検証作業
-- テスト (Test) - 試験・検証
-- 資料 (Shiryou) - Documentation
+> 📚 **Refer to main Japanese learning resources:**
+> - [日本語技術学習ガイド](../materi/JAPANESE_LEARNING_GUIDE.md) - Japanese Technical Learning Guide
+> - [Kamus Teknis Jepang](../materi/KAMUS_TEKNIS_JEPANG.md) - Japanese Technical Dictionary (Indonesian)
+>
+> **用語集 (Glossary):**
+> | 日本語 | Romaji | English |
+> |--------|--------|---------|
+> | ソフトウェア | Sofutowea | Software |
+> | 分析 | Bunseki | Analysis |
+> | レポート | Ripōto | Report |
+> | 資料 | Shiryō | Documentation |
 

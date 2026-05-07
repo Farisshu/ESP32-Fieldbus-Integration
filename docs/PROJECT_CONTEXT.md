@@ -366,14 +366,17 @@ When helping with this project:
 
 ---
 
-## 🇯🇵 日本語メモ (にほんご めも - Japanese Notes)
+## 🇯🇵 日本語メモ (Japanese Notes)
 
-このドキュメントは技術学習とインターンシップ準備のために作成されました。
-(This document was created for technical learning and internship preparation.)
-
-**重要な用語 (Important Terms):**
-- ファームウェア (Firmware) - 組み込みソフトウェア
-- デバッグ (Debug) - 修正・検証作業
-- テスト (Test) - 試験・検証
-- 資料 (Shiryou) - Documentation
+> 📚 **Refer to main Japanese learning resources:**
+> - [日本語技術学習ガイド](../materi/JAPANESE_LEARNING_GUIDE.md) - Japanese Technical Learning Guide
+> - [Kamus Teknis Jepang](../materi/KAMUS_TEKNIS_JEPANG.md) - Japanese Technical Dictionary (Indonesian)
+>
+> **用語集 (Glossary):**
+> | 日本語 | Romaji | English |
+> |--------|--------|---------|
+> | プロジェクト設定 | Purojekuto Settei | Project Configuration |
+> | システム状態 | Shisutemu Jōtai | System Status |
+> | アーキテクチャ | Ākitekucha | Architecture |
+> | 資料 | Shiryō | Documentation |
 
