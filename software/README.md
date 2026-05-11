@@ -78,11 +78,13 @@ python generate_samples.py --protocol spi --frequency 1000000 --output test_spi.
 
 The `examples/` folder contains sample captures for testing:
 
-| File | Description | Protocol |
-|------|-------------|----------|
-| `sample_capture.csv` | Basic test capture | Generic |
-| `sample_spi_mcp2515.csv` | MCP2515 SPI communication | SPI |
-| `sample_uart_9600.csv` | UART at 9600 baud | UART |
+┌─────────────────────────────┬──────────────────────────┬──────────────┐
+│ File                        │ Description              │ Protocol     │
+├─────────────────────────────┼──────────────────────────┼──────────────┤
+│ `sample_capture.csv`        │ Basic test capture       │ Generic      │
+│ `sample_spi_mcp2515.csv`    │ MCP2515 SPI communication│ SPI          │
+│ `sample_uart_9600.csv`      │ UART at 9600 baud        │ UART         │
+└─────────────────────────────┴──────────────────────────┴──────────────┘
 
 ## Installation
 
@@ -117,12 +119,14 @@ Archive_YYYYMMDD_HHMMSS/
 
 ## Supported Protocols
 
-| Protocol | Detection | Decoding | Validation |
-|----------|-----------|----------|------------|
-| UART | ✅ Auto | ✅ Baud, Data bits | ✅ Bit timing |
-| SPI | ✅ Auto | ✅ Clock, Data | ✅ Frequency |
-| I2C | ✅ Auto | ✅ Address, Data | ✅ Timing |
-| CAN | 🔜 Planned | 🔜 Planned | 🔜 Planned |
+┌──────────────┬───────────────┬────────────────────┬────────────────┐
+│ Protocol     │ Detection     │ Decoding           │ Validation     │
+├──────────────┼───────────────┼────────────────────┼────────────────┤
+│ UART         │ ✅ Auto       │ ✅ Baud, Data bits │ ✅ Bit timing  │
+│ SPI          │ ✅ Auto       │ ✅ Clock, Data     │ ✅ Frequency   │
+│ I2C          │ ✅ Auto       │ ✅ Address, Data   │ ✅ Timing      │
+│ CAN          │ 🔜 Planned    │ 🔜 Planned         │ 🔜 Planned     │
+└──────────────┴───────────────┴────────────────────┴────────────────┘
 
 ## Workflow Integration
 
@@ -150,13 +154,15 @@ with open('metadata.json') as f:
 
 ## Troubleshooting
 
-| Issue | Solution |
-|-------|----------|
-| No protocol detected | Check CSV format and column names |
-| Poor waveform quality | Increase sample rate in capture |
-| Missing dependencies | Run `pip install -r requirements.txt` |
-| UART detection too strict | ✅ FIXED: Lowered threshold to 50 edges (v1.0.2) |
-| SPI requires 4 channels | ✅ FIXED: Now supports 3-wire SPI (CS, SCK, MOSI) |
+┌─────────────────────────────┬─────────────────────────────────────────────────┐
+│ Issue                       │ Solution                                        │
+├─────────────────────────────┼─────────────────────────────────────────────────┤
+│ No protocol detected        │ Check CSV format and column names               │
+│ Poor waveform quality       │ Increase sample rate in capture                 │
+│ Missing dependencies        │ Run `pip install -r requirements.txt`           │
+│ UART detection too strict   │ ✅ FIXED: Lowered threshold to 50 edges (v1.0.2)│
+│ SPI requires 4 channels     │ ✅ FIXED: Now supports 3-wire SPI (CS, SCK, MOSI)│
+└─────────────────────────────┴─────────────────────────────────────────────────┘
 
 ---
 
