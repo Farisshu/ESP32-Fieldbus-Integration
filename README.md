@@ -269,16 +269,20 @@ python software/analyze_la_pro.py software/examples/sample_uart_9600.csv \
 
 ### CAN Bus Communication Test - CAN バス通信テスト (きゃん ばす つうしんてすと)
 
-| Metric | Expected | Actual | Status | 項目 (こうもく) |
-|--------|----------|--------|--------|
-| SPI Bus Sharing | No conflicts | ✅ Stable | PASS |
-| CAN Frame Transmission | TXREQ clear | ✅ 0x00 | PASS |
-| CAN Frame Reception | Payload intact | ✅ 100% | PASS |
-| Error Flag (EFLG) | < 0x80 | ✅ 0x05 (minor warning) | PASS* |
-| UI Refresh Rate | ≤ 5Hz | ✅ 5Hz | PASS |
-| FreeRTOS Task Sync | No deadlock | ✅ Stable | PASS |
+For detailed test results with comprehensive analysis, see: **[Test Results & Validation](docs/TEST_RESULTS_VALIDATION.md)**
 
-*Note: EFLG 0x05 indicates minor transmit warning (normal for prototyping with jumper wires). See [Troubleshooting](#-troubleshooting) for details.
+┌─────────────────────────┬──────────────────┬─────────────────┬──────────┬─────────────────────────────────┐
+│ Metric                  │ Expected         │ Actual          │ Status   │ 項目 (こうもく)                 │
+├─────────────────────────┼──────────────────┼─────────────────┼──────────┼─────────────────────────────────┤
+│ SPI Bus Sharing         │ No conflicts     │ ✅ Stable       │ PASS     │ SPI バス共有                   │
+│ CAN Frame Transmission  │ TXREQ clear      │ ✅ 0x00         │ PASS     │ CAN フレーム送信              │
+│ CAN Frame Reception     │ Payload intact   │ ✅ 100%         │ PASS     │ CAN フレーム受信              │
+│ Error Flag (EFLG)       │ < 0x80           │ ✅ 0x05         │ PASS*    │ エラーフラグ                  │
+│ UI Refresh Rate         │ ≤ 5Hz            │ ✅ 5Hz          │ PASS     │ UI 更新レート                 │
+│ FreeRTOS Task Sync      │ No deadlock      │ ✅ Stable       │ PASS     │ FreeRTOS タスク同期           │
+└─────────────────────────┴──────────────────┴─────────────────┴──────────┴─────────────────────────────────┘
+
+*Note: EFLG 0x05 indicates minor transmit warning (normal for prototyping with jumper wires). See [Troubleshooting](#-troubleshooting) or [Full Test Report](docs/TEST_RESULTS_VALIDATION.md) for details.
 
 ### Logic Analyzer Detection - ロジックアナライザー検出 (ろじっくあならいざーけんしゅつ)
 
@@ -357,10 +361,28 @@ Bit 3-7        = 0 ✅ No Bus-Off, No Passive Error, No Overflow
 
 ## 📚 Additional Documentation - 追加資料 (ついかしりょう)
 
-- [Test Procedures & SOP](docs/test_procedures.md) - Hardware setup & validation steps
-- [Firmware README](firmware/README.md) - Detailed firmware project guide
-- [Software README](software/README.md) - Python tool documentation
-- [Integration Tests](firmware/integration/README.md) - Multi-node testing guide
+### Core Documentation - 主要資料 (しゅようしりょう)
+
+| Document | Description | Link |
+|----------|-------------|------|
+| Test Results & Validation | Comprehensive CAN Bus test report with troubleshooting | [View Report](docs/TEST_RESULTS_VALIDATION.md) |
+| Test Procedures & SOP | Hardware setup & validation steps | [View SOP](docs/test_procedures.md) |
+| Firmware README | Detailed firmware project guide | [View Guide](firmware/README.md) |
+| Software README | Python tool documentation | [View Docs](software/README.md) |
+| Integration Tests | Multi-node testing guide | [View Tests](firmware/integration/README.md) |
+
+### Learning Materials - 学習教材 (がくしゅうざいりょう)
+
+| Document | Description | Language |
+|----------|-------------|----------|
+| Complete Learning Guide | Embedded systems & protocols tutorial | 🇮🇩 Indonesian |
+| Japanese Learning Guide | Technical Japanese for embedded engineers | 🇯🇵🇬🇧🇮🇩 Trilingual |
+| Internship Roadmap | Skill preparation & industry insights | 🇮🇩 Indonesian |
+
+**Links:**
+- **[Materi Pembelajaran Lengkap](materi/README_MATERI_LENGKAP.md)** - Panduan lengkap sistem embedded dan protokol komunikasi
+- **[Japanese Learning Guide](materi/JAPANESE_EMBEDDED_LEARNING.md)** - 組込システム技術者のための日本語学習ガイド
+- **[Internship Roadmap](materi/ROADMAP_MAGANG.md)** - Persiapan magang dan analisis kesenjangan keterampilan
 
 ---
 
