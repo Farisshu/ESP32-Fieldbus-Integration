@@ -305,13 +305,13 @@ Built for embedded engineers who value **traceability, automation, and professio
 ### Portfolio Skills Demonstrated - ポートフォリオで示したスキル (ぽーとふぉりおでしめしたすきる)
 
 | Skill | Evidence | Industry Value | スキル (すきる) |
-|-------|----------|----------------|
-| Embedded C/C++ | Modular driver, register-level MCP2515 access | ⭐⭐⭐⭐⭐ |
-| RTOS (FreeRTOS) | 3-task architecture with queue sync | ⭐⭐⭐⭐⭐ |
-| SPI/I2C/UART | Shared bus management, level shifting | ⭐⭐⭐⭐⭐ |
-| Debugging | Logic Analyzer integration, EFLG monitoring | ⭐⭐⭐⭐⭐ |
-| Documentation | Professional report generator, SOP, README | ⭐⭐⭐⭐⭐ |
-| Version Control | Clean commit history, modular structure | ⭐⭐⭐⭐⭐ |
+|-------|----------|----------------|-----------------|
+| Embedded C/C++ | Modular driver, register-level MCP2515 access | ⭐⭐⭐⭐⭐ | 組込 C/C++ (くみこみ しーぷらすぷらす) |
+| RTOS (FreeRTOS) | 3-task architecture with queue sync | ⭐⭐⭐⭐⭐ | リアルタイム OS (ありあるたいむ おーえす) |
+| SPI/I2C/UART | Shared bus management, level shifting | ⭐⭐⭐⭐⭐ | シリアル通信 (しりある つうしん) |
+| Debugging | Logic Analyzer integration, EFLG monitoring | ⭐⭐⭐⭐⭐ | デバッグ技術 (でばっぐ ぎじゅつ) |
+| Documentation | Professional report generator, SOP, README | ⭐⭐⭐⭐⭐ | 技術文書 (ぎじゅつ ぶんしょ) |
+| Version Control | Clean commit history, modular structure | ⭐⭐⭐⭐⭐ | バージョン管理 (ばーじょん かんり) |
 
 ---
 
@@ -410,79 +410,79 @@ pie title Feature Completion Status
 ### Detailed Status Table - 詳細ステータステーブル (しょうさいすてーたすてーぶる)
 
 | Feature | Status | Priority | Completion Date | 機能 (きのう) |
-|---------|--------|----------|-----------------|
-| **Core Architecture** | | | |
-| SPI Bus Sharing (MCP2515 + TFT) | ✅ Complete | High | 2025-04-15 |
-| CAN 2.0A Communication | ✅ Complete | High | 2025-04-25 |
-| FreeRTOS Multitasking (3 tasks) | ✅ Complete | High | 2025-04-28 |
-| Logic Analyzer Auto-Report | ✅ Complete | High | 2025-05-01 |
-| **Stability & Reliability** | | | |
-| LittleFS CSV Logging | ✅ Complete | Medium | 2025-04-30 |
-| ID Decoding Fix | ✅ Complete | High | 2025-05-01 |
-| SPI Stabilization Delay | ✅ Complete | High | 2025-05-02 |
-| Queue Management Optimization | ✅ Complete | High | 2025-05-03 |
-| Error Handling Enhancement | ✅ Complete | Medium | 2025-05-03 |
-| Configuration Centralization | ✅ Complete | Medium | 2025-05-03 |
-| **Future Enhancements** | | | |
-| CAN TP (ISO 15765-2) | ⏳ In Progress | Low | Planned Q2 2025 |
-| WiFi/Bluetooth Monitoring | 🔜 Planned | Low | After CAN TP |
-| Web-based Dashboard | 🔜 Planned | Low | After WiFi |
-| Automated CI/CD Pipeline | 🔜 Planned | Medium | Final Phase |
+|---------|--------|----------|-----------------|---------------|
+| **Core Architecture** | | | | |
+| SPI Bus Sharing (MCP2515 + TFT) | ✅ Complete | High | 2025-04-15 | SPI バス共有 |
+| CAN 2.0A Communication | ✅ Complete | High | 2025-04-25 | CAN 通信 |
+| FreeRTOS Multitasking (3 tasks) | ✅ Complete | High | 2025-04-28 | マルチタスク |
+| Logic Analyzer Auto-Report | ✅ Complete | High | 2025-05-01 | ロジックアナライザー自動レポート |
+| **Stability & Reliability** | | | | |
+| LittleFS CSV Logging | ✅ Complete | Medium | 2025-04-30 | ログ記録 |
+| ID Decoding Fix | ✅ Complete | High | 2025-05-01 | ID デコード修正 |
+| SPI Stabilization Delay | ✅ Complete | High | 2025-05-02 | SPI 安定化遅延 |
+| Queue Management Optimization | ✅ Complete | High | 2025-05-03 | キュー管理最適化 |
+| Error Handling Enhancement | ✅ Complete | Medium | 2025-05-03 | エラー処理強化 |
+| Configuration Centralization | ✅ Complete | Medium | 2025-05-03 | 設定一元化 |
+| **Future Enhancements** | | | | |
+| CAN TP (ISO 15765-2) | ⏳ In Progress | Low | Planned Q2 2025 | CAN TP |
+| WiFi/Bluetooth Monitoring | 🔜 Planned | Low | After CAN TP | 無線監視 |
+| Web-based Dashboard | 🔜 Planned | Low | After WiFi | ウェブダッシュボード |
+| Automated CI/CD Pipeline | 🔜 Planned | Medium | Final Phase | CI/CD パイプライン |
 
 ---
 
 *Developed for industrial automation workflows & internship preparation (Automotive R&D)*  
-*Author: M. Faris A. G. | Version: 1.0.2 | Last Updated: 2026-05-03 (All Issues Resolved)*
+*Author: M. Faris A. G. | Version: 1.0.4 | Last Updated: 2025-05-XX (Repository Cleanup, Learning Path & Internship Roadmap Added)*
+
 ---
 
-## 🇯🇵 日本語学習コーナー (にほんご がくしゅうこーなー - Japanese Learning Corner)
+## 📚 Learning Resources
 
-このプロジェクトはインターンシップ準備のための学習リソースとしても活用できます。
-(This project can also be used as a learning resource for internship preparation.)
+For structured learning paths and technical materials, see:
+- **[Learning Path (Materi)](materi/README_MATERI_LENGKAP.md)** - Complete guide to embedded systems, protocols, and tools
+- **[Internship Roadmap (Magang)](materi/ROADMAP_MAGANG.md)** - Internship preparation, skill gap analysis, Horiba ADS EVO insights
+- **[Japanese Learning Guide](materi/JAPANESE_EMBEDDED_LEARNING.md)** - Trilingual technical vocabulary (EN/JP/ID)
+- **[Archive Documentation](archive/ARCHIVE_INDEX.md)** - Historical evidence and deprecated docs
 
-### 重要な技術用語 (じゅうような ぎじゅつようご - Important Technical Terms)
+### Quick Reference: Technical Terms
 
-| 英語 (English) | 日本語 (Japanese) | 読み方 (Romaji) | 意味 (Meaning) |
-|---------------|------------------|-----------------|----------------|
-| Embedded System | 組込システム | こみこみシステム | Computer system dedicated to specific functions |
-| Microcontroller | マイコン | まいこん | Microcomputer/Integrated circuit for control |
-| Communication Protocol | 通信プロトコル | つうしんぷろとこる | Rules for data exchange |
-| Bus Termination | 終端抵抗 | しゅうたんていこう | Resistor at bus ends to prevent reflection |
-| Clock Signal | クロック信号 | くろっくしんごう | Timing signal for synchronization |
-| Chip Select | チップセレクト | ちっぷせれくと | Signal to select specific device |
-| Data Sheet | データシート | でーたしーと | Technical specification document |
-| Debugging | デバッグ | でばっぐ | Finding and fixing errors |
-| Testing | テスト | てすと | Verification process |
-| Documentation | 資料 | しりょう | Technical documents |
+| English | 日本語 | Romaji | Indonesia |
+|---------|--------|--------|-----------|
+| Embedded System | 組込システム | komikomi shisutemu | Sistem Tertanam |
+| Microcontroller | マイコン | maikon | Mikrokontroler |
+| Communication Protocol | 通信プロトコル | tsūshin purotokoru | Protokol Komunikasi |
+| Report | 報告書 | hōkokusho | Laporan |
+| Testing | テスト | tesuto | Pengujian |
+| Internship | インターンシップ | intānshippu | Magang |
 
-### 職場で役立つフレーズ (しょくばで やくだつ ふれーず - Useful Workplace Phrases)
+> For complete Japanese technical vocabulary with study plan, see: [`/materi/JAPANESE_EMBEDDED_LEARNING.md`](materi/JAPANESE_EMBEDDED_LEARNING.md)
 
-| 日本語 | 読み方 | 英語訳 | Situation |
-|--------|--------|--------|-----------|
-| お疲れ様です | おつかれさまです | Good work / Hello | Greeting colleagues |
-| ご指導よろしくお願いします | ごしどうよろしくおねがいします | Please guide me | When starting internship |
-| 確認させてください | かくにんさせてください | Let me confirm | Double-checking instructions |
-| わかりました | わかりました | Understood | Acknowledging instructions |
-| 質問があります | しつもんがあります | I have a question | Asking for clarification |
-| 勉強になります | べんきょうになります | I'm learning a lot | Showing appreciation |
-| 報告します | ほうこくします | I will report | HORENSO principle |
-| 連絡します | れんらくします | I will contact | HORENSO principle |
-| 相談します | そうだんします | I will consult | HORENSO principle |
+---
 
-### 文化キーワード (ぶんか きーわーど - Cultural Keywords)
+## 📁 Repository Structure (Clean)
 
-1. **ものづくり (Monozukuri)** - Manufacturing excellence, craftsmanship spirit
-2. **カイゼン (Kaizen)** - 改善 - Continuous improvement
-3. **報連相 (HORENSO)** - 報告・連絡・相談 - Report, Contact, Consult
-4. **現地現物 (Genchi Genbutsu)** - Go and see for yourself
-5. **根回し (Nemawashi)** - Laying groundwork before decisions
-
-### 学習のヒント (がくしゅうの ひんと - Learning Tips)
-
-- ✅ 毎日 10 個の単語を覚える (Obey 10 words daily)
-- ✅ 技術文書を音読する (Read technical documents aloud)
-- ✅ 実際のコードにコメントを追加 (Add comments to actual code)
-- ✅ 日本人のエンジニアと会話練習 (Practice conversation with Japanese engineers)
+```text
+esp32-logic-analyzer-automation/
+├── firmware/                 # ESP32 test codes (PlatformIO)
+│   ├── tests/               # Unit tests for individual modules
+│   ├── integration/         # Multi-node communication tests
+│   └── projects/            # Final integrated applications
+├── software/                 # Python analysis tools
+│   ├── analyze_la_pro.py     # Main auto-report generator
+│   └── examples/             # Sample captures & test data
+├── include/                  # Project header files
+├── lib/                      # Private libraries
+├── docs/                     # Wiring diagrams, PulseView settings, SOP
+├── materi/                   # Learning materials & guides
+├── archive/                  # Archived documentation & evidence
+│   ├── ARCHIVE_INDEX.md      # Guide to archived content
+│   ├── japanese_learning/    # Japanese language materials
+│   ├── evidence_showcase/    # Test reports & validation data
+│   └── old_docs/             # Deprecated documentation
+├── requirements.txt          # Python dependencies
+├── LICENSE                   # MIT License
+└── README.md                 # This file
+```
 
 ---
 

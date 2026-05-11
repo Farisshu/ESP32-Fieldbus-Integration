@@ -7,16 +7,13 @@
 ## 📋 Daftar Isi
 
 1. [Pendahuluan](#1-pendahuluan)
-2. [Apa itu CAN Bus?](#2-apa-itu-can-bus)
-3. [Protokol Komunikasi Serial](#3-protokol-komunikasi-serial)
-   - [UART](#31-uart-universal-asynchronous-receiver-transmitter)
-   - [SPI](#32-spi-serial-peripheral-interface)
-   - [I2C](#33-i2c-inter-integrated-circuit)
-   - [RS485](#34-rs485)
-4. [Perbandingan Protokol](#4-perbandingan-protokol)
-5. [Implementasi dalam Repository Ini](#5-implementasi-dalam-repository-ini)
-6. [Cara Kerja Sistem](#6-cara-kerja-sistem)
-7. [Referensi Kode](#7-referensi-kode)
+2. [Learning Path Terstruktur](#2-learning-path-terstruktur)
+3. [Apa itu CAN Bus?](#3-apa-itu-can-bus)
+4. [Protokol Komunikasi Serial](#4-protokol-komunikasi-serial)
+5. [Perbandingan Protokol](#5-perbandingan-protokol)
+6. [Implementasi dalam Repository Ini](#6-implementasi-dalam-repository-ini)
+7. [Cara Kerja Sistem](#7-cara-kerja-sistem)
+8. [Referensi Kode](#8-referensi-kode)
 
 ---
 
@@ -42,9 +39,104 @@ Repository ini berisi implementasi praktis sistem embedded menggunakan **ESP32**
 
 ---
 
-## 2. Apa itu CAN Bus?
+## 2. Learning Path Terstruktur
 
-### 2.1 Definisi
+### 🎯 Roadmap Pembelajaran
+
+Berikut adalah struktur pembelajaran yang direkomendasikan untuk menguasai embedded systems:
+
+#### Level 1: Fundamental (Wajib)
+
+| Topik | Materi | Status | Prioritas |
+|-------|--------|--------|-----------|
+| C/C++ Programming | Dasar pemrograman embedded | ✅ Available | ⭐⭐⭐⭐⭐ |
+| ARM Cortex-M Architecture | STM32, Renesas basics | 📚 Reference | ⭐⭐⭐⭐⭐ |
+| Bare-metal vs RTOS | Understanding execution models | ✅ Available | ⭐⭐⭐⭐⭐ |
+| Git & Version Control | Source code management | ✅ Available | ⭐⭐⭐⭐⭐ |
+
+#### Level 2: Communication Protocols (Core)
+
+| Topik | Materi | Status | Prioritas |
+|-------|--------|--------|-----------|
+| **CAN Bus** | CAN 2.0A, MCP2515, TJA1050 | ✅ Complete | ⭐⭐⭐⭐⭐ |
+| UART | Basic serial communication | ✅ Complete | ⭐⭐⭐⭐⭐ |
+| SPI | Shared bus, device arbitration | ✅ Complete | ⭐⭐⭐⭐⭐ |
+| I2C | Sensor interfacing | 🔜 Planned | ⭐⭐⭐⭐ |
+| RS485 | Industrial differential signaling | ✅ Complete | ⭐⭐⭐⭐ |
+| Logic Level Shifting | 3.3V ↔ 5V conversion | ✅ Available | ⭐⭐⭐⭐ |
+
+#### Level 3: Advanced Topics
+
+| Topik | Materi | Status | Prioritas |
+|-------|--------|--------|-----------|
+| FreeRTOS Multitasking | Task scheduling, queues | ✅ Complete | ⭐⭐⭐⭐⭐ |
+| Finite State Machine (FSM) | State-based programming | 📚 Reference | ⭐⭐⭐⭐ |
+| MISRA C Standard | Coding standards for safety | 📚 Reference | ⭐⭐⭐⭐ |
+| Watchdog Timer (WDT) | System reliability | ✅ Available | ⭐⭐⭐⭐ |
+| ADC & DAC | Analog interfacing | 🔜 Planned | ⭐⭐⭐ |
+| Motor Control & Encoder | PWM, quadrature decoding | 🔜 Planned | ⭐⭐⭐ |
+
+#### Level 4: Industry Standards & Tools
+
+| Topik | Materi | Status | Prioritas |
+|-------|--------|--------|-----------|
+| CAN TP (ISO 15765-2) | Transport protocol | ⏳ In Progress | ⭐⭐⭐ |
+| EtherCAT | Real-time industrial Ethernet | 📚 Reference | ⭐⭐ |
+| ESP-NOW & Telemetry | Wireless communication | 🔜 Planned | ⭐⭐ |
+| STM32CubeIDE & PlatformIO | Development environments | ✅ Available | ⭐⭐⭐⭐⭐ |
+| MATLAB & Simulink | Model-based design | 📚 Reference | ⭐⭐⭐ |
+| LTspice | Circuit simulation | 📚 Reference | ⭐⭐⭐ |
+| KiCad | PCB design | 📚 Reference | ⭐⭐⭐ |
+| Logic Analyzer & Teleplot | Debugging tools | ✅ Available | ⭐⭐⭐⭐⭐ |
+
+#### Level 5: Product Research
+
+| Topik | Materi | Status |
+|-------|--------|--------|
+| Riset Produk Horiba (ADS EVO) | Automotive diagnostic tools | 📚 Reference |
+
+---
+
+### 📊 Skill Matrix
+
+| Kategori | Skill | Level | Evidence |
+|----------|-------|-------|----------|
+| **Microcontroller** | ARM Cortex-M (STM32) | Intermediate | Firmware projects |
+| | ESP32 | Advanced | Main platform |
+| | Renesas | Beginner | Reference only |
+| **Protocols** | CAN Bus | Advanced | Two-node implementation |
+| | SPI | Advanced | Shared bus with TFT+MCP2515 |
+| | UART | Advanced | RS485 Modbus |
+| | I2C | Beginner | Planned |
+| **Software** | C/C++ | Intermediate | MISRA-compliant code |
+| | FreeRTOS | Intermediate | 3-task architecture |
+| | FSM | Intermediate | State machines in firmware |
+| **Tools** | PlatformIO | Advanced | Primary IDE |
+| | Logic Analyzer | Advanced | Automated reporting |
+| | Git | Intermediate | Version control |
+
+---
+
+### 🇯🇵 Japanese Learning Resources / 日本語学習リソース
+
+Untuk materi lengkap bahasa Jepang teknis dengan rencana pembelajaran terstruktur, lihat: 
+- **[Japanese Learning Guide](JAPANESE_EMBEDDED_LEARNING.md)** - Panduan lengkap belajar bahasa Jepang untuk embedded engineers (trilingual: EN/JP/ID)
+- **[Internship Roadmap](ROADMAP_MAGANG.md)** - Persiapan magang, skill gap analysis, dan wawasan industri otomotif
+
+**Ringkasan Istilah Penting:**
+
+| English | 日本語 | Romaji | Indonesia |
+|---------|--------|--------|-----------|
+| Embedded System | 組込システム | komikomi shisutemu | Sistem Tertanam |
+| Microcontroller | マイコン | maikon | Mikrokontroler |
+| Communication Protocol | 通信プロトコル | tsūshin purotokoru | Protokol Komunikasi |
+| Bus Termination | 終端抵抗 | shūtan teikō | Resistor Terminasi |
+| Report | 報告書 | hōkokusho | Laporan |
+| Testing | テスト | tesuto | Pengujian |
+
+### 3. Apa itu CAN Bus?
+
+### 3.1 Definisi
 
 **CAN (Controller Area Network)** adalah protokol komunikasi serial yang dikembangkan oleh Bosch pada tahun 1983, awalnya untuk industri otomotif. Sekarang digunakan luas di:
 - Otomotif (ECU communication)
@@ -52,7 +144,7 @@ Repository ini berisi implementasi praktis sistem embedded menggunakan **ESP32**
 - Medical equipment
 - Aerospace
 
-### 2.2 Karakteristik Utama
+### 3.2 Karakteristik Utama
 
 | Fitur | Deskripsi |
 |-------|-----------|
@@ -63,7 +155,7 @@ Repository ini berisi implementasi praktis sistem embedded menggunakan **ESP32**
 | **Error Detection** | CRC, ACK, Frame Check |
 | **Priority** | Message-based arbitration (ID lebih kecil = prioritas lebih tinggi) |
 
-### 2.3 Arsitektur CAN Bus
+### 3.3 Arsitektur CAN Bus
 
 ```
 ┌──────────┐     ┌──────────┐     ┌──────────┐
@@ -82,7 +174,7 @@ Repository ini berisi implementasi praktis sistem embedded menggunakan **ESP32**
          └─────────┘
 ```
 
-### 2.4 Frame Structure (CAN 2.0A - Standard Frame)
+### 3.4 Frame Structure (CAN 2.0A - Standard Frame)
 
 ```
 ┌─────────┬──────┬──────┬──────────┬───────────┬─────────┐
@@ -99,7 +191,7 @@ Repository ini berisi implementasi praktis sistem embedded menggunakan **ESP32**
 - **DATA**: Payload data (0-8 bytes)
 - **CRC**: Cyclic Redundancy Check untuk error detection
 
-### 2.5 Implementasi dalam Repository
+### 3.5 Implementasi dalam Repository
 
 File referensi: `firmware/integration/can_bus_with_tft/src/mcp2515_driver.cpp`
 
@@ -136,7 +228,7 @@ bool receiveFrame(CANFrame &frame) {
 }
 ```
 
-### 2.6 Error Handling pada CAN
+### 3.6 Error Handling pada CAN
 
 MCP2515 memiliki register **EFLG (Error Flag)** yang menunjukkan status bus:
 
@@ -167,7 +259,7 @@ void updateBusHealth(uint8_t eflg, uint32_t errorCount) {
 
 ---
 
-## 3. Protokol Komunikasi Serial
+## 4. Protokol Komunikasi Serial
 
 ### 3.1 UART (Universal Asynchronous Receiver-Transmitter)
 
@@ -483,7 +575,7 @@ void loop() {
 
 ---
 
-## 4. Perbandingan Protokol
+## 5. Perbandingan Protokol
 
 ### Tabel Perbandingan
 
@@ -536,7 +628,7 @@ void loop() {
 
 ---
 
-## 5. Implementasi dalam Repository Ini
+## 6. Implementasi dalam Repository Ini
 
 ### 5.1 Struktur Folder
 
@@ -623,7 +715,7 @@ void setup() {
 
 ---
 
-## 6. Cara Kerja Sistem
+## 7. Cara Kerja Sistem
 
 ### 6.1 Flow Diagram - CAN Bus Monitor
 
@@ -709,7 +801,7 @@ void setup() {
 
 ---
 
-## 7. Referensi Kode
+## 8. Referensi Kode
 
 ### 7.1 File-file Penting
 
