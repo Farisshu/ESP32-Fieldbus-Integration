@@ -171,9 +171,9 @@ This repository follows a **modular R&D workflow** aligned with industrial autom
 ┌───────────────┬──────────────────────────┬─────────────────────────────────────────────────────┬─────────────────────────────────┬──────────────────────────┐
 │ Stage         │ Folder                   │ Purpose                                             │ Status                          │ 日本語 (にほんご)          │
 ├───────────────┼──────────────────────────┼─────────────────────────────────────────────────────┼─────────────────────────────────┼──────────────────────────┤
-│ Unit Test     │ `firmware/tests/`        │ Verify individual modules (SPI, UART, TFT init)     │ ✅ MCP2515, ST7735S Verified    │ 単体テスト (たんたいテスト)│
-│ Integration   │ `firmware/integration/`  │ Multi-node communication (CAN bus, RS485 Modbus)    │ ✅ CAN Two Nodes Complete       │ 統合テスト (とうごうテスト)│
-│ Project       │ `firmware/projects/`     │ Final integrated applications                       │ ⏳ Planned                      │ プロジェクト               │
+│ Unit Test     │ firmware/tests/          │ Verify individual modules (SPI, UART, TFT init)     │ ✅ MCP2515, ST7735S Verified    │ 単体テスト (たんたいテスト)│
+│ Integration   │ firmware/integration/    │ Multi-node communication (CAN bus, RS485 Modbus)    │ ✅ CAN Two Nodes Complete       │ 統合テスト (とうごうテスト)│
+│ Project       │ firmware/projects/       │ Final integrated applications                       │ ⏳ Planned                      │ プロジェクト               │
 └───────────────┴──────────────────────────┴─────────────────────────────────────────────────────┴─────────────────────────────────┴──────────────────────────┘
 
 ---
