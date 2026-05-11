@@ -410,29 +410,29 @@ pie title Feature Completion Status
 ### Detailed Status Table - 詳細ステータステーブル (しょうさいすてーたすてーぶる)
 
 | Feature | Status | Priority | Completion Date | 機能 (きのう) |
-|---------|--------|----------|-----------------|
-| **Core Architecture** | | | |
-| SPI Bus Sharing (MCP2515 + TFT) | ✅ Complete | High | 2025-04-15 |
-| CAN 2.0A Communication | ✅ Complete | High | 2025-04-25 |
-| FreeRTOS Multitasking (3 tasks) | ✅ Complete | High | 2025-04-28 |
-| Logic Analyzer Auto-Report | ✅ Complete | High | 2025-05-01 |
-| **Stability & Reliability** | | | |
-| LittleFS CSV Logging | ✅ Complete | Medium | 2025-04-30 |
-| ID Decoding Fix | ✅ Complete | High | 2025-05-01 |
-| SPI Stabilization Delay | ✅ Complete | High | 2025-05-02 |
-| Queue Management Optimization | ✅ Complete | High | 2025-05-03 |
-| Error Handling Enhancement | ✅ Complete | Medium | 2025-05-03 |
-| Configuration Centralization | ✅ Complete | Medium | 2025-05-03 |
-| **Future Enhancements** | | | |
-| CAN TP (ISO 15765-2) | ⏳ In Progress | Low | Planned Q2 2025 |
-| WiFi/Bluetooth Monitoring | 🔜 Planned | Low | After CAN TP |
-| Web-based Dashboard | 🔜 Planned | Low | After WiFi |
-| Automated CI/CD Pipeline | 🔜 Planned | Medium | Final Phase |
+|---------|--------|----------|-----------------|---------------|
+| **Core Architecture** | | | | |
+| SPI Bus Sharing (MCP2515 + TFT) | ✅ Complete | High | 2025-04-15 | SPI バス共有 |
+| CAN 2.0A Communication | ✅ Complete | High | 2025-04-25 | CAN 通信 |
+| FreeRTOS Multitasking (3 tasks) | ✅ Complete | High | 2025-04-28 | マルチタスク |
+| Logic Analyzer Auto-Report | ✅ Complete | High | 2025-05-01 | ロジックアナライザー自動レポート |
+| **Stability & Reliability** | | | | |
+| LittleFS CSV Logging | ✅ Complete | Medium | 2025-04-30 | ログ記録 |
+| ID Decoding Fix | ✅ Complete | High | 2025-05-01 | ID デコード修正 |
+| SPI Stabilization Delay | ✅ Complete | High | 2025-05-02 | SPI 安定化遅延 |
+| Queue Management Optimization | ✅ Complete | High | 2025-05-03 | キュー管理最適化 |
+| Error Handling Enhancement | ✅ Complete | Medium | 2025-05-03 | エラー処理強化 |
+| Configuration Centralization | ✅ Complete | Medium | 2025-05-03 | 設定一元化 |
+| **Future Enhancements** | | | | |
+| CAN TP (ISO 15765-2) | ⏳ In Progress | Low | Planned Q2 2025 | CAN TP |
+| WiFi/Bluetooth Monitoring | 🔜 Planned | Low | After CAN TP | 無線監視 |
+| Web-based Dashboard | 🔜 Planned | Low | After WiFi | ウェブダッシュボード |
+| Automated CI/CD Pipeline | 🔜 Planned | Medium | Final Phase | CI/CD パイプライン |
 
 ---
 
 *Developed for industrial automation workflows & internship preparation (Automotive R&D)*  
-*Author: M. Faris A. G. | Version: 1.0.3 | Last Updated: 2025-05-11 (Repository Cleanup & Learning Path Consolidation)*
+*Author: M. Faris A. G. | Version: 1.0.4 | Last Updated: 2025-05-XX (Repository Cleanup, Learning Path & Internship Roadmap Added)*
 
 ---
 
@@ -440,7 +440,9 @@ pie title Feature Completion Status
 
 For structured learning paths and technical materials, see:
 - **[Learning Path (Materi)](materi/README_MATERI_LENGKAP.md)** - Complete guide to embedded systems, protocols, and tools
-- **[Archive Documentation](archive/ARCHIVE_INDEX.md)** - Historical evidence, Japanese learning materials, and deprecated docs
+- **[Internship Roadmap (Magang)](materi/ROADMAP_MAGANG.md)** - Internship preparation, skill gap analysis, Horiba ADS EVO insights
+- **[Japanese Learning Guide](materi/JAPANESE_EMBEDDED_LEARNING.md)** - Trilingual technical vocabulary (EN/JP/ID)
+- **[Archive Documentation](archive/ARCHIVE_INDEX.md)** - Historical evidence and deprecated docs
 
 ### Quick Reference: Technical Terms
 
@@ -450,8 +452,10 @@ For structured learning paths and technical materials, see:
 | Microcontroller | マイコン | maikon | Mikrokontroler |
 | Communication Protocol | 通信プロトコル | tsūshin purotokoru | Protokol Komunikasi |
 | Report | 報告書 | hōkokusho | Laporan |
+| Testing | テスト | tesuto | Pengujian |
+| Internship | インターンシップ | intānshippu | Magang |
 
-> For complete Japanese technical vocabulary, see: [`/archive/japanese_learning/`](archive/japanese_learning/)
+> For complete Japanese technical vocabulary with study plan, see: [`/materi/JAPANESE_EMBEDDED_LEARNING.md`](materi/JAPANESE_EMBEDDED_LEARNING.md)
 
 ---
 

@@ -120,8 +120,8 @@ Berikut adalah struktur pembelajaran yang direkomendasikan untuk menguasai embed
 ### 🇯🇵 Japanese Learning Resources / 日本語学習リソース
 
 Untuk materi lengkap bahasa Jepang teknis dengan rencana pembelajaran terstruktur, lihat: 
-- **[Japanese Learning Guide](JAPANESE_EMBEDDED_LEARNING.md)** - Panduan lengkap belajar bahasa Jepang untuk embedded engineers
-- **[Technical Dictionary](KAMUS_TEKNIS_JEPANG.md)** - Kamus lengkap istilah teknis (referensi)
+- **[Japanese Learning Guide](JAPANESE_EMBEDDED_LEARNING.md)** - Panduan lengkap belajar bahasa Jepang untuk embedded engineers (trilingual: EN/JP/ID)
+- **[Internship Roadmap](ROADMAP_MAGANG.md)** - Persiapan magang, skill gap analysis, dan wawasan industri otomotif
 
 **Ringkasan Istilah Penting:**
 
