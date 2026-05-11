@@ -305,13 +305,13 @@ Built for embedded engineers who value **traceability, automation, and professio
 ### Portfolio Skills Demonstrated - ポートフォリオで示したスキル (ぽーとふぉりおでしめしたすきる)
 
 | Skill | Evidence | Industry Value | スキル (すきる) |
-|-------|----------|----------------|
-| Embedded C/C++ | Modular driver, register-level MCP2515 access | ⭐⭐⭐⭐⭐ |
-| RTOS (FreeRTOS) | 3-task architecture with queue sync | ⭐⭐⭐⭐⭐ |
-| SPI/I2C/UART | Shared bus management, level shifting | ⭐⭐⭐⭐⭐ |
-| Debugging | Logic Analyzer integration, EFLG monitoring | ⭐⭐⭐⭐⭐ |
-| Documentation | Professional report generator, SOP, README | ⭐⭐⭐⭐⭐ |
-| Version Control | Clean commit history, modular structure | ⭐⭐⭐⭐⭐ |
+|-------|----------|----------------|-----------------|
+| Embedded C/C++ | Modular driver, register-level MCP2515 access | ⭐⭐⭐⭐⭐ | 組込 C/C++ (くみこみ しーぷらすぷらす) |
+| RTOS (FreeRTOS) | 3-task architecture with queue sync | ⭐⭐⭐⭐⭐ | リアルタイム OS (ありあるたいむ おーえす) |
+| SPI/I2C/UART | Shared bus management, level shifting | ⭐⭐⭐⭐⭐ | シリアル通信 (しりある つうしん) |
+| Debugging | Logic Analyzer integration, EFLG monitoring | ⭐⭐⭐⭐⭐ | デバッグ技術 (でばっぐ ぎじゅつ) |
+| Documentation | Professional report generator, SOP, README | ⭐⭐⭐⭐⭐ | 技術文書 (ぎじゅつ ぶんしょ) |
+| Version Control | Clean commit history, modular structure | ⭐⭐⭐⭐⭐ | バージョン管理 (ばーじょん かんり) |
 
 ---
 

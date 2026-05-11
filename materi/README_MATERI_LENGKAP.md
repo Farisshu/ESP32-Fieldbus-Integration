@@ -117,9 +117,13 @@ Berikut adalah struktur pembelajaran yang direkomendasikan untuk menguasai embed
 
 ---
 
-### 🇯🇵 Japanese Technical Terms (Ringkasan)
+### 🇯🇵 Japanese Learning Resources / 日本語学習リソース
 
-Untuk materi lengkap bahasa Jepang teknis, lihat: [`/archive/japanese_learning/`](../archive/japanese_learning/)
+Untuk materi lengkap bahasa Jepang teknis dengan rencana pembelajaran terstruktur, lihat: 
+- **[Japanese Learning Guide](JAPANESE_EMBEDDED_LEARNING.md)** - Panduan lengkap belajar bahasa Jepang untuk embedded engineers
+- **[Technical Dictionary](KAMUS_TEKNIS_JEPANG.md)** - Kamus lengkap istilah teknis (referensi)
+
+**Ringkasan Istilah Penting:**
 
 | English | 日本語 | Romaji | Indonesia |
 |---------|--------|--------|-----------|
