@@ -899,21 +899,36 @@ Archive_YYYYMMDD_HHMMSS/
 ## 📖 Referensi Tambahan
 
 ### Dokumentasi Resmi
-- [MCP2515 Datasheet](https://ww1.microchip.com/downloads/en/DeviceDoc/21801e.pdf)
-- [ESP32 Technical Reference Manual](https://www.espressif.com/sites/default/files/documentation/esp32_technical_reference_manual_en.pdf)
-- [CAN Bus Specification 2.0](https://www.bosch-semiconductors.de/media/pdf_1/canliteratur/can2spec.pdf)
-- [FreeRTOS Documentation](https://www.freertos.org/Documentation/api.html)
+
+| Dokumen | Sumber | URL | Status |
+|---------|--------|-----|--------|
+| MCP2515 Datasheet | Microchip | [Product Page](https://www.microchip.com/en-us/product/mcp2515) | ✅ Valid |
+| ESP32 Technical Reference | Espressif | [ESP-IDF Docs](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/) | ✅ Valid |
+| CAN Bus Specification | Bosch | [Wikipedia Overview](https://en.wikipedia.org/wiki/CAN_bus) | ✅ Valid |
+| FreeRTOS Documentation | Amazon | [FreeRTOS Official](https://freertos.org/) | ✅ Valid |
+| PlatformIO Guide | PlatformIO | [Documentation](https://docs.platformio.org/en/latest/) | ✅ Valid |
 
 ### Standar Industri
-- **ISO 11898** - CAN Bus standard
-- **ISO 15765-2** - CAN Transport Protocol (planned)
-- **Modbus RTU** - RS485 protocol standard
-- **RS-485 Standard** - TIA/EIA-485
+
+| Standar | Deskripsi | Aplikasi |
+|---------|-----------|----------|
+| **ISO 11898** | CAN Bus physical & data link layer | Otomotif, Industrial |
+| **ISO 15765-2** | CAN Transport Protocol (TP) | Diagnostic tools |
+| **Modbus RTU** | RS485 protocol standard | Industrial automation |
+| **RS-485 Standard** | TIA/EIA-485 differential signaling | Long-distance communication |
+| **MISRA C:2012** | Coding standards for safety-critical systems | Embedded software |
 
 ### Tutorial Online
-- [CAN Bus Explained](https://www.csselectronics.com/pages/can-bus-simple-intro)
-- [SPI vs I2C vs UART](https://www.protoexpress.com/blog/differences-between-spi-i2c-and-uart-protocols/)
-- [ESP32 FreeRTOS Tutorial](https://randomnerdtutorials.com/guide-for-freertos-with-esp32-arduino-ide/)
+
+| Topik | Sumber | URL | Status |
+|-------|--------|-----|--------|
+| CAN Bus Explained | Wikipedia | [CAN Bus](https://en.wikipedia.org/wiki/CAN_bus) | ✅ Valid |
+| SPI Protocol | Wikipedia | [SPI](https://en.wikipedia.org/wiki/Serial_Peripheral_Interface) | ✅ Valid |
+| I2C Protocol | Wikipedia | [I²C](https://en.wikipedia.org/wiki/I%C2%B2C) | ✅ Valid |
+| RS-485 Standard | Wikipedia | [RS-485](https://en.wikipedia.org/wiki/RS-485) | ✅ Valid |
+| UART Basics | Wikipedia | [UART](https://en.wikipedia.org/wiki/Universal_asynchronous_receiver-transmitter) | ✅ Valid |
+| TI CAN Guide | Texas Instruments | [SLOA105 Application Note](https://www.ti.com/lit/pdf/sloa105) | ✅ Valid |
+| ESP32 FreeRTOS | Random Nerd Tutorials | [Guide via Internet Archive](https://web.archive.org/web/20240000000000*/randomnerdtutorials.com) | ⚠️ Check Archive |
 
 ---
 

@@ -1,10 +1,10 @@
-# ESP32 Logic Analyzer Automation & CAN Bus Monitor 🛠️📊📡
+# ESP32 Logic Analyzer Automation & CAN Bus Monitor
 
 > **Professional Embedded System Prototype**: Capture → Auto-Detect → Professional Report Generation  
 > **Industrial-Grade CAN 2.0A Communication** with TFT Visualization, FreeRTOS Multitasking, and Automated Testing  
 > Standardized for R&D, Industrial Protocols (SPI, UART, I2C, CAN), and Internship Documentation.
 > 
-> **学習目標 (がくしゅうもくてき - Learning Goals)**: 組込システム (こみこみシステム - Embedded Systems), 車載ネットワーク (しゃさいネットワーク - Automotive Networks), ものづくり (Monozukuri - Manufacturing Excellence)
+> **学習目標 (Learning Goals)**: 組込システム (Embedded Systems), 車載ネットワーク (Automotive Networks), ものづくり (Monozukuri - Manufacturing Excellence)
 
 ![Python](https://img.shields.io/badge/Python-3.8+-blue?logo=python)
 ![PlatformIO](https://img.shields.io/badge/PlatformIO-ESP32-orange?logo=platformio)
@@ -19,12 +19,15 @@
 
 Automate logic analyzer data processing to eliminate manual screenshot/reporting. Transform raw CSV exports into **structured, auditable test reports** with protocol decoding, timing validation, and auto-generated conclusions.
 
-**Key Engineering Highlights:**
-- ✅ **Modular Architecture**: Driver/UI/App separation (R&D standard) - 分離 (ぶんり - Separation)
-- ✅ **FreeRTOS Integration**: Multi-task architecture with queue-based synchronization - 同期 (どうき - Synchronization)
-- ✅ **SPI Bus Sharing**: MCP2515 + ST7735S on same bus with CS arbitration - 調停 (ちょうてい - Arbitration)
-- ✅ **Defensive Programming**: ID filtering, DLC validation, error monitoring - 防御 (ぼうぎょ - Defense)
-- ✅ **Professional Reporting**: Auto-generated test reports via `analyze_la_pro.py` - 報告書 (ほうこくしょ - Report)
+### Key Engineering Highlights
+
+| Feature | Description | Japanese |
+|---------|-------------|----------|
+| **Modular Architecture** | Driver/UI/App separation (R&D standard) | 分離 (Bunri) |
+| **FreeRTOS Integration** | Multi-task architecture with queue synchronization | 同期 (Dōki) |
+| **SPI Bus Sharing** | MCP2515 + ST7735S on same bus with CS arbitration | 調停 (Chōtei) |
+| **Defensive Programming** | ID filtering, DLC validation, error monitoring | 防御 (Bōgyo) |
+| **Professional Reporting** | Auto-generated test reports via `analyze_la_pro.py` | 報告書 (Hōkokusho) |
 
 ---
 
@@ -74,11 +77,11 @@ Archive_YYYYMMDD_HHMMSS/
 ```text
 esp32-logic-analyzer-automation/
 ├── firmware/                 # ESP32 test codes (PlatformIO) - ファームウェア
-│   ├── tests/               # Unit tests for individual modules - 単体テスト (たんたいテスト)
+│   ├── tests/               # Unit tests for individual modules - 単体テスト
 │   │   ├── mcp2515_can/     # MCP2515 CAN controller tests
 │   │   ├── st7735s_tft/     # ST7735S TFT display tests
 │   │   └── tft_mcp2515_combined/ # Combined SPI device tests
-│   ├── integration/         # Multi-node communication tests - 統合テスト (とうごうテスト)
+│   ├── integration/         # Multi-node communication tests - 統合テスト
 │   │   ├── can_two_nodes/   # Two-node CAN bus communication
 │   │   └── can_bus_with_tft/ # CAN monitor with TFT visualization
 │   ├── test_uart_basic/     # UART communication test
@@ -90,7 +93,7 @@ esp32-logic-analyzer-automation/
 │   └── examples/             # Sample captures & test data - サンプルデータ
 ├── include/                  # Project header files - ヘッダーファイル
 ├── lib/                      # Private libraries - ライブラリ
-├── docs/                     # Wiring diagrams, PulseView settings, SOP - 資料 (しりょう)
+├── docs/                     # Wiring diagrams, PulseView settings, SOP - 資料
 ├── archives/                 # [IGNORED] Generated reports - アーカイブ
 ├── requirements.txt          # Python dependencies
 ├── LICENSE                   # MIT License
@@ -101,24 +104,33 @@ esp32-logic-analyzer-automation/
 
 ## 🔧 How It Works
 
-### Software Workflow (Logic Analyzer) - ソフトウェアワークフロー
+### Software Workflow (Logic Analyzer)
 
-1. **Capture**: Export CSV from PulseView / Saleae / Generic LA - キャプチャ (きゃぷちゃ)
-2. **Auto-Detect**: Script identifies UART, SPI, or I2C patterns from waveform timing - 自動検出 (じどうけんしゅつ)
-3. **Decode**: Extracts protocol frames, register accesses, or byte streams - デコード (でこーど)
-4. **Validate**: Checks against spec thresholds (jitter, frequency, CRC, timing margins) - 検証 (けんしょう)
-5. **Report**: Generates standardized TXT/PNG/JSON output ready for documentation - 報告書生成 (ほうこくしょせいせい)
+| Step | Action | Description | Japanese |
+|------|--------|-------------|----------|
+| 1 | **Capture** | Export CSV from PulseView / Saleae / Generic LA | キャプチャ |
+| 2 | **Auto-Detect** | Script identifies UART, SPI, or I2C patterns from waveform timing | 自動検出 |
+| 3 | **Decode** | Extracts protocol frames, register accesses, or byte streams | デコード |
+| 4 | **Validate** | Checks against spec thresholds (jitter, frequency, CRC, timing margins) | 検証 |
+| 5 | **Report** | Generates standardized TXT/PNG/JSON output ready for documentation | 報告書生成 |
 
-### Firmware Workflow (CAN Bus Monitor) - ファームウェアワークフロー
+### Firmware Workflow (CAN Bus Monitor)
 
-1. **Initialize**: MCP2515 CAN controller + ST7735S TFT on shared SPI bus - 初期化 (しょきか)
-2. **FreeRTOS Tasks** - タスク:
-   - `canPollTask`: Monitor CAN bus for incoming messages (10ms interval) - 監視 (かんし)
-   - `uiRefreshTask`: Update TFT display (200ms interval, 5Hz refresh) - 更新 (こうしん)
-   - `loggerTask`: Log data to LittleFS CSV (non-blocking) - ログ記録 (ろぐきろく)
-3. **Message Handling**: Filter by ID, validate DLC, extract payload - メッセージ処理 (めっせーじしょり)
-4. **Error Monitoring**: Track EFLG register for bus health diagnostics - エラー監視 (えらーかんし)
-5. **Visualization**: Display ID, Data (4 bytes), Count, Status on TFT - 可視化 (かしか)
+| Step | Action | Description | Japanese |
+|------|--------|-------------|----------|
+| 1 | **Initialize** | MCP2515 CAN controller + ST7735S TFT on shared SPI bus | 初期化 |
+| 2 | **FreeRTOS Tasks** | Multi-task architecture with queue synchronization | タスク |
+| 3 | **Message Handling** | Filter by ID, validate DLC, extract payload | メッセージ処理 |
+| 4 | **Error Monitoring** | Track EFLG register for bus health diagnostics | エラー監視 |
+| 5 | **Visualization** | Display ID, Data (4 bytes), Count, Status on TFT | 可視化 |
+
+**FreeRTOS Task Configuration:**
+
+| Task | Interval | Purpose |
+|------|----------|---------|
+| `canPollTask` | 10ms | Monitor CAN bus for incoming messages - 監視 |
+| `uiRefreshTask` | 200ms (5Hz) | Update TFT display - 更新 |
+| `loggerTask` | Non-blocking | Log data to LittleFS CSV - ログ記録 |
 
 ---
 
@@ -168,42 +180,42 @@ Generated by: analyze_la_pro.py v1.0.1
 
 This repository follows a **modular R&D workflow** aligned with industrial automation standards:
 
-| Stage | Folder | Purpose | Status | 日本語 (にほんご) |
-|-------|--------|---------|--------|------------------|
-| **Unit Test** | `firmware/tests/` | Verify individual modules (SPI, UART, TFT init) | ✅ MCP2515, ST7735S Verified | 単体テスト (たんたいテスト) |
-| **Integration** | `firmware/integration/` | Multi-node communication (CAN bus, RS485 Modbus) | ✅ CAN Two Nodes Complete | 統合テスト (とうごうテスト) |
+| Stage | Folder | Purpose | Status | Japanese |
+|-------|--------|---------|--------|----------|
+| **Unit Test** | `firmware/tests/` | Verify individual modules (SPI, UART, TFT init) | ✅ MCP2515, ST7735S Verified | 単体テスト |
+| **Integration** | `firmware/integration/` | Multi-node communication (CAN bus, RS485 Modbus) | ✅ CAN Two Nodes Complete | 統合テスト |
 | **Project** | `firmware/projects/` | Final integrated applications | ⏳ Planned | プロジェクト |
 
 ---
 
 ## 📦 Firmware Projects
 
-| Project | Description | Status | Key Features | 特徴 (とくちょう) |
-|---------|-------------|--------|--------------|------------------|
-| `test_uart_basic` | Basic UART communication test with SPI initialization | ✅ Complete | UART TX/RX, SPI init | UART 通信 (つうしん) |
-| `test_can_spi_test` | MCP2515 CAN controller SPI interface diagnostic | ✅ Complete | Register access, loopback | ループバック |
-| `integration/can_two_nodes` | Two-node CAN bus communication system | ✅ Complete | 500 kbps, TX/RX roles | 二重化 (にじゅうか) |
-| `integration/can_bus_with_tft` | CAN monitor with TFT visualization & FreeRTOS | ✅ Complete | Multi-task, SPI sharing, LittleFS logging | マルチタスク |
+| Project | Description | Status | Key Features | Japanese |
+|---------|-------------|--------|--------------|----------|
+| `test_uart_basic` | Basic UART communication test | ✅ Complete | UART TX/RX, SPI init | UART 通信 |
+| `test_can_spi_test` | MCP2515 CAN controller SPI diagnostic | ✅ Complete | Register access, loopback | ループバック |
+| `integration/can_two_nodes` | Two-node CAN bus communication system | ✅ Complete | 500 kbps, TX/RX roles | 二重化 |
+| `integration/can_bus_with_tft` | CAN monitor with TFT visualization | ✅ Complete | Multi-task, SPI sharing, LittleFS | マルチタスク |
 
 ---
 
 ## 🔌 Hardware Setup
 
-### Required Components - 必要部品 (ひつようぶひん)
+### Required Components
 
-| Component | Quantity | Purpose | 目的 (もくてき) |
-|-----------|----------|---------|----------------|
-| ESP32 Dev Board | 2 | Main microcontroller (TX & RX nodes) | メインマイコン |
+| Component | Quantity | Purpose | Japanese |
+|-----------|----------|---------|----------|
+| ESP32 Dev Board | 2 | Main microcontroller (TX/RX) | メインマイコン |
 | MCP2515 CAN Module | 2 | CAN 2.0A controller | コントローラー |
-| TJA1050 CAN Transceiver | 2 | CAN bus physical layer | 物理層 (ぶつりそう) |
-| ST7735S TFT (128x128) | 1 | Display module (optional) | 表示モジュール (ひょうじ) |
-| 120Ω Resistor | 2 | CAN bus termination | 終端抵抗 (しゅうたんていこう) |
-| Jumper Wires | - | Connections | 配線 (はいせん) |
+| TJA1050 CAN Transceiver | 2 | CAN bus physical layer | 物理層 |
+| ST7735S TFT (128x128) | 1 | Display module (optional) | 表示モジュール |
+| 120Ω Resistor | 2 | CAN bus termination | 終端抵抗 |
+| Jumper Wires | - | Connections | 配線 |
 
-### Wiring Diagram (SPI Shared Bus) - 配線図 (はいせんず)
+### Wiring Diagram (SPI Shared Bus)
 
-| ESP32 | MCP2515 | ST7735S | Note | 備考 (びこう) |
-|-------|---------|---------|------|-------------|
+| ESP32 | MCP2515 | ST7735S | Note | Japanese |
+|-------|---------|---------|------|----------|
 | GPIO 18 (SCK) | SCK | SCL | Shared Clock | クロック共有 |
 | GPIO 23 (MOSI) | SI | SDA | Shared Data | データ共有 |
 | GPIO 19 (MISO) | SO | - | MCP2515 only | MCP2515 のみ |
@@ -212,51 +224,51 @@ This repository follows a **modular R&D workflow** aligned with industrial autom
 | GPIO 16 | - | DC | TFT Data/Command | データ/コマンド |
 | GPIO 4 | - | RST | TFT Reset | リセット |
 | GND | GND | GND | **Common Ground Required** | **共通グラウンド必須** |
-| 3.3V | VCC | VCC | Power supply | 電源供給 (でんげんきょうきゅう) |
+| 3.3V | VCC | VCC | Power supply | 電源供給 |
 
-### CAN Bus Wiring - CAN バス配線 (きゃん ばす はいせん)
+### CAN Bus Wiring
 
 ```text
 Node TX (MCP2515)          Node RX (MCP2515)
      CANH ───────────────────── CANH
      CANL ───────────────────── CANL
               ┌─────────┐
-              │ 120Ω    │  (Termination at BOTH ends) - 両端終端 (りょうたんしゅうたん)
+              │ 120Ω    │  (Termination at BOTH ends) - 両端終端
               └─────────┘
 ```
 
 ---
 
-## 🛠️ Build & Upload - ビルドとアップロード (びるど と あっぷろーど)
+## 🛠️ Build & Upload
 
-### Firmware (PlatformIO) - ファームウェア
+### Firmware (PlatformIO)
 
 ```bash
-# Navigate to project directory - プロジェクトディレクトリへ移動 (ぷろじぇくとでぃれくとりへいどう)
+# Navigate to project directory - プロジェクトディレクトリへ移動
 cd firmware/integration/can_bus_with_tft
 
-# Clean build files - ビルドファイルをクリーン (びるどふぁいるをくりーん)
+# Clean build files - ビルドファイルをクリーン
 pio run --target clean
 
-# Build project - プロジェクトをビルド (ぷろじぇくとをびるど)
+# Build project - プロジェクトをビルド
 pio run
 
-# Upload to device - デバイスにアップロード (でばいすにあっぷろーど)
+# Upload to device - デバイスにアップロード
 pio run --target upload
 
-# Open serial monitor - シリアルモニターを開く (しりあるもにたーをひらく)
+# Open serial monitor - シリアルモニターを開く
 pio device monitor --baud 115200
 ```
 
-### Software (Python Analysis) - ソフトウェア (ぱいそんぶんせき)
+### Software (Python Analysis)
 
 ```bash
-# Activate virtual environment - 仮想環境をアクティブ (かそうかんきょうをあくてぃぶ)
+# Activate virtual environment - 仮想環境をアクティブ
 source .venv/bin/activate  # Linux/Mac
 # or
 .venv\Scripts\activate     # Windows
 
-# Run analysis - 分析を実行 (ぶんせきをじっこう)
+# Run analysis - 分析を実行
 python software/analyze_la_pro.py software/examples/sample_uart_9600.csv \
   --operator "Your Name" \
   --dut "ESP32 Test Board" \
@@ -265,33 +277,35 @@ python software/analyze_la_pro.py software/examples/sample_uart_9600.csv \
 
 ---
 
-## 📈 Test Results & Validation - テスト結果と検証 (てすとけっか と けんしょう)
+## 📈 Test Results & Validation
 
-### CAN Bus Communication Test - CAN バス通信テスト (きゃん ばす つうしんてすと)
+### CAN Bus Communication Test
 
-| Metric | Expected | Actual | Status | 項目 (こうもく) |
-|--------|----------|--------|--------|
-| SPI Bus Sharing | No conflicts | ✅ Stable | PASS |
-| CAN Frame Transmission | TXREQ clear | ✅ 0x00 | PASS |
-| CAN Frame Reception | Payload intact | ✅ 100% | PASS |
-| Error Flag (EFLG) | < 0x80 | ✅ 0x05 (minor warning) | PASS* |
-| UI Refresh Rate | ≤ 5Hz | ✅ 5Hz | PASS |
-| FreeRTOS Task Sync | No deadlock | ✅ Stable | PASS |
+For detailed test results with comprehensive analysis, see: **[Test Results & Validation](docs/TEST_RESULTS_VALIDATION.md)**
 
-*Note: EFLG 0x05 indicates minor transmit warning (normal for prototyping with jumper wires). See [Troubleshooting](#-troubleshooting) for details.
+| Metric | Expected | Actual | Status | Japanese |
+|--------|----------|--------|--------|----------|
+| SPI Bus Sharing | No conflicts | ✅ Stable | PASS | SPI バス共有 |
+| CAN Frame Transmission | TXREQ clear | ✅ 0x00 | PASS | CAN フレーム送信 |
+| CAN Frame Reception | Payload intact | ✅ 100% | PASS | CAN フレーム受信 |
+| Error Flag (EFLG) | < 0x80 | ✅ 0x05 | PASS* | エラーフラグ |
+| UI Refresh Rate | ≤ 5Hz | ✅ 5Hz | PASS | UI 更新レート |
+| FreeRTOS Task Sync | No deadlock | ✅ Stable | PASS | FreeRTOS タスク同期 |
 
-### Logic Analyzer Detection - ロジックアナライザー検出 (ろじっくあならいざーけんしゅつ)
+> **Note**: EFLG 0x05 indicates minor transmit warning (normal for prototyping with jumper wires). See [Troubleshooting](#-troubleshooting) or [Full Test Report](docs/TEST_RESULTS_VALIDATION.md) for details.
+
+### Logic Analyzer Detection
 
 | Protocol | Auto-Detection | Decoding | Validation |
-|----------|---------------|----------|------------|
-| UART | ✅ Yes | ✅ Baud, Data bits | ✅ Bit timing |
+|----------|----------------|----------|------------|
+| UART | ✅ Yes | ✅ Baud, Data | ✅ Bit timing |
 | SPI | ✅ Yes | ✅ Clock, Data | ✅ Frequency |
 | I2C | ✅ Yes | ✅ Address, Data | ✅ Timing |
 | CAN | 🔜 Planned | 🔜 Planned | 🔜 Planned |
 
 ---
 
-## 🤝 Contribution & Internship Readiness - 貢献とインターンシップ準備 (こうけん と いんたーんしっぷじゅんび)
+## 🤝 Contribution & Internship Readiness
 
 This toolkit is designed to be **modular and extensible**:
 
@@ -302,16 +316,16 @@ This toolkit is designed to be **modular and extensible**:
 
 Built for embedded engineers who value **traceability, automation, and professional documentation**.
 
-### Portfolio Skills Demonstrated - ポートフォリオで示したスキル (ぽーとふぉりおでしめしたすきる)
+### Portfolio Skills Demonstrated
 
-| Skill | Evidence | Industry Value | スキル (すきる) |
-|-------|----------|----------------|-----------------|
-| Embedded C/C++ | Modular driver, register-level MCP2515 access | ⭐⭐⭐⭐⭐ | 組込 C/C++ (くみこみ しーぷらすぷらす) |
-| RTOS (FreeRTOS) | 3-task architecture with queue sync | ⭐⭐⭐⭐⭐ | リアルタイム OS (ありあるたいむ おーえす) |
-| SPI/I2C/UART | Shared bus management, level shifting | ⭐⭐⭐⭐⭐ | シリアル通信 (しりある つうしん) |
-| Debugging | Logic Analyzer integration, EFLG monitoring | ⭐⭐⭐⭐⭐ | デバッグ技術 (でばっぐ ぎじゅつ) |
-| Documentation | Professional report generator, SOP, README | ⭐⭐⭐⭐⭐ | 技術文書 (ぎじゅつ ぶんしょ) |
-| Version Control | Clean commit history, modular structure | ⭐⭐⭐⭐⭐ | バージョン管理 (ばーじょん かんり) |
+| Skill | Evidence | Industry Value | Japanese |
+|-------|----------|----------------|----------|
+| **Embedded C/C++** | Modular driver, register-level access | ⭐⭐⭐⭐⭐ | 組込 C/C++ |
+| **RTOS (FreeRTOS)** | 3-task architecture with queue sync | ⭐⭐⭐⭐⭐ | リアルタイム OS |
+| **SPI/I2C/UART** | Shared bus management, level shifting | ⭐⭐⭐⭐⭐ | シリアル通信 |
+| **Debugging** | Logic Analyzer integration, EFLG monitoring | ⭐⭐⭐⭐⭐ | デバッグ技術 |
+| **Documentation** | Professional report generator, SOP | ⭐⭐⭐⭐⭐ | 技術文書 |
+| **Version Control** | Clean commit history, modular structure | ⭐⭐⭐⭐⭐ | バージョン管理 |
 
 ---
 
@@ -321,19 +335,19 @@ MIT License. Free for educational, R&D, and commercial use.
 
 ---
 
-## 🔧 Troubleshooting - トラブルシューティング (とらぶるしゅーてぃんぐ)
+## 🔧 Troubleshooting
 
-### Common Issues - 一般的な問題 (いっぱんてきなもんだい)
+### Common Issues (一般的な問題)
 
-| Issue | Cause | Solution | 問題 (もんだい) |
-|-------|-------|----------|
-| No protocol detected | CSV format mismatch | Check column names (time, ch0-ch7) |
-| Poor waveform quality | Low sample rate | Increase to 8+ MS/s for SPI |
-| CAN ID mismatch (0x123 vs 0x421) | ✅ FIXED: Added SPI stabilization delay | See `config.h` - `SPI_STABILIZATION_DELAY_US` |
-| EFLG warning (0x05) | Minor bus noise | Use twisted pair cables, verify termination |
-| TFT flicker | Refresh rate too high | Reduce to ≤5Hz in `uiRefreshTask` |
-| Build fails | Missing PlatformIO | Run `pip install platformio` |
-| Queue overflow | High message rate | ✅ FIXED: Batch logging + drain limiter implemented |
+| Issue | Cause | Solution | Japanese |
+|-------|-------|----------|----------|
+| No protocol detected | CSV format mismatch | Check column names (time, ch0-ch7) | 検出なし |
+| Poor waveform quality | Low sample rate | Increase to 8+ MS/s for SPI | 波形品質不良 |
+| CAN ID mismatch (0x123 vs 0x421) | ✅ FIXED: SPI stabilization delay added | See `config.h` - `SPI_STABILIZATION_DELAY_US` | ID 不一致 |
+| EFLG warning (0x05) | Minor bus noise | Use twisted pair cables, verify termination | EFLG 警告 |
+| TFT flicker | Refresh rate too high | Reduce to ≤5Hz in `uiRefreshTask` | フリッカー |
+| Build fails | Missing PlatformIO | Run `pip install platformio` | ビルド失敗 |
+| Queue overflow | High message rate | ✅ FIXED: Batch logging + drain limiter | オーバーフロー |
 
 ### EFLG Register Analysis
 
@@ -355,49 +369,40 @@ Bit 3-7        = 0 ✅ No Bus-Off, No Passive Error, No Overflow
 
 ---
 
-## 📚 Additional Documentation - 追加資料 (ついかしりょう)
+## 📚 Additional Documentation
 
-- [Test Procedures & SOP](docs/test_procedures.md) - Hardware setup & validation steps
-- [Firmware README](firmware/README.md) - Detailed firmware project guide
-- [Software README](software/README.md) - Python tool documentation
-- [Integration Tests](firmware/integration/README.md) - Multi-node testing guide
+### Core Documentation
+
+| Document | Description | Link |
+|----------|-------------|------|
+| Test Results & Validation | Comprehensive CAN Bus test report | [View Report](docs/TEST_RESULTS_VALIDATION.md) |
+| Test Procedures & SOP | Hardware setup & validation steps | [View SOP](docs/test_procedures.md) |
+| Firmware README | Detailed firmware project guide | [View Guide](firmware/README.md) |
+| Software README | Python tool documentation | [View Docs](software/README.md) |
+| Integration Tests | Multi-node testing guide | [View Tests](firmware/integration/README.md) |
+
+### Learning Materials
+
+| Document | Description | Language |
+|----------|-------------|----------|
+| Complete Learning Guide | Embedded systems & protocols tutorial | 🇮🇩 Indonesian |
+| Japanese Learning Guide | Technical Japanese for embedded engineers | 🇯🇵🇬🇧🇮🇩 Trilingual |
+| Internship Roadmap | Skill preparation & industry insights | 🇮🇩 Indonesian |
+
+**Quick Links:**
+- **[Materi Pembelajaran Lengkap](materi/README_MATERI_LENGKAP.md)** - Panduan lengkap sistem embedded dan protokol komunikasi
+- **[Japanese Learning Guide](materi/JAPANESE_EMBEDDED_LEARNING.md)** - 組込システム技術者のための日本語学習ガイド
+- **[Internship Roadmap](materi/ROADMAP_MAGANG.md)** - Persiapan magang dan analisis kesenjangan keterampilan
 
 ---
 
-## 🎓 Project Status & Roadmap - プロジェクト状況とロードマップ (ぷろじぇくとじょうきょう と ろーどまっぷ)
+## 🎓 Project Status & Roadmap
 
-### Current Status: **Production-Ready for R&D Demonstration** ✅ - 現状 (げんじょう): **研究開発デモ準備完了**
+### Current Status: **Production-Ready for R&D Demonstration** ✅
 
-### 📊 Interactive Progress Dashboard
+**現状 (Genjō)**: 研究開発デモ準備完了 (Kenkyū Kaihatsu Demo Junbi Kanryō)
 
-```mermaid
-%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#4CAF50', 'edgeLabelBackground':'#ffffff', 'tertiaryColor': '#fff'}}}%%
-gantt
-    title ESP32 Logic Analyzer - Development Timeline
-    dateFormat  YYYY-MM-DD
-    axisFormat  %b %Y
-    
-    section Core Features
-    SPI Bus Sharing (MCP2515 + TFT)     :done, spi, 2025-04-01, 2025-04-15
-    CAN 2.0A Communication              :done, can, 2025-04-10, 2025-04-25
-    FreeRTOS Multitasking               :done, rtos, 2025-04-15, 2025-04-28
-    Logic Analyzer Auto-Report          :done, la, 2025-04-20, 2025-05-01
-    
-    section Stability Improvements
-    LittleFS CSV Logging                :done, log, 2025-04-25, 2025-04-30
-    ID Decoding Fix                     :done, idfix, 2025-04-28, 2025-05-01
-    SPI Stabilization Delay             :done, spidelay, 2025-04-29, 2025-05-02
-    Queue Management                    :done, queue, 2025-04-30, 2025-05-03
-    Error Handling                      :done, err, 2025-05-01, 2025-05-03
-    
-    section Future Enhancements
-    CAN TP (ISO 15765-2)                :active, cantp, 2025-05-10, 30d
-    WiFi/Bluetooth Monitoring           :         wifi, after cantp, 20d
-    Web Dashboard                       :         web, after wifi, 15d
-    CI/CD Pipeline                      :         cicd, after web, 10d
-```
-
-### Feature Completion Overview - 機能完了概要 (きのうかんりょうがいよう)
+### Feature Completion Overview
 
 ```mermaid
 pie title Feature Completion Status
@@ -407,10 +412,10 @@ pie title Feature Completion Status
     "Planned" : 4
 ```
 
-### Detailed Status Table - 詳細ステータステーブル (しょうさいすてーたすてーぶる)
+### Detailed Status Table
 
-| Feature | Status | Priority | Completion Date | 機能 (きのう) |
-|---------|--------|----------|-----------------|---------------|
+| Feature | Status | Priority | Completion Date | Japanese |
+|---------|--------|----------|-----------------|----------|
 | **Core Architecture** | | | | |
 | SPI Bus Sharing (MCP2515 + TFT) | ✅ Complete | High | 2025-04-15 | SPI バス共有 |
 | CAN 2.0A Communication | ✅ Complete | High | 2025-04-25 | CAN 通信 |
@@ -431,14 +436,10 @@ pie title Feature Completion Status
 
 ---
 
-*Developed for industrial automation workflows & internship preparation (Automotive R&D)*  
-*Author: M. Faris A. G. | Version: 1.0.4 | Last Updated: 2025-05-XX (Repository Cleanup, Learning Path & Internship Roadmap Added)*
-
----
-
 ## 📚 Learning Resources
 
 For structured learning paths and technical materials, see:
+
 - **[Learning Path (Materi)](materi/README_MATERI_LENGKAP.md)** - Complete guide to embedded systems, protocols, and tools
 - **[Internship Roadmap (Magang)](materi/ROADMAP_MAGANG.md)** - Internship preparation, skill gap analysis, Horiba ADS EVO insights
 - **[Japanese Learning Guide](materi/JAPANESE_EMBEDDED_LEARNING.md)** - Trilingual technical vocabulary (EN/JP/ID)
@@ -486,3 +487,5 @@ esp32-logic-analyzer-automation/
 
 ---
 
+*Developed for industrial automation workflows & internship preparation (Automotive R&D)*  
+*Author: M. Faris A. G. | Version: 1.0.4 | Last Updated: 2025-05-XX (Repository Cleanup, Learning Path & Internship Roadmap Added)*
