@@ -14,17 +14,15 @@ firmware/
 
 ## Projects Overview
 
-┌───────────────────────────────┬──────────────────────────────────────┬──────────────┬─────────────────────────────────────┐
-│ Project                       │ Description                          │ Status       │ Key Features                        │
-├───────────────────────────────┼──────────────────────────────────────┼──────────────┼─────────────────────────────────────┤
-│ `test_uart_basic`             │ Basic UART with SPI initialization   │ ✅ Complete  │ UART TX/RX, SPI init, LED status    │
-│ `test_can_spi_test`           │ MCP2515 CAN controller SPI diagnostic│ ✅ Complete  │ Pin toggle test, wiring verification│
-│ `tests/mcp2515_can`           │ Comprehensive MCP2515 loopback test  │ ✅ Complete  │ Loopback mode, register verification│
-│ `tests/st7735s_tft`           │ ST7735S TFT display test             │ ✅ Complete  │ Color test, text rendering          │
-│ `tests/tft_mcp2515_combined`  │ Shared SPI bus test (TFT + MCP2515)  │ ✅ Complete  │ CS arbitration, no bus conflict     │
-│ `integration/can_two_nodes`   │ Two-node CAN bus communication       │ ✅ Complete  │ 500 kbps, TX/RX roles, error mon.   │
-│ `integration/can_bus_with_tft`│ CAN monitor with TFT & FreeRTOS      │ ✅ Complete  │ Multi-task, SPI sharing, LittleFS   │
-└───────────────────────────────┴──────────────────────────────────────┴──────────────┴─────────────────────────────────────┘
+| Project | Description | Status | Key Features |
+|---------|-------------|--------|--------------|
+| `test_uart_basic` | Basic UART with SPI initialization | ✅ Complete | UART TX/RX, SPI init, LED status |
+| `test_can_spi_test` | MCP2515 CAN controller SPI diagnostic | ✅ Complete | Pin toggle test, wiring verification |
+| `tests/mcp2515_can` | Comprehensive MCP2515 loopback test | ✅ Complete | Loopback mode, register verification |
+| `tests/st7735s_tft` | ST7735S TFT display test | ✅ Complete | Color test, text rendering |
+| `tests/tft_mcp2515_combined` | Shared SPI bus test (TFT + MCP2515) | ✅ Complete | CS arbitration, no bus conflict |
+| `integration/can_two_nodes` | Two-node CAN bus communication | ✅ Complete | 500 kbps, TX/RX roles, error mon. |
+| `integration/can_bus_with_tft` | CAN monitor with TFT & FreeRTOS | ✅ Complete | Multi-task, SPI sharing, LittleFS |
 
 ## Getting Started
 
@@ -81,18 +79,16 @@ pio test
 
 ### SPI Shared Bus (MCP2515 + ST7735S)
 
-┌───────────────┬──────────┬──────────────────────────┬──────────────────────────┐
-│ Module        │ Pin      │ Function                 │ Notes                    │
-├───────────────┼──────────┼──────────────────────────┼──────────────────────────┤
-│ MCP2515       │ GPIO 5   │ CS (Chip Select)         │ Active LOW               │
-│ MCP2515       │ GPIO 18  │ SCK (SPI Clock)          │ Shared with TFT          │
-│ MCP2515       │ GPIO 23  │ MOSI (SPI Data Out)      │ Shared with TFT          │
-│ MCP2515       │ GPIO 19  │ MISO (SPI Data In)       │ MCP2515 only             │
-│ ST7735S       │ GPIO 17  │ CS (Chip Select)         │ Active LOW               │
-│ ST7735S       │ GPIO 16  │ DC (Data/Command)        │ Control pin              │
-│ ST7735S       │ GPIO 4   │ RST (Reset)              │ Active LOW               │
-│ Built-in LED  │ GPIO 2   │ Status Indicator         │ For debug                │
-└───────────────┴──────────┴──────────────────────────┴──────────────────────────┘
+| Module | Pin | Function | Notes |
+|--------|-----|----------|-------|
+| MCP2515 | GPIO 5 | CS (Chip Select) | Active LOW |
+| MCP2515 | GPIO 18 | SCK (SPI Clock) | Shared with TFT |
+| MCP2515 | GPIO 23 | MOSI (SPI Data Out) | Shared with TFT |
+| MCP2515 | GPIO 19 | MISO (SPI Data In) | MCP2515 only |
+| ST7735S | GPIO 17 | CS (Chip Select) | Active LOW |
+| ST7735S | GPIO 16 | DC (Data/Command) | Control pin |
+| ST7735S | GPIO 4 | RST (Reset) | Active LOW |
+| Built-in LED | GPIO 2 | Status Indicator | For debug |
 
 ### CAN Bus Wiring
 
@@ -107,15 +103,13 @@ Node TX (MCP2515)          Node RX (MCP2515)
 
 ## Troubleshooting
 
-┌──────────────────────────────┬─────────────────────────┬─────────────────────────────────────────────────┐
-│ Issue                        │ Possible Cause          │ Solution                                        │
-├──────────────────────────────┼─────────────────────────┼─────────────────────────────────────────────────┤
-│ Build fails                  │ Missing PlatformIO      │ Run `pip install platformio`                    │
-│ Upload fails                 │ Wrong COM port          │ Check `pio device list`                         │
-│ MCP2515 not responding       │ SPI wiring issue        │ Verify CS, SCK, MOSI, MISO connections          │
-│ TFT shows white screen       │ Wrong init sequence     │ Try different `initR()` parameter               │
-│ CAN errors (EFLG > 0)        │ Bus noise/termination   │ Add 120Ω resistor, check wiring                 │
-└──────────────────────────────┴─────────────────────────┴─────────────────────────────────────────────────┘
+| Issue | Possible Cause | Solution |
+|-------|---------------|----------|
+| Build fails | Missing PlatformIO | Run `pip install platformio` |
+| Upload fails | Wrong COM port | Check `pio device list` |
+| MCP2515 not responding | SPI wiring issue | Verify CS, SCK, MOSI, MISO connections |
+| TFT shows white screen | Wrong init sequence | Try different `initR()` parameter |
+| CAN errors (EFLG > 0) | Bus noise/termination | Add 120Ω resistor, check wiring |
 
 ## Best Practices
 

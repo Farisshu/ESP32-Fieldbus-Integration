@@ -174,9 +174,8 @@ Target (3 Bulan Menuju Magang):
 #### Arsitektur Sistem ADS EVO
 
 ```
+                    ADS EVO Main Unit
 ┌─────────────────────────────────────────────────────────────┐
-│                    ADS EVO Main Unit                        │
-├─────────────────────────────────────────────────────────────┤
 │  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐      │
 │  │   CAN FD     │  │   FlexRay    │  │   Ethernet   │      │
 │  │   Module     │  │   Module     │  │   (DoIP)     │      │
