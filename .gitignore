@@ -1,1 +1,41 @@
-Nothing should be ignored based on the provided file changes, as they only include source/config files (.md files) and no build artifacts, dependencies, or temporary files.
+```
+# Compiled and build artifacts
+*.o
+*.obj
+*.out
+*.hex
+*.bin
+*.elf
+
+# Dependencies
+lib/
+libs/
+dependencies/
+
+# Logs and temp files
+*.log
+*.tmp
+*.bak
+*.backup
+
+# Environment
+.env
+.env.local
+*.env.*
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Build systems
+build/
+dist/
+output/
+target/
+
+# OS specific
+.DS_Store
+Thumbs.db
+```

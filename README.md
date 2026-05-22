@@ -72,35 +72,6 @@ Archive_YYYYMMDD_HHMMSS/
 
 ---
 
-## 📁 Repository Structure
-
-```text
-esp32-logic-analyzer-automation/
-├── firmware/                 # ESP32 test codes (PlatformIO) - ファームウェア
-│   ├── tests/               # Unit tests for individual modules - 単体テスト
-│   │   ├── mcp2515_can/     # MCP2515 CAN controller tests
-│   │   ├── st7735s_tft/     # ST7735S TFT display tests
-│   │   └── tft_mcp2515_combined/ # Combined SPI device tests
-│   ├── integration/         # Multi-node communication tests - 統合テスト
-│   │   ├── can_two_nodes/   # Two-node CAN bus communication
-│   │   └── can_bus_with_tft/ # CAN monitor with TFT visualization
-│   ├── test_uart_basic/     # UART communication test
-│   └── test_can_spi_test/   # CAN/MCP2515 SPI test
-├── software/                 # Python analysis tools - ソフトウェア
-│   ├── analyze_la_pro.py     # Main auto-report generator
-│   ├── analyze_la_archive.py # Archive analysis utility
-│   ├── generate_samples.py   # Synthetic CSV generator for testing
-│   └── examples/             # Sample captures & test data - サンプルデータ
-├── include/                  # Project header files - ヘッダーファイル
-├── lib/                      # Private libraries - ライブラリ
-├── docs/                     # Wiring diagrams, PulseView settings, SOP - 資料
-├── archives/                 # [IGNORED] Generated reports - アーカイブ
-├── requirements.txt          # Python dependencies
-├── LICENSE                   # MIT License
-└── README.md                 # This file - このファイル
-```
-
----
 
 ## 🔧 How It Works
 
@@ -473,16 +444,25 @@ For structured learning paths and technical materials, see:
 
 ---
 
-## 📁 Repository Structure (Clean)
+## 📁 Repository Structure
 
 ```text
 esp32-logic-analyzer-automation/
 ├── firmware/                 # ESP32 test codes (PlatformIO)
 │   ├── tests/               # Unit tests for individual modules
+│   │   ├── mcp2515_can/     # MCP2515 CAN controller tests ✅
+│   │   ├── st7735s_tft/     # ST7735S TFT display tests ✅
+│   │   └── tft_mcp2515_combined/ # Combined SPI device tests ✅
 │   ├── integration/         # Multi-node communication tests
+│   │   ├── can_two_nodes/   # Two-node CAN bus communication
+│   │   └── can_bus_with_tft/ # CAN monitor with TFT visualization ✅
 │   └── projects/            # Final integrated applications
+│       ├── rs485_loopback_test/  # RS485 hardware validation ✅
+│       └── rs485_master_slave/   # RS485 point-to-point communication ✅
 ├── software/                 # Python analysis tools
 │   ├── analyze_la_pro.py     # Main auto-report generator
+│   ├── analyze_la_archive.py # Archive analysis utility
+│   ├── generate_samples.py   # Synthetic CSV generator for testing
 │   └── examples/             # Sample captures & test data
 ├── include/                  # Project header files
 ├── lib/                      # Private libraries
@@ -501,4 +481,4 @@ esp32-logic-analyzer-automation/
 ---
 
 *Developed for industrial automation workflows & internship preparation (Automotive R&D)*  
-*Author: M. Faris A. G. | Version: 1.0.4 | Last Updated: 2025-05-XX (Repository Cleanup, Learning Path & Internship Roadmap Added)*
+*Author: M. Faris A. G. | Version: 1.0.5 | Last Updated: 2025-05-17 (README Cleanup, Duplicate Structure Removed, All Module READMEs Added)*
