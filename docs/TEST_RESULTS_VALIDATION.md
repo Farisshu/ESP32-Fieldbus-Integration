@@ -8,16 +8,14 @@
 
 ### Test Summary Table
 
-┌─────────────────────────┬──────────────────┬─────────────────┬──────────┬─────────────────────────────────┐
-│ Metric                  │ Expected         │ Actual          │ Status   │ 項目 (こうもく)                 │
-├─────────────────────────┼──────────────────┼─────────────────┼──────────┼─────────────────────────────────┤
-│ SPI Bus Sharing         │ No conflicts     │ ✅ Stable       │ PASS     │ SPI バス共有                   │
-│ CAN Frame Transmission  │ TXREQ clear      │ ✅ 0x00         │ PASS     │ CAN フレーム送信              │
-│ CAN Frame Reception     │ Payload intact   │ ✅ 100%         │ PASS     │ CAN フレーム受信              │
-│ Error Flag (EFLG)       │ < 0x80           │ ✅ 0x05         │ PASS*    │ エラーフラグ                  │
-│ UI Refresh Rate         │ ≤ 5Hz            │ ✅ 5Hz          │ PASS     │ UI 更新レート                 │
-│ FreeRTOS Task Sync      │ No deadlock      │ ✅ Stable       │ PASS     │ FreeRTOS タスク同期           │
-└─────────────────────────┴──────────────────┴─────────────────┴──────────┴─────────────────────────────────┘
+| Metric | Expected | Actual | Status | 項目 (こうもく) |
+|--------|----------|--------|--------|----------------|
+| SPI Bus Sharing | No conflicts | ✅ Stable | PASS | SPI バス共有 |
+| CAN Frame Transmission | TXREQ clear | ✅ 0x00 | PASS | CAN フレーム送信 |
+| CAN Frame Reception | Payload intact | ✅ 100% | PASS | CAN フレーム受信 |
+| Error Flag (EFLG) | < 0x80 | ✅ 0x05 | PASS* | エラーフラグ |
+| UI Refresh Rate | ≤ 5Hz | ✅ 5Hz | PASS | UI 更新レート |
+| FreeRTOS Task Sync | No deadlock | ✅ Stable | PASS | FreeRTOS タスク同期 |
 
 > **Note**: EFLG 0x05 indicates minor transmit warning (normal for prototyping with jumper wires). See Troubleshooting section for details.
 
@@ -148,15 +146,12 @@ Bit 0 (EWARN): 0 - Error Warning (duplicate) ❌ Not set
 **Objective**: Verify proper task coordination without deadlocks or race conditions.
 
 **Task Architecture**:
-```
-┌─────────────────────────────────────────────────────┐
-│ Task Name        │ Priority │ Stack │ Function     │
-├─────────────────────────────────────────────────────┤
-│ vTaskCANReceive  │ 3        │ 2048  │ CAN polling  │
-│ vTaskUIUpdate    │ 2        │ 2048  │ Display      │
-│ vTaskMonitor     │ 1        │ 1024  │ Health check │
-└─────────────────────────────────────────────────────┘
-```
+
+| Task Name | Priority | Stack | Function |
+|-----------|----------|-------|----------|
+| vTaskCANReceive | 3 | 2048 | CAN polling |
+| vTaskUIUpdate | 2 | 2048 | Display |
+| vTaskMonitor | 1 | 1024 | Health check |
 
 **Synchronization Mechanisms**:
 - **Binary Semaphore**: CAN → UI task notification

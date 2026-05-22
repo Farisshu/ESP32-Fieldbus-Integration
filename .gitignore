@@ -1,1 +1,41 @@
-Nothing to output - the modified file 'README.md' is a source/config file and no build artifacts, dependencies, or temp files were detected in the changes.
+```
+# Compiled and build artifacts
+*.o
+*.obj
+*.out
+*.hex
+*.bin
+*.elf
+
+# Dependencies
+lib/
+libs/
+dependencies/
+
+# Logs and temp files
+*.log
+*.tmp
+*.bak
+*.backup
+
+# Environment
+.env
+.env.local
+*.env.*
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Build systems
+build/
+dist/
+output/
+target/
+
+# OS specific
+.DS_Store
+Thumbs.db
+```
