@@ -7,6 +7,16 @@
 *.bin
 *.elf
 
+# PlatformIO build artifacts
+.pio/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
 # Dependencies
 lib/
 libs/
@@ -23,11 +33,10 @@ dependencies/
 .env.local
 *.env.*
 
-# Editors
-.vscode/
-.idea/
-*.swp
-*.swo
+# Editors (keep only settings.json)
+.vscode/settings.json
+.vscode/tasks.json
+.vscode/keybindings.json
 
 # Build systems
 build/
