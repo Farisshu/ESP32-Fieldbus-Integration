@@ -1,0 +1,31 @@
+{
+  "timestamp": "2026-06-16T05:21:08.732527",
+  "version": "1.1.0",
+  "config": {
+    "operator": "Embedded Engineer",
+    "dut_name": "ESP32 Development Board",
+    "test_purpose": "Protocol Analysis & Timing Verification",
+    "sample_rate_mhz": 8.0,
+    "voltage_threshold_v": 1.65
+  },
+  "detected_protocols": [
+    {
+      "type": "UART",
+      "channel": "ch0",
+      "baud_rate": 9600,
+      "confidence": "high"
+    }
+  ],
+  "results": {
+    "UART": {
+      "protocol_type": "UART",
+      "channel": "ch0",
+      "status": "ACTIVE",
+      "metrics": {
+        "baud_rate": 9600,
+        "total_bytes": 49
+      },
+      "error_count": 0
+    }
+  }
+}

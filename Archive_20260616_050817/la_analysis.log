@@ -1,0 +1,5 @@
+2026-06-16 05:08:17,406 | INFO     | Log initialized inside archive: Archive_20260616_050817/la_analysis.log
+2026-06-16 05:08:18,512 | INFO     | 📊 Waveform saved: Archive_20260616_050817/waveform_annotated.png
+2026-06-16 05:08:18,524 | INFO     | 📄 Text report saved: Archive_20260616_050817/professional_report.txt
+2026-06-16 05:08:18,524 | INFO     | 📁 Report saved to: Archive_20260616_050817/
+2026-06-16 05:08:18,525 | INFO     | ✅ Analysis complete!

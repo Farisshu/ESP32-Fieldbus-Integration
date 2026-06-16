@@ -76,7 +76,13 @@ class LogicAnalyzerArchiver:
             return None
             
         periods = np.diff(self.df['Time_s'].values[edge_indices])
-        freq_avg = 1.0 / np.mean(periods)
+        mean_period = np.mean(periods)
+        
+        # ✅ FIX: Division by zero protection
+        if mean_period <= 0:
+            return None
+            
+        freq_avg = 1.0 / mean_period
         freq_std = np.std(1.0 / periods) if len(periods) > 1 else 0.0
         duty_cycle = float(np.mean(signal)) * 100.0
         
@@ -88,7 +94,7 @@ class LogicAnalyzerArchiver:
         else:
             signal_type = "Digital Signal"
             
-        if len(edge_indices) > UART_EDGE_THRESHOLD and (freq_std / freq_avg) > JITTER_THRESHOLD_RATIO:
+        if len(edge_indices) > UART_EDGE_THRESHOLD and freq_avg > 0 and (freq_std / freq_avg) > JITTER_THRESHOLD_RATIO:
             signal_type = "UART/Data"
             
         result = {
