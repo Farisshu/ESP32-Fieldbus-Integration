@@ -1,0 +1,13 @@
+{
+  "timestamp": "2026-06-16T05:08:12.691311",
+  "version": "1.0.1",
+  "config": {
+    "operator": "Embedded Engineer",
+    "dut_name": "ESP32 Development Board",
+    "test_purpose": "Protocol Analysis & Timing Verification",
+    "sample_rate_mhz": 8.0,
+    "voltage_threshold_v": 1.65
+  },
+  "detected_protocols": [],
+  "results": {}
+}

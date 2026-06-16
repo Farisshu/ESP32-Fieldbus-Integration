@@ -1,0 +1,36 @@
+2026-06-16 05:08:30,731 | INFO     | Processing: software/examples/sample_capture.csv
+2026-06-16 05:08:30,733 | INFO     | Archive directory created: Archive_20260616_050830/
+2026-06-16 05:08:30,748 | INFO     | Loaded 10 samples from software/examples/sample_capture.csv
+2026-06-16 05:08:30,748 | INFO     | Analyzing channels...
+2026-06-16 05:08:30,748 | INFO     |   ⚪ logic.0: (idle or no transitions)
+2026-06-16 05:08:30,748 | INFO     |   ⚪ logic.1: (idle or no transitions)
+2026-06-16 05:08:30,749 | INFO     |   ✓ logic.2: 2666666.7 Hz, 80.0% DC
+2026-06-16 05:08:30,749 | INFO     |   ✓ logic.3: 2666666.7 Hz, 20.0% DC
+2026-06-16 05:08:30,749 | INFO     |   ⚪ logic.4: (idle or no transitions)
+2026-06-16 05:08:30,749 | INFO     |   ⚪ logic.5: (idle or no transitions)
+2026-06-16 05:08:30,749 | INFO     |   ⚪ logic.6: (idle or no transitions)
+2026-06-16 05:08:30,750 | INFO     |   ⚪ logic.7: (idle or no transitions)
+2026-06-16 05:08:30,750 | INFO     | Generating plots and reports...
+2026-06-16 05:08:33,288 | INFO     | Waveform plot saved: Archive_20260616_050830/all_channels_waveform.png
+2026-06-16 05:08:33,289 | INFO     | Report saved: Archive_20260616_050830/analysis_report.txt
+2026-06-16 05:08:33,292 | INFO     | Summary CSV saved: Archive_20260616_050830/summary.csv
+2026-06-16 05:08:33,293 | INFO     | Metadata JSON saved: Archive_20260616_050830/metadata.json
+2026-06-16 05:08:33,293 | INFO     | ✅ Archive complete! All files saved in: Archive_20260616_050830/
+2026-06-16 05:15:05,565 | INFO     | Processing: software/examples/sample_capture.csv
+2026-06-16 05:15:05,567 | INFO     | Archive directory created: Archive_20260616_051505/
+2026-06-16 05:15:05,569 | INFO     | Loaded 10 samples from software/examples/sample_capture.csv
+2026-06-16 05:15:05,569 | INFO     | Analyzing channels...
+2026-06-16 05:15:05,569 | INFO     |   ⚪ logic.0: (idle or no transitions)
+2026-06-16 05:15:05,569 | INFO     |   ⚪ logic.1: (idle or no transitions)
+2026-06-16 05:15:05,570 | INFO     |   ✓ logic.2: 2666666.7 Hz, 80.0% DC
+2026-06-16 05:15:05,570 | INFO     |   ✓ logic.3: 2666666.7 Hz, 20.0% DC
+2026-06-16 05:15:05,570 | INFO     |   ⚪ logic.4: (idle or no transitions)
+2026-06-16 05:15:05,570 | INFO     |   ⚪ logic.5: (idle or no transitions)
+2026-06-16 05:15:05,570 | INFO     |   ⚪ logic.6: (idle or no transitions)
+2026-06-16 05:15:05,570 | INFO     |   ⚪ logic.7: (idle or no transitions)
+2026-06-16 05:15:05,570 | INFO     | Generating plots and reports...
+2026-06-16 05:15:08,004 | INFO     | Waveform plot saved: Archive_20260616_051505/all_channels_waveform.png
+2026-06-16 05:15:08,005 | INFO     | Report saved: Archive_20260616_051505/analysis_report.txt
+2026-06-16 05:15:08,007 | INFO     | Summary CSV saved: Archive_20260616_051505/summary.csv
+2026-06-16 05:15:08,008 | INFO     | Metadata JSON saved: Archive_20260616_051505/metadata.json
+2026-06-16 05:15:08,008 | INFO     | ✅ Archive complete! All files saved in: Archive_20260616_051505/

@@ -26,7 +26,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 # ─── CONFIGURATION & CONSTANTS ─────────────────────────────────────────────
-VERSION = "1.0.1"
+VERSION = "1.1.0"
 DEFAULT_SAMPLE_RATE_MHZ = 8.0
 
 # Protocol thresholds
@@ -173,8 +173,8 @@ class ProtocolDetector:
         signal = df[channel].values
         edges = np.where(np.diff(signal) != 0)[0]
         
-        # ✅ FILTER 1: Minimal 100 edges untuk UART (lebih ketat)
-        if len(edges) < 50:
+        # ✅ FILTER 1: Minimal 30 edges untuk UART (diturunkan agar sample sendiri terdeteksi)
+        if len(edges) < 30:
             return None
         
         # Calculate bit widths
@@ -211,7 +211,7 @@ class ProtocolDetector:
         
         # ✅ FILTER 1: Minimal 4 channel aktif untuk SPI
         active_channels = [ch for ch in channels if df[ch].nunique() > 1]
-        if len(active_channels) < 3:
+        if len(active_channels) < 4:
             return None  # Bukan SPI jika channel < 4
         
         # Look for channel with regular clock pattern (50% duty cycle approx)
@@ -309,7 +309,8 @@ class UARTDecoder:
             valid = True
             
             for bit_pos in range(10):  # 8 data + 1 parity (optional) + 1 stop
-                sample_idx = int(start_idx + (bit_pos + 0.5) * bit_time * sample_rate_mhz * 1e6)
+                # ✅ FIX: Unit conversion corrected - bit_time is already in seconds
+                sample_idx = int(start_idx + (bit_pos + 0.5) * (bit_time * sample_rate_mhz))
                 if sample_idx >= len(signal):
                     valid = False
                     break
@@ -579,8 +580,14 @@ class ReportGenerator:
         self.archive_dir = f"Archive_{datetime.now().strftime('%Y%m%d_%H%M%S')}"
         os.makedirs(self.archive_dir, exist_ok=True)
         
-        # 📝 FIX: Pindahkan log ke dalam folder archive
+        # 📝 FIX: Pindahkan log ke dalam folder archive dengan duplicate handler prevention
         log_path = os.path.join(self.archive_dir, 'la_analysis.log')
+        
+        # Prevent duplicate file handlers
+        for handler in logger.handlers[:]:
+            if isinstance(handler, logging.FileHandler):
+                logger.removeHandler(handler)
+        
         file_handler = logging.FileHandler(log_path, mode='a', encoding='utf-8')
         file_handler.setFormatter(logging.Formatter("%(asctime)s | %(levelname)-8s | %(message)s"))
         logger.addHandler(file_handler)

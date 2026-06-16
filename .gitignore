@@ -1,18 +1,12 @@
 ```
-# Compiled and build artifacts
-*.o
-*.obj
-*.out
+# Compiled Python files
+__pycache__/
+*.pyc
+*.pyo
 
-# Dependencies
-build/
-
-# Logs and temp files
+# Log files
 *.log
-*.tmp
-*.swp
 
-# Editors
-.vscode/
-.idea/
+# Archive directories (based on pattern in added files)
+Archive_*/
 ```
