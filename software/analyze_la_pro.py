@@ -322,7 +322,11 @@ class UARTDecoder:
                     errors.append(f"Missing stop bit at sample {start_idx}")
                 
                 # Extract data byte (bits 1-8, LSB first)
-                data_byte = sum(bit << (i-1) for i, bit in enumerate(byte_bits[1:9]))
+                # ✅ FIX: Prevent negative shift by ensuring proper indexing
+                data_byte = 0
+                for i, bit in enumerate(byte_bits[1:9]):
+                    if i >= 0:  # Safety check
+                        data_byte |= (bit << i)
                 bytes_decoded.append(data_byte)
         
         return ProtocolResult(
