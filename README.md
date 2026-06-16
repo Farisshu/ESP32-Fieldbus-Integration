@@ -348,6 +348,7 @@ Bit 3-7        = 0 ✅ No Bus-Off, No Passive Error, No Overflow
 |----------|-------------|------|
 | Test Results & Validation | Comprehensive CAN Bus test report | [View Report](docs/TEST_RESULTS_VALIDATION.md) |
 | Test Procedures & SOP | Hardware setup & validation steps | [View SOP](docs/test_procedures.md) |
+| **Control Theory & PID** | **Transfer functions, Z-domain, PID implementation** | **[View Guide](docs/CONTROL_THEORY.md)** |
 | Firmware README | Detailed firmware project guide | [View Guide](firmware/README.md) |
 | Software README | Python tool documentation | [View Docs](software/README.md) |
 | Integration Tests | Multi-node testing guide | [View Tests](firmware/integration/README.md) |

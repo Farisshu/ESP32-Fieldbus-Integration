@@ -70,10 +70,10 @@ Berikut adalah struktur pembelajaran yang direkomendasikan untuk menguasai embed
 | Topik | Materi | Status | Prioritas |
 |-------|--------|--------|-----------|
 | FreeRTOS Multitasking | Task scheduling, queues | ✅ Complete | ⭐⭐⭐⭐⭐ |
-| Finite State Machine (FSM) | State-based programming | 📚 Reference | ⭐⭐⭐⭐ |
-| MISRA C Standard | Coding standards for safety | 📚 Reference | ⭐⭐⭐⭐ |
+| Finite State Machine (FSM) | State-based programming | ✅ Available | ⭐⭐⭐⭐ |
+| MISRA C Standard | Coding standards for safety | ✅ Available | ⭐⭐⭐⭐ |
 | Watchdog Timer (WDT) | System reliability | ✅ Available | ⭐⭐⭐⭐ |
-| ADC & DAC | Analog interfacing | 🔜 Planned | ⭐⭐⭐ |
+| **PID Control & Filtering** | **Control theory, ADC filtering** | **✅ Available** | **⭐⭐⭐⭐⭐** |
 | Motor Control & Encoder | PWM, quadrature decoding | 🔜 Planned | ⭐⭐⭐ |
 
 #### Level 4: Industry Standards & Tools

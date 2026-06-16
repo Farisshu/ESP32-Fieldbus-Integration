@@ -38,8 +38,9 @@ Setelah menyelesaikan seluruh materi ini, Anda akan mampu:
 | No | Materi | File | Status | Prasyarat |
 |----|--------|------|--------|-----------|
 | 10 | Bootloader Development | [04_Bootloader_Dev_Guide.md](./04_Bootloader_Dev_Guide.md) | ✅ Siap | 02, 04 |
-| 11 | Diagnostic Systems (UDS & OBD-II) | *[Coming Soon]* | ⏳ Planned | 06 |
-| 12 | Unit Testing Embedded | *[Coming Soon]* | ⏳ Planned | 01 |
+| 11 | Control Systems & PID | [docs/CONTROL_THEORY.md](../docs/CONTROL_THEORY.md) | ✅ Siap | 01, 07 |
+| 12 | Diagnostic Systems (UDS & OBD-II) | *[Coming Soon]* | ⏳ Planned | 06 |
+| 13 | Unit Testing Embedded | *[Coming Soon]* | ⏳ Planned | 01 |
 
 ## 🗺️ Peta Jalan Pembelajaran
 
