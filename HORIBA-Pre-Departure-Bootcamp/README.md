@@ -1,12 +1,12 @@
-# HORIBA Pre-Departure Bootcamp
+# Embedded Systems Engineering Bootcamp
 
-> **Embedded Systems Engineering Knowledge Base**
+> **Professional Knowledge Base for Embedded Systems Engineers**
 
 ---
 
 ## 🎯 Tujuan Bootcamp
 
-Repository ini dirancang sebagai **knowledge base profesional** untuk mempersiapkan diri menjadi Embedded Systems Engineer yang siap bekerja di industri, khususnya di lingkungan perusahaan Jepang seperti HORIBA.
+Repository ini dirancang sebagai **knowledge base profesional** untuk mempersiapkan diri menjadi Embedded Systems Engineer yang siap bekerja di industri, khususnya di lingkungan perusahaan teknologi tinggi termasuk perusahaan Jepang.
 
 Ini **bukan sekadar catatan 7 hari belajar**, melainkan dokumentasi yang akan terus berkembang dan dapat digunakan sepanjang karier engineering Anda.
 
@@ -17,7 +17,7 @@ Ini **bukan sekadar catatan 7 hari belajar**, melainkan dokumentasi yang akan te
 - Mahasiswa D3 Teknik Elektronika
 - Embedded Systems Engineer junior
 - Future R&D Engineer
-- Calon intern di HORIBA atau perusahaan Jepang
+- Calon intern di perusahaan teknologi
 
 ---
 
@@ -36,7 +36,7 @@ Day 05 → Electronics Review
    ↓
 Day 06 → Coding & Debugging Challenge
    ↓
-Day 07 → Simulasi Hari Pertama di HORIBA
+Day 07 → Simulasi Hari Pertama di Industri
 ```
 
 ---
@@ -44,7 +44,7 @@ Day 07 → Simulasi Hari Pertama di HORIBA
 ## 📚 Struktur Repository
 
 ```
-HORIBA-Pre-Departure-Bootcamp/
+Embedded-Systems-Bootcamp/
 │
 ├── README.md
 ├── Day-01-Engineer-Mindset.md
