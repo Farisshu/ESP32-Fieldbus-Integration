@@ -44,7 +44,7 @@ Day 07 → Simulasi Hari Pertama di Industri
 ## 📚 Struktur Repository
 
 ```
-Embedded-Systems-Bootcamp/
+Embedded-Systems-Handbook/
 │
 ├── README.md
 ├── Day-01-Engineer-Mindset.md
