@@ -364,8 +364,9 @@ Bit 3-7        = 0 ✅ No Bus-Off, No Passive Error, No Overflow
 | **Bootloader Development** | Memory layout, flash driver, safety mechanisms | ✅ Ready | [04_Bootloader_Dev_Guide.md](materi/04_Bootloader_Dev_Guide.md) |
 | **MISRA C:2012 Guide** | Coding standard with examples (57KB) | ✅ Ready | [05_MISRA_C_Style_Guide.md](materi/05_MISRA_C_Style_Guide.md) |
 | **Progress Report** | Repository status, career relevance, improvement plan | ✅ Ready | [PROGRESS_REPORT.md](materi/PROGRESS_REPORT.md) |
-| Japanese Learning Guide | Technical Japanese for embedded engineers | ✅ Ready | [JAPANESE_EMBEDDED_LEARNING.md](materi/JAPANESE_EMBEDDED_LEARNING.md) |
-| Internship Roadmap | Skill preparation & industry insights | ✅ Ready | [ROADMAP_MAGANG.md](materi/ROADMAP_MAGANG.md) |
+| **Japanese Learning Guide** | Technical Japanese for embedded engineers | ✅ Ready | [JAPANESE_EMBEDDED_LEARNING.md](materi/JAPANESE_EMBEDDED_LEARNING.md) |
+| **Japanese Business Manners** | Business etiquette, keigo, workplace behavior | ✅ Ready | [Business Manners Guide](docs/japanese/Business/Business-Manners.md) |
+| **Internship Roadmap** | Skill preparation & industry insights | ✅ Ready | [ROADMAP_MAGANG.md](materi/ROADMAP_MAGANG.md) |
 
 ---
 
@@ -416,6 +417,7 @@ For structured learning paths and technical materials, see:
 - **[Learning Path (Materi)](materi/README_MATERI_LENGKAP.md)** - Complete guide to embedded systems, protocols, and tools
 - **[Internship Roadmap (Magang)](materi/ROADMAP_MAGANG.md)** - Internship preparation, skill gap analysis, Horiba ADS EVO insights
 - **[Japanese Learning Guide](materi/JAPANESE_EMBEDDED_LEARNING.md)** - Trilingual technical vocabulary (EN/JP/ID)
+- **[Japanese Business Manners](docs/japanese/Business/Business-Manners.md)** - Business etiquette, keigo, workplace behavior
 - **[Archive Documentation](archive/ARCHIVE_INDEX.md)** - Historical evidence and deprecated docs
 
 ## 📊 Repository Statistics (Updated 2024-05-15)
