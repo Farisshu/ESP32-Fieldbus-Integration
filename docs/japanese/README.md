@@ -21,28 +21,24 @@ Japanese/
 │
 ├── Business/
 │     ├── Business-Manners.md    ✅ Business etiquette & keigo
-│     ├── Business-Email.md      🔄 Coming soon
-│     ├── Office-Etiquette.md    🔄 Coming soon
-│     └── Meeting.md             🔄 Coming soon
+│     └── Business-Email.md      ✅ Email templates and etiquette
 │
 ├── Language/
-│     ├── Grammar.md             🔄 Coming soon
-│     ├── Keigo.md               🔄 Coming soon
-│     └── Vocabulary.md          🔄 Coming soon
+│     ├── Grammar.md             ✅ Japanese grammar fundamentals
+│     ├── Keigo.md               ✅ Honorific language deep dive
+│     └── Vocabulary.md          ✅ Essential business & engineering vocabulary
 │
 ├── Engineering/
-│     ├── Code-Review.md         🔄 Coming soon
-│     ├── Debugging.md           🔄 Coming soon
-│     └── Embedded.md            🔄 Coming soon
+│     └── Embedded.md            ✅ Embedded systems terminology
 │
 ├── Daily-Life/
-│     └── (Coming Soon)          🔄
+│     └── README.md              ✅ Daily life situations & phrases
 │
 ├── Cheat-Sheets/
-│     └── (Coming Soon)          🔄
+│     └── Quick-Reference.md     ✅ Quick reference for daily use
 │
 └── Resources/
-    └── (Coming Soon)            🔄
+    └── README.md                ✅ Learning resources & study guide
 ```
 
 **Legend / 凡例（はんれい）:**
@@ -58,35 +54,44 @@ Japanese/
 | Document | Description | Link |
 |----------|-------------|------|
 | **Business Manners** | Complete guide to Japanese business etiquette, keigo, and workplace behavior | [View Guide](./Business/Business-Manners.md) |
-| **Business Email** | Email templates and etiquette *(Coming Soon)* | _In Progress_ |
-| **Office Etiquette** | Daily office behavior and customs *(Coming Soon)* | _In Progress_ |
-| **Meeting Expressions** | Phrases for meetings and discussions *(Coming Soon)* | _In Progress_ |
+| **Business Email** | Email templates and etiquette | [View Guide](./Business/Business-Email.md) |
 
 ### Language / 言語（げんご）
 
 | Document | Description | Link |
 |----------|-------------|------|
-| **Grammar** | Japanese grammar fundamentals *(Coming Soon)* | _In Progress_ |
-| **Keigo** | Honorific language deep dive *(Coming Soon)* | _In Progress_ |
-| **Vocabulary** | Essential business vocabulary *(Coming Soon)* | _In Progress_ |
+| **Grammar** | Japanese grammar fundamentals with exercises | [View Guide](./Language/Grammar.md) |
+| **Keigo** | Honorific language deep dive (sonkeigo, kenjougo, teineigo) | [View Guide](./Language/Keigo.md) |
+| **Vocabulary** | Essential business & engineering vocabulary | [View Guide](./Language/Vocabulary.md) |
 
 ### Engineering / エンジニアリング
 
 | Document | Description | Link |
 |----------|-------------|------|
-| **Code Review** | Expressions for code review *(Coming Soon)* | _In Progress_ |
-| **Debugging** | Debugging conversation phrases *(Coming Soon)* | _In Progress_ |
-| **Embedded** | Embedded systems terminology *(Coming Soon)* | _In Progress_ |
+| **Embedded Systems** | Embedded systems terminology & technical phrases | [View Guide](./Engineering/Embedded.md) |
+
+### Daily Life / 日常生活（にちじょうせいかつ）
+
+| Document | Description | Link |
+|----------|-------------|------|
+| **Daily Life Japanese** | Everyday situations: shopping, transport, health, etc. | [View Guide](./Daily-Life/README.md) |
 
 ### Quick Reference / クイックリファレンス
 
 | Resource | Purpose | Link |
 |----------|---------|------|
+| **Cheat Sheets** | Quick reference for particles, conjugations, keigo | [View Guide](./Cheat-Sheets/Quick-Reference.md) |
 | Daily Greetings | Morning/evening phrases | See [Business Manners §5](./Business/Business-Manners.md#5-daily-office-conversation--毎日まいにちのオフィス会話かいわ) |
 | Keigo Guide | Honorific language usage | See [Business Manners §4](./Business/Business-Manners.md#4-keigo-mistakes--敬語けいごのミス) |
 | Ho-Ren-So | Report/Contact/Consult guide | See [Business Manners §2](./Business/Business-Manners.md#2-business-mindset--ビジネスマインドセット) |
 | Email Phrases | Business email templates | See [Business Manners §5](./Business/Business-Manners.md#email-phrases--メール表現ひょうげん) |
 | Engineering Examples | Workplace conversation samples | See [Business Manners §6](./Business/Business-Manners.md#6-engineering-workplace-examples--エンジニア職場しょくばの例れい) |
+
+### Resources / リソース
+
+| Resource | Description | Link |
+|----------|-------------|------|
+| **Learning Guide** | Study paths, apps, books, practice methods | [View Guide](./Resources/README.md) |
 
 ---
 
