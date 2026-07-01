@@ -1,4 +1,4 @@
-# 🇯🇵 Japanese Language Resources / 日本語リソース
+# 🇯🇵 Japanese Language Resources / 日本語（にほんご）リソース
 
 > **Japanese Learning Hub for Engineering Interns**  
 > **エンジニア実習生（じっしゅうせい）のための日本語学習（がくしゅう）ハブ**
@@ -7,38 +7,86 @@
 
 ## 📋 Navigation / ナビゲーション
 
+- [← Back to Main Docs](../README.md)
 - [← Back to Main README](../../README.md)
-- [← Back to Docs](../README.md)
 
 ---
 
-## Overview / 概要（がいよう）
+## 📁 Documentation Structure / ドキュメント構成（こうせい）
 
-This section contains comprehensive Japanese language learning materials specifically designed for engineering interns preparing to work at Japanese companies.
+```
+Japanese/
+│
+├── README.md                    ← You are here
+│
+├── Business/
+│     ├── Business-Manners.md    ✅ Business etiquette & keigo
+│     ├── Business-Email.md      🔄 Coming soon
+│     ├── Office-Etiquette.md    🔄 Coming soon
+│     └── Meeting.md             🔄 Coming soon
+│
+├── Language/
+│     ├── Grammar.md             🔄 Coming soon
+│     ├── Keigo.md               🔄 Coming soon
+│     └── Vocabulary.md          🔄 Coming soon
+│
+├── Engineering/
+│     ├── Code-Review.md         🔄 Coming soon
+│     ├── Debugging.md           🔄 Coming soon
+│     └── Embedded.md            🔄 Coming soon
+│
+├── Daily-Life/
+│     └── (Coming Soon)          🔄
+│
+├── Cheat-Sheets/
+│     └── (Coming Soon)          🔄
+│
+└── Resources/
+    └── (Coming Soon)            🔄
+```
 
-このセクションには、日本企業（にほんきぎょう）で働（はたら）く予定（よてい）のエンジニア実習生（じっしゅうせい）のため特別（とくべつ）に設計（せっけい）された日本語学習（がくしゅう）教材（きょうざい）が含ま（ふくま）れています。
+**Legend / 凡例（はんれい）:**
+- ✅ Complete / 完了（かんりょう）
+- 🔄 In Progress / 作成中（さくせいちゅう）
 
 ---
 
 ## 📚 Available Documents / 利用可能（りようかのう）な資料（しりょう）
 
-### Core Business Skills / ビジネススキル
+### Business / ビジネス
 
 | Document | Description | Link |
 |----------|-------------|------|
-| **Business Manners** | Complete guide to Japanese business etiquette, keigo, and workplace behavior | [View Guide](./Japanese-Business-Manners.md) |
-| **Engineer Vocabulary** | Technical vocabulary for embedded systems engineers | [View List](../../Embedded-Systems-Handbook/Cheat-Sheets/Japanese/engineer-vocabulary.md) |
-| **Japanese Learning Guide** | Trilingual technical vocabulary (EN/JP/ID) with study plan | [View Guide](../../materi/JAPANESE_EMBEDDED_LEARNING.md) |
+| **Business Manners** | Complete guide to Japanese business etiquette, keigo, and workplace behavior | [View Guide](./Business/Business-Manners.md) |
+| **Business Email** | Email templates and etiquette *(Coming Soon)* | _In Progress_ |
+| **Office Etiquette** | Daily office behavior and customs *(Coming Soon)* | _In Progress_ |
+| **Meeting Expressions** | Phrases for meetings and discussions *(Coming Soon)* | _In Progress_ |
+
+### Language / 言語（げんご）
+
+| Document | Description | Link |
+|----------|-------------|------|
+| **Grammar** | Japanese grammar fundamentals *(Coming Soon)* | _In Progress_ |
+| **Keigo** | Honorific language deep dive *(Coming Soon)* | _In Progress_ |
+| **Vocabulary** | Essential business vocabulary *(Coming Soon)* | _In Progress_ |
+
+### Engineering / エンジニアリング
+
+| Document | Description | Link |
+|----------|-------------|------|
+| **Code Review** | Expressions for code review *(Coming Soon)* | _In Progress_ |
+| **Debugging** | Debugging conversation phrases *(Coming Soon)* | _In Progress_ |
+| **Embedded** | Embedded systems terminology *(Coming Soon)* | _In Progress_ |
 
 ### Quick Reference / クイックリファレンス
 
 | Resource | Purpose | Link |
 |----------|---------|------|
-| Daily Greetings | Morning/evening phrases | See [Business Manners §5](./Japanese-Business-Manners.md#5-daily-office-conversation--毎日まいにちのオフィス会話かいわ) |
-| Keigo Guide | Honorific language usage | See [Business Manners §4](./Japanese-Business-Manners.md#4-keigo-mistakes--敬語けいごのミス) |
-| Ho-Ren-So | Report/Contact/Consult guide | See [Business Manners §2](./Japanese-Business-Manners.md#2-business-mindset--ビジネスマインドセット) |
-| Email Phrases | Business email templates | See [Business Manners §5](./Japanese-Business-Manners.md#email-phrases--メール表現ひょうげん) |
-| Engineering Examples | Workplace conversation samples | See [Business Manners §6](./Japanese-Business-Manners.md#6-engineering-workplace-examples--エンジニア職場しょくばの例れい) |
+| Daily Greetings | Morning/evening phrases | See [Business Manners §5](./Business/Business-Manners.md#5-daily-office-conversation--毎日まいにちのオフィス会話かいわ) |
+| Keigo Guide | Honorific language usage | See [Business Manners §4](./Business/Business-Manners.md#4-keigo-mistakes--敬語けいごのミス) |
+| Ho-Ren-So | Report/Contact/Consult guide | See [Business Manners §2](./Business/Business-Manners.md#2-business-mindset--ビジネスマインドセット) |
+| Email Phrases | Business email templates | See [Business Manners §5](./Business/Business-Manners.md#email-phrases--メール表現ひょうげん) |
+| Engineering Examples | Workplace conversation samples | See [Business Manners §6](./Business/Business-Manners.md#6-engineering-workplace-examples--エンジニア職場しょくばの例れい) |
 
 ---
 
@@ -46,10 +94,10 @@ This section contains comprehensive Japanese language learning materials specifi
 
 ### For Beginners / 初心者（しょきんしゃ）向け
 
-1. Start with **Basic Greetings** - Learn essential daily phrases
+1. Start with **Business Manners** - Learn essential workplace behavior
 2. Study **Ho-Ren-So** - Understand Japanese communication fundamentals
-3. Practice **Keigo Basics** - Learn polite business language
-4. Review **Engineer Vocabulary** - Build technical terminology
+3. Practice **Daily Greetings** - Master morning/evening phrases
+4. Review **Basic Keigo** - Learn polite business language
 
 ### For Intermediate Learners / 中級者（ちゅうきゅうしゃ）向け
 
@@ -67,7 +115,7 @@ This section contains comprehensive Japanese language learning materials specifi
 
 ---
 
-## 📖 Key Topics / 重要（じゅうよう）トピック
+## 📖 Key Concepts / 重要（じゅうよう）概念（がいねん）
 
 ### Language Levels / 言葉（ことば）のレベル
 
@@ -93,13 +141,13 @@ This section contains comprehensive Japanese language learning materials specifi
 
 ## 🔗 Cross References / 相互参照（そうごさんしょう）
 
-### Related Documentation
+### Related Documentation in This Repository
 
 - [Engineer Mindset](../../Embedded-Systems-Handbook/Day-01-Engineer-Mindset.md) - Professional thinking
 - [Technical Vocabulary](../../Embedded-Systems-Handbook/Cheat-Sheets/Japanese/engineer-vocabulary.md) - Basic terms
 - [Embedded Japanese Guide](../../materi/JAPANESE_EMBEDDED_LEARNING.md) - Comprehensive learning
 
-### External Resources
+### External Resources / 外部（がいぶ）リソース
 
 - [Jisho.org](https://jisho.org/) - Japanese dictionary
 - [Takoboto](https://takoboto.jp/) - Technical terms
@@ -124,6 +172,7 @@ Use this table to track your Japanese learning progress:
 
 | Topic | Started | Completed | Mastery % | Notes |
 |-------|---------|-----------|-----------|-------|
+| Business Manners | | | | |
 | Basic Greetings | | | | |
 | Ho-Ren-So | | | | |
 | Keigo Basics | | | | |
@@ -158,7 +207,7 @@ Use this table to track your Japanese learning progress:
 
 | Previous | Next |
 |----------|------|
-| [← Main Docs](../README.md) | [Business Manners →](./Japanese-Business-Manners.md) |
+| [← Main Docs](../README.md) | [Business Manners →](./Business/Business-Manners.md) |
 
 **Related Documents:**
 - [JAPANESE_EMBEDDED_LEARNING.md](../../materi/JAPANESE_EMBEDDED_LEARNING.md)
